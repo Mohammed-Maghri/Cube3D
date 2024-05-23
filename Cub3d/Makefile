@@ -1,4 +1,4 @@
-SRC =   main.c parsing/utils/utils.c parsing/utils/utils1.c  parsing/map_validity.c parsing/valid_map_check.c parsing/valid_map1.c gcollector/gb.c 
+SRC =   main.c parsing/utils/utils.c parsing/utils/utils1.c  parsing/map_validity.c  parsing/map_valid2.c parsing/valid_map_check.c parsing/valid_map1.c gcollector/gb.c 
 OBJS = ${SRC:.c=.o}
 NAME = Cub3d
 CC = cc 
