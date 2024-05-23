@@ -19,11 +19,10 @@ int function_check_ithem(char *string)
 }
 
 int count_twode_arr(char **array)
-{
+{ 
     int index;
 
     index = 0;
-
     if (!array)
         return (0);
     while (array[index])
@@ -44,7 +43,6 @@ char **move_only_content(char **twode)
     {
         if (function_check_ithem(twode[ele.index]) == 0)
         {
-            printf("|%s|\n", twode[ele.index]);
             ele.array[ele.increment] = twode[ele.index];
             ele.increment++ ;
         }

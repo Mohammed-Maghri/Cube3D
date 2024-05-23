@@ -17,6 +17,9 @@ typedef struct parsing
 	int		read_buf;
 	char	*buf;
 	char	**array;
+	int		flag;
+	int		incre;
+	int		pause;
 } t_pars;
 
 typedef struct store_map_elem
@@ -25,8 +28,8 @@ typedef struct store_map_elem
 	char *so;
 	char *we;
 	char *ea;
-	char *f;
-	char *c;
+	int  *f;
+	int  *c;
 } t_store;
 
 // Garbege Collector
@@ -36,6 +39,7 @@ void	*gb(int size, int flag);
 void	**garbege_array_fill(void **array, void *add);
 // -----------------
 
+void	check_rgb_colors(char **twode, t_store *store);
 char	*copy_move(char *string);
 int		check_directions(char **twode, t_store *store);
 int		count_twode_arr(char **array);

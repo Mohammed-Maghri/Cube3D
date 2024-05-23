@@ -1,8 +1,8 @@
-SRC =   main.c parsing/utils/utils.c parsing/utils/utils1.c  parsing/map_validity.c parsing/valid_map_check.c gcollector/gb.c 
+SRC =   main.c parsing/utils/utils.c parsing/utils/utils1.c  parsing/map_validity.c parsing/valid_map_check.c parsing/valid_map1.c gcollector/gb.c 
 OBJS = ${SRC:.c=.o}
 NAME = Cub3d
 CC = cc 
-CFLAGS = -Wall -Wextra -Werror 
+CFLAGS = -Wall -Wextra -Werror #-fsanitize=address -g
 RM = rm -rf 
 
 all : $(NAME)
