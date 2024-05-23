@@ -6,7 +6,7 @@
 /*   By: mmaghri <mmaghri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 20:38:48 by mmaghri           #+#    #+#             */
-/*   Updated: 2024/05/23 20:55:47 by mmaghri          ###   ########.fr       */
+/*   Updated: 2024/05/23 21:31:49 by mmaghri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ void	ini_tila(t_store *store, int flag)
 {
 	if (flag == 1)
 	{
-		store->c = gb(sizeof(int) + 3, 1);
-		store->f = gb(sizeof(int) + 3, 1);
+		store->c = gb(sizeof(int) * 3, 1);
+		store->f = gb(sizeof(int) * 3, 1);
 		store->c[0] = -1;
 		store->c[1] = -1;
 		store->c[2] = -1;
@@ -88,17 +88,9 @@ int	main()
 
 	map = NULL;
 	store = NULL;
-	atexit(leacks_it);
+	// atexit(leacks_it);
 	that = for_main(map);
 	store = gb(sizeof(t_store), 1);
-	int index ;
-
-	index = 0;
-	while (that[index])
-	{
-		printf(" %s \n", that[index]);
-		index++ ;
-	}
 	store->no = copy_move("*");
 	store->ea = copy_move("*");
 	store->so = copy_move("*");
@@ -108,6 +100,6 @@ int	main()
 	ini_tila(store, 1);
 	check_rgb_colors(that, store);
 	ini_tila(store, 0);
-
+	rebuild_map(that);
 	gb(0, -1);
 }

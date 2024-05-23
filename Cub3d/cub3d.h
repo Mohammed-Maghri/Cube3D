@@ -6,7 +6,7 @@
 /*   By: mmaghri <mmaghri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 20:32:50 by mmaghri           #+#    #+#             */
-/*   Updated: 2024/05/23 20:32:52 by mmaghri          ###   ########.fr       */
+/*   Updated: 2024/05/23 21:18:22 by mmaghri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct store_map_elem
 	int		*f;
 	int		*c;
 }	t_store;
+
 // Garbege Collector
 int		count_lenght(void **array);
 void	optins(void **array);
@@ -49,6 +50,8 @@ void	*gb(int size, int flag);
 void	**garbege_array_fill(void **array, void *add);
 // -----------------
 
+char	*rebuild_map(char **twode);
+int		get_longest_line(char **twode);
 int		number_conv(char *string);
 char	*string_copy_from_till(char *string, int start, int stop);
 void	check_rgb_colors(char **twode, t_store *store);
@@ -66,6 +69,8 @@ void	paste(char string);
 int		function_open_map(char *file_name, t_pars *ithems);
 
 //--------------
+
+
 
 //For Raycasting
 
