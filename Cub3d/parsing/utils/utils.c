@@ -6,7 +6,7 @@
 /*   By: mmaghri <mmaghri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 14:09:29 by mmaghri           #+#    #+#             */
-/*   Updated: 2024/05/24 14:11:09 by mmaghri          ###   ########.fr       */
+/*   Updated: 2024/05/24 18:41:13 by mmaghri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,8 @@ char	**moveto_array(char *string)
 			caracter_turn(elems.array[elems.increment], string[elems.index]);
 			elems.index++ ;
 		}
+		// elems.array[elems.increment] = \
+		// 	caracter_turn(elems.array[elems.increment], string[elems.index]);
 		elems.increment++ ;
 		elems.index++;
 	}

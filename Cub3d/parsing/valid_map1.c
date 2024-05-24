@@ -6,7 +6,7 @@
 /*   By: mmaghri <mmaghri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:07:18 by mmaghri           #+#    #+#             */
-/*   Updated: 2024/05/24 15:59:22 by mmaghri          ###   ########.fr       */
+/*   Updated: 2024/05/24 18:05:15 by mmaghri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ int	number_conv(char *string)
 	res = 0;
 	index = 0;
 
-	printf("|%s| \n" , string);
 	while (string[index] == ' ' || (string[index] >= 9 && string[index] <= 13))
 		index++ ;
 	if (check_nonumbers(&string[index]) == -1)
@@ -79,7 +78,6 @@ int check_on_validiation(char *string)
 		if ((string[index] == ' ' || string[index] == '\t') \
 		&& (string[index + 1] >= '0' && string[index + 1] <= '9') && flag > 0)
 			{
-				printf("string |%s|\n", &string[index + 1]);
 				putstring("Invalid Argument.... !");
 				exit(1);
 			}

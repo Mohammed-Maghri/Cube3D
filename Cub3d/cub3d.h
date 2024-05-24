@@ -6,7 +6,7 @@
 /*   By: mmaghri <mmaghri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 20:32:50 by mmaghri           #+#    #+#             */
-/*   Updated: 2024/05/24 15:59:43 by mmaghri          ###   ########.fr       */
+/*   Updated: 2024/05/24 18:23:08 by mmaghri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,12 @@ void	*gb(int size, int flag);
 void	**garbege_array_fill(void **array, void *add);
 // -----------------
 
+void	prin_map(char **twode);
+int		function_check_ithems(char *string);
+void	exit_message(char *string);
+void	bothwalls(char **twode);
+int		get_longest_line(char **twode);
+char	*heal_line(char *element, int biggest, char replace);
 void	check_on(char *string);
 int		check_on_validiation(char *string);
 int		function_check_ithem(char *string);

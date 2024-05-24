@@ -6,11 +6,27 @@
 /*   By: mmaghri <mmaghri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 20:43:00 by mmaghri           #+#    #+#             */
-/*   Updated: 2024/05/24 14:12:48 by mmaghri          ###   ########.fr       */
+/*   Updated: 2024/05/24 18:18:18 by mmaghri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
+
+int	function_check_ithems(char *string)
+{
+	int	index;
+
+	index = 0;
+	if (le_count(string) == 0)
+		return (-1);
+	while (string[index])
+	{
+		if ((string[index] != ' ' && string[index] != '\t') || string[index] != '\0')
+			return (0);
+		index++ ;
+	}
+	return (-1);
+}
 
 int	function_check_ithem(char *string)
 {
@@ -21,7 +37,7 @@ int	function_check_ithem(char *string)
 		return (-1);
 	while (string[index])
 	{
-		if (string[index] != ' ' && string[index] != '\t')
+		if ((string[index] != ' ' && string[index] != '\t') || string[index] != '\0')
 			return (0);
 		index++ ;
 	}

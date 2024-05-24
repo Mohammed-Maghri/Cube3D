@@ -6,7 +6,7 @@
 /*   By: mmaghri <mmaghri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 20:38:48 by mmaghri           #+#    #+#             */
-/*   Updated: 2024/05/24 16:17:15 by mmaghri          ###   ########.fr       */
+/*   Updated: 2024/05/24 18:38:26 by mmaghri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void	check_tb(t_store *store)
 	index = 0;
 	while (index < 3)
 	{
-		printf("%d\n", store->f[index]);
 		if (store->f[index] == -1)
 		{
 			putstring("RGB'S Are Not Valid ...!\n");
@@ -56,7 +55,6 @@ void	check_tb(t_store *store)
 	index = 0;
 	while (index < 3)
 	{
-		printf("%d\n", store->c[index]);
 		if (store->c[index] == -1)
 		{
 			putstring("RGB'S Are Not Valid ...!\n");
@@ -90,8 +88,7 @@ void func_checks(char **twode)
 	index = 0;
 	while (twode[index])
 	{
-		printf("%s\n", twode[index]);
-		if (function_check_ithem(twode[index]) == -1)
+		if (function_check_ithems(twode[index]) == -1)
 		{
 			putstring("Invalid Map ...!\n");
 			exit(1);
@@ -100,33 +97,64 @@ void func_checks(char **twode)
 		index++ ;
 	}
 }
-int	main()
+char **heal_map(char **twode)
 {
-	t_pars	*map;
-	t_store	*store;
-	char	**that;
+	int index;
+	char **alloca;
 
-	map = NULL;
-	store = NULL;
-	// atexit(leacks_it);
-	map = gb(sizeof(t_pars), 1);
-	int index ;
+	alloca = gb((sizeof(char *) * (count_twode_arr(twode) + 1)), 1);
+	index = 0;
+	while (twode[index])
+	{
+		alloca[index] = heal_line(twode[index], get_longest_line(twode), '-');
+		index++ ;
+	}
+	alloca[index] = NULL ;
+	return (alloca);
+}
+
+
+void funtion_for_main(t_pars *map, t_store *store)
+{
+	char	**that;
+	int		index ;
+	char	**other ;
 	index = 0;
 	that = for_main(map);
-	store = gb(sizeof(t_store), 1);
 	store->no = copy_move("*");
 	store->ea = copy_move("*");
 	store->so = copy_move("*");
 	store->we = copy_move("*");
 	check_directions(that, store);
-	
 	check_on_element(store);
 	ini_tila(store, 1);
 	check_rgb_colors(that, store);
 	ini_tila(store, 0);
-	char **other ;
 	other = rebuild_map(map->get_map);
 	index = 0;
 	func_checks(other);
+	map->array = heal_map(other);
+}
+
+void prin_map(char **twode)
+{
+	int index;
+
+	index = 0;
+	while (twode[index])
+	{
+		putstring(twode[index]);
+		paste('\n');
+		index++ ;
+	}
+}
+int	main()
+{
+	t_pars	*map;
+	t_store	*store;
+	map = gb(sizeof(t_pars), 1);
+	store = gb(sizeof(t_store), 1);
+	funtion_for_main(map, store);
+	bothwalls(map->array);
 	gb(0, -1);
 }

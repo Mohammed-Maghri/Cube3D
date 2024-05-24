@@ -6,7 +6,7 @@
 /*   By: mmaghri <mmaghri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 20:58:07 by mmaghri           #+#    #+#             */
-/*   Updated: 2024/05/24 16:13:20 by mmaghri          ###   ########.fr       */
+/*   Updated: 2024/05/24 18:25:09 by mmaghri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ int check_on_check(char string)
 	if (string == ' ' || string == '\t' || string == '\0')
 		return (-1);
 	if (string == '1' || string == '0' || string == '\n')
+		return (-1);
+	if (string >= 'A' && string <= 'Z')
 		return (-1);
 	return (0);
 }
