@@ -6,7 +6,7 @@
 /*   By: mmaghri <mmaghri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 19:04:35 by mmaghri           #+#    #+#             */
-/*   Updated: 2024/05/23 20:55:14 by mmaghri          ###   ########.fr       */
+/*   Updated: 2024/05/24 14:42:25 by mmaghri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,40 @@ void	initail_it(t_store *store, int number, int index, int ff)
 		store->c[index] = number;
 }
 
+int function_check(char string)
+{
+	if (string == ' ' || string == '\t')
+		return (-1);
+	if (string >= 9 && string <= 13)
+		return (-1);
+	if (string >= '0' && string <= '9')
+		return (-1);
+	if (string == ',')
+		return (-1);
+	return (0);
+}
+int check_numbers(char *string)
+{
+	int index ;
+	int flag ;
+
+	index = 0;
+	flag = 0;
+	while (string[index])
+	{
+		if (string[index] == ',')
+			flag++ ;
+		if (function_check(string[index]) == 0)
+			return (-1);
+		if (flag > 2)
+			{
+				putstring("Invalid argument ... !\n");
+				exit(1);
+			}
+		index++ ;
+	}
+	return (0);
+}
 int	*table(char *string, t_store *store, int ff)
 {
 	t_pars	ad;
@@ -52,6 +86,11 @@ int	*table(char *string, t_store *store, int ff)
 
 void	check_rgbs(t_store *store, char *string, int flag)
 {
+	if (check_numbers(string) == -1)
+		{
+			putstring("invelid Element ... !\n");
+			exit(1);
+		}
 	table(string, store, flag);
 }
 

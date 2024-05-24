@@ -6,7 +6,7 @@
 /*   By: mmaghri <mmaghri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:07:18 by mmaghri           #+#    #+#             */
-/*   Updated: 2024/05/23 20:31:34 by mmaghri          ###   ########.fr       */
+/*   Updated: 2024/05/24 14:54:10 by mmaghri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ int	number_conv(char *string)
 
 	res = 0;
 	index = 0;
+
+	printf("|%s| \n" , string);
 	while (string[index] == ' ' || (string[index] >= 9 && string[index] <= 13))
 		index++ ;
 	if (check_nonumbers(&string[index]) == -1)
@@ -62,12 +64,37 @@ int	number_conv(char *string)
 	return (res);
 }
 
+int check_on_validiation(char *string)
+{
+	int index ;
+	int flag;
+
+	flag = 0;
+	index = 0;
+	while (string[index])
+	{
+		if (string[index] >= '0' && string[index] <= '9' && \
+		(string[index + 1] == ' ' || string[index + 1] == '\t'))
+			flag++ ;
+		if ((string[index] == ' ' || string[index] == '\t') \
+		&& (string[index + 1] >= '0' && string[index + 1] <= '9') && flag > 0)
+			{
+				printf("string |%s|\n", &string[index + 1]);
+				putstring("Invalid Argument.... !");
+				exit(1);
+			}
+		index++ ;
+	}
+	return (0);
+}
 char	*string_copy_from_till(char *string, int start, int stop)
 {
 	int		index ;
 	char	*alloc ;
 
 	index = 0;
+	while (string[start] && (string[start] == ' ' || string[start] == '\t'))
+		start++ ;
 	alloc = gb(sizeof(char) + le_count(string) + 1, 2);
 	while (start < stop)
 	{
@@ -76,5 +103,6 @@ char	*string_copy_from_till(char *string, int start, int stop)
 		index++ ;
 	}
 	alloc[index] = '\0';
+	check_on_validiation(alloc);
 	return (alloc);
 }

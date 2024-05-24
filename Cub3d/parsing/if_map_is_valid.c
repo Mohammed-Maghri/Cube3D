@@ -6,7 +6,7 @@
 /*   By: mmaghri <mmaghri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 20:58:07 by mmaghri           #+#    #+#             */
-/*   Updated: 2024/05/23 21:34:33 by mmaghri          ###   ########.fr       */
+/*   Updated: 2024/05/24 14:10:05 by mmaghri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,16 +70,11 @@ char	*heal_line(char *element, int biggest, char replace)
 	return (le.buf);
 }
 
-char	*rebuild_map(char **twode)
+char	*rebuild_map(char *twode)
 {
 	t_pars	le;
 
 	le.index = 6;
-	le.array = gb((sizeof(char *) * count_twode_arr(twode)), 1);
-	while (twode[le.index])
-	{
-		printf("%s\n", heal_line(twode[le.index], get_longest_line(twode), '-'));
-		le.index++ ;
-	}
+	printf("%s\n", twode);
 	return (NULL);
 }
