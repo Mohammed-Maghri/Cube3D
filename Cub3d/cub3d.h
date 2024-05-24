@@ -6,7 +6,7 @@
 /*   By: mmaghri <mmaghri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 20:32:50 by mmaghri           #+#    #+#             */
-/*   Updated: 2024/05/24 14:13:53 by mmaghri          ###   ########.fr       */
+/*   Updated: 2024/05/24 15:59:43 by mmaghri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct store_map_elem
 	char	*ea;
 	int		*f;
 	int		*c;
+	char	**map;
 }	t_store;
 
 // Garbege Collector
@@ -51,7 +52,10 @@ void	*gb(int size, int flag);
 void	**garbege_array_fill(void **array, void *add);
 // -----------------
 
-char	*rebuild_map(char *twode);
+void	check_on(char *string);
+int		check_on_validiation(char *string);
+int		function_check_ithem(char *string);
+char	**rebuild_map(char **twode);
 int		get_longest_line(char **twode);
 int		number_conv(char *string);
 char	*string_copy_from_till(char *string, int start, int stop);

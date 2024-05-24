@@ -6,7 +6,7 @@
 /*   By: mmaghri <mmaghri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 20:58:07 by mmaghri           #+#    #+#             */
-/*   Updated: 2024/05/24 14:10:05 by mmaghri          ###   ########.fr       */
+/*   Updated: 2024/05/24 16:13:20 by mmaghri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,58 @@ char	*heal_line(char *element, int biggest, char replace)
 	return (le.buf);
 }
 
-char	*rebuild_map(char *twode)
+int check_on_check(char string)
+{
+	if (string == ' ' || string == '\t' || string == '\0')
+		return (-1);
+	if (string == '1' || string == '0' || string == '\n')
+		return (-1);
+	return (0);
+}
+void check_on(char *string)
+{
+	int index ;
+
+	index = 0;
+	while (string[index])
+	{
+		if (check_on_check(string[index]) != -1)
+			{
+				putstring("	Invalid MAP....!");
+				exit(1);
+			}
+			index++ ;
+	}
+}
+char	**rebuild_map(char **twode)
 {
 	t_pars	le;
 
 	le.index = 6;
-	printf("%s\n", twode);
+	le.incre = 0;
+	char **map ;
+	map = gb(sizeof(char *) * count_twode_arr(twode), 2);
+	while (twode[le.index])
+	{
+		if (function_check_ithem(twode[le.index]) == 0)
+		{
+			while (twode[le.index][le.incre] && (twode[le.index][le.incre] == ' ' || twode[le.index][le.incre] == '\t'))
+				le.incre++ ;
+			if (twode[le.index][le.incre] == '1')
+			{
+				le.incre = 0;
+				while (twode[le.index])
+				{
+					map[le.incre] = copy_move(twode[le.index]);
+					le.index++ ;
+					le.incre++ ;
+				}
+				map[le.incre] = NULL ;
+				return (map);
+			}
+		}
+		le.incre = 0;
+		le.index++ ;
+	}
 	return (NULL);
 }

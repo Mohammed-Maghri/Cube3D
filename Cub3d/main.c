@@ -6,7 +6,7 @@
 /*   By: mmaghri <mmaghri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 20:38:48 by mmaghri           #+#    #+#             */
-/*   Updated: 2024/05/24 14:20:57 by mmaghri          ###   ########.fr       */
+/*   Updated: 2024/05/24 16:17:15 by mmaghri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,23 @@ void	ini_tila(t_store *store, int flag)
 		check_tb(store);
 }
 
+void func_checks(char **twode)
+{
+	int index;
+
+	index = 0;
+	while (twode[index])
+	{
+		printf("%s\n", twode[index]);
+		if (function_check_ithem(twode[index]) == -1)
+		{
+			putstring("Invalid Map ...!\n");
+			exit(1);
+		}
+		check_on(twode[index]);
+		index++ ;
+	}
+}
 int	main()
 {
 	t_pars	*map;
@@ -102,10 +119,14 @@ int	main()
 	store->so = copy_move("*");
 	store->we = copy_move("*");
 	check_directions(that, store);
+	
 	check_on_element(store);
 	ini_tila(store, 1);
 	check_rgb_colors(that, store);
 	ini_tila(store, 0);
-	// rebuild_map(map->map);
+	char **other ;
+	other = rebuild_map(map->get_map);
+	index = 0;
+	func_checks(other);
 	gb(0, -1);
 }
