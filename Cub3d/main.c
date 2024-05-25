@@ -6,7 +6,7 @@
 /*   By: mmaghri <mmaghri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 20:38:48 by mmaghri           #+#    #+#             */
-/*   Updated: 2024/05/25 16:19:37 by mmaghri          ###   ########.fr       */
+/*   Updated: 2024/05/25 18:32:08 by mmaghri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void func_checks(char **twode)
 	int index;
 
 	index = 0;
-	while (twode[index])
+	while (twode && twode[index])
 	{
 		if (function_check_ithems(twode[index]) == -1)
 		{
@@ -104,7 +104,7 @@ char **heal_map(char **twode)
 
 	alloca = gb((sizeof(char *) * (count_twode_arr(twode) + 1)), 1);
 	index = 0;
-	while (twode[index])
+	while (twode && twode[index])
 	{
 		alloca[index] = heal_line(twode[index], get_longest_line(twode), '-');
 		index++ ;
@@ -172,6 +172,7 @@ int	main()
 	store = gb(sizeof(t_store), 1);
 	funtion_for_main(map, store);
 	bothwalls(map->array);
-	print_store(store);
+	check_side_walls(map->array);
+	check_inside_map(map->array);
 	gb(0, -1);
 }

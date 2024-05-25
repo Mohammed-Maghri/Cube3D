@@ -6,7 +6,7 @@
 /*   By: mmaghri <mmaghri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 20:58:07 by mmaghri           #+#    #+#             */
-/*   Updated: 2024/05/24 18:25:09 by mmaghri          ###   ########.fr       */
+/*   Updated: 2024/05/25 18:20:01 by mmaghri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,16 @@ int	get_longest_line(char **twode)
 {
 	t_pars	ch;
 
-	ch.index = 6;
+	ch.index = 0;
 	ch.flag = 0;
-	while (twode[ch.index])
+	if (count_twode_arr(twode) != 0)
 	{
-		if (ch.flag < le_count(twode[ch.index]))
-			ch.flag = le_count(twode[ch.index]);
-		ch.index++ ;
+		while (twode[ch.index])
+		{
+			if (ch.flag < le_count(twode[ch.index]))
+				ch.flag = le_count(twode[ch.index]);
+			ch.index++ ;
+		}
 	}
 	return (ch.flag);
 }
@@ -34,34 +37,27 @@ char	*heal_line(char *element, int biggest, char replace)
 	le.index = 0;
 	le.incre = 0;
 	le.flag = 0;
-	le.buf = gb(sizeof(char) + biggest + 1, 1);
+	if (biggest == 0)
+		return (NULL);
+	le.buf = gb(sizeof(char) * (biggest + 1), 1);
 	while (element[le.index])
 	{
 		if (element[le.index] == '\t')
-		{
-			while (le.flag < 4)
-			{
-				le.buf[le.incre] = replace;
-				le.incre++ ;
-				le.index++ ;
-				le.flag++ ;
-			}
-			le.flag = 0;
-		}
+			exit_message("Tabs Not Allowed Inside the Map .. !\n");
 		if (element[le.index] == ' ')
 		{
 			le.buf[le.incre] = replace;
-			le.incre++ ;
 			le.index++ ;
+			le.incre++ ;
 		}
 		else
 		{
 			le.buf[le.incre] = element[le.index];
-			le.incre++ ;
 			le.index++ ;
+			le.incre++ ;
 		}
 	}
-	while (le.incre <= biggest)
+	while (le.incre < biggest)
 	{
 		le.buf[le.incre] = replace;
 		le.incre++ ;

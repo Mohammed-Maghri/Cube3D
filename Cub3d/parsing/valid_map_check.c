@@ -6,7 +6,7 @@
 /*   By: mmaghri <mmaghri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 11:03:09 by mmaghri           #+#    #+#             */
-/*   Updated: 2024/05/25 16:26:09 by mmaghri          ###   ########.fr       */
+/*   Updated: 2024/05/25 17:43:45 by mmaghri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ char	*copy_witout(char *string)
 	t_pars	elems;
 	char	*allocation;
 
-	printf("%s\n", string);
 	elems.index = 2;
 	elems.incre= 0;
 	allocation = gb(sizeof(char) + (le_count(string) + 1), 2);
@@ -129,10 +128,10 @@ int	check_directions(char **twode, t_store *store)
 			break;
 	}
 	elems.increment = 0;
-	while (twode[elems.index][elems.increment] && \
+	while (twode[elems.index] && twode[elems.index][elems.increment] && \
 	(twode[elems.index][elems.increment] == ' ' || twode[elems.index][elems.increment] == '\t'))
 	 	elems.increment++ ;
-	while (twode[elems.index][elems.increment])
+	while (twode[elems.index] && twode[elems.index][elems.increment])
 	{
 		if (twode[elems.index][elems.increment] != '1' && \
 		(twode[elems.index][elems.increment] != ' ' && twode[elems.index][elems.increment] != '\t'))
