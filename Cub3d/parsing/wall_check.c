@@ -6,7 +6,7 @@
 /*   By: mmaghri <mmaghri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 18:08:43 by mmaghri           #+#    #+#             */
-/*   Updated: 2024/05/25 18:40:50 by mmaghri          ###   ########.fr       */
+/*   Updated: 2024/05/25 20:09:09 by mmaghri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ void check_inside_map(char **twode)
                 {
                     if (twode[le.index - 1][le.incre] == '-' || \
                     twode[le.index + 1][le.incre] == '-')
-                        exit_message("Ooops Somthing Not Valid .. \n");
-                    if (twode[le.index][le.incre + 1] && (twode[le.index][le.incre + 1] == '-'))
-                        exit_message("Ooops Somthing Not Valid .. ");
+                        exit_message("Ooops  Not a Valid Map ... ! \n");
+                    if (twode[le.index][le.incre + 1] && (twode[le.index][le.incre + 1] == '-' || twode[le.index][le.incre - 1] == '-'))
+                        exit_message("Ooops  Not a Valid Map ... ! \n");
                 }
                 le.incre++ ;
             }
@@ -46,27 +46,47 @@ void check_inside_map(char **twode)
         le.index++ ;
     }
 }
+
+int get_last_wall_position(char **twode)
+{
+    int index;
+    int incre;
+
+    incre = 0;
+    index = 0;
+    while (twode[index])
+    {
+        while (twode[index][incre])
+        {
+            if (twode[index][incre] != '-')
+                break ;
+            incre++ ;
+        }
+        if (incre == le_count(twode[index]))
+            return (index);
+        incre = 0;
+        index++ ;
+    }
+    return (-1);
+}
 void check_side_walls(char **twode)
 {
     t_pars le;
 
     le.index = 0;
     le.incre = 0;
-    while (twode[le.index])
+    while (twode[le.index] && le.index < get_last_wall_position(twode))
     {
         while (twode[le.index][le.incre] == '-')
             le.incre++ ;
         if (twode[le.index][le.incre] != '1')
-        {
-            printf("[ %s ]----[ %d ]\n", &twode[le.index][le.incre], le.incre);
-            exit_message("Sides Not Closed \n !");
-        }
+            exit_message("Sides Not Closed  !!\n");
         le.incre = 0;
         le.index++ ;
     }
     le.index = 0;
     le.incre = 0;
-    while (twode[le.index])
+    while (twode[le.index] && le.index < get_last_wall_position(twode))
     {
         le.incre = le_count(twode[le.index]);
         le.incre--;

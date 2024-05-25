@@ -6,18 +6,18 @@
 /*   By: mmaghri <mmaghri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 20:32:50 by mmaghri           #+#    #+#             */
-/*   Updated: 2024/05/25 18:33:00 by mmaghri          ###   ########.fr       */
+/*   Updated: 2024/05/25 21:04:58 by mmaghri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
+# include "../mlx/mlx.h"
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
-
 // For Parsing 
 typedef struct parsing
 {
@@ -45,6 +45,13 @@ typedef struct store_map_elem
 	char	**map;
 }	t_store;
 
+typedef struct only_for_map
+{
+	void *mlx_ptr;
+	void *images;
+	void *pic;
+} t_map;
+
 // Garbege Collector
 int		count_lenght(void **array);
 void	optins(void **array);
@@ -52,6 +59,7 @@ void	*gb(int size, int flag);
 void	**garbege_array_fill(void **array, void *add);
 // -----------------
 
+void draw_map(char **twode, t_store *elemenets);
 void	check_inside_map(char **twode);
 void	check_side_walls(char **twode);
 void	prin_map(char **twode);

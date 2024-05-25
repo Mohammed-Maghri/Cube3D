@@ -1,23 +1,24 @@
-SRC =   main.c parsing/utils/utils.c parsing/utils/utils1.c \
-parsing/map_validity.c  parsing/map_valid2.c parsing/valid_map_check.c \
-parsing/valid_map1.c gcollector/gb.c parsing/if_map_is_valid.c  parsing/wall_check.c
+SRC = main.c parsing/utils/utils.c parsing/utils/utils1.c \
+parsing/map_validity.c parsing/map_valid2.c parsing/valid_map_check.c \
+parsing/valid_map1.c gcollector/gb.c parsing/if_map_is_valid.c parsing/wall_check.c\
+draw_map/map_draw.c 
 
 OBJS = ${SRC:.c=.o}
 NAME = Cub3d
-CC = cc 
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
-RM = rm -rf 
+CC = cc
+CFLAGS = -O3 -I ./mlx -Wall -Wextra -Werror -fsanitize=address -g
+RM = rm -rf
+MLX = ./mlx/libmlx.a -lm -framework OpenGL -framework AppKit
 
-all : $(NAME)
+all: $(NAME)
 
-$(NAME) : $(OBJS) cub3d.h
-	$(CC) $(CFLAGS) $(SRC) -o $(NAME)
-
-%.o : %.c $(SRC) cub3d.h
+$(NAME): $(OBJS) $(mlx_lib) cub3d.h
+	$(CC) $(OBJS) $(MLX) $(CFLAGS) -o $(NAME)
+%.o: %.c cub3d.h
 	$(CC) $(CFLAGS) -c $< -o $@
-
-clean :
+clean:
 	$(RM) $(OBJS)
-fclean :
-	$(RM) $(OBJS) $(NAME)
-re : fclean all
+fclean: clean
+	$(RM) $(NAME)
+
+re: fclean all
