@@ -5,7 +5,7 @@ parsing/valid_map1.c gcollector/gb.c parsing/if_map_is_valid.c  parsing/wall_che
 OBJS = ${SRC:.c=.o}
 NAME = Cub3d
 CC = cc 
-CFLAGS = -Wall -Wextra -Werror #-fsanitize=address -g
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
 RM = rm -rf 
 
 all : $(NAME)

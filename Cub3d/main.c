@@ -6,7 +6,7 @@
 /*   By: mmaghri <mmaghri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 20:38:48 by mmaghri           #+#    #+#             */
-/*   Updated: 2024/05/24 18:38:26 by mmaghri          ###   ########.fr       */
+/*   Updated: 2024/05/25 16:19:37 by mmaghri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,10 +125,9 @@ void funtion_for_main(t_pars *map, t_store *store)
 	store->ea = copy_move("*");
 	store->so = copy_move("*");
 	store->we = copy_move("*");
+	ini_tila(store, 1);
 	check_directions(that, store);
 	check_on_element(store);
-	ini_tila(store, 1);
-	check_rgb_colors(that, store);
 	ini_tila(store, 0);
 	other = rebuild_map(map->get_map);
 	index = 0;
@@ -148,6 +147,23 @@ void prin_map(char **twode)
 		index++ ;
 	}
 }
+
+void print_store(t_store *store)
+{
+	int index ;
+	index = 0;
+	while (index < 3)
+	{
+		printf("C = %d    | F = %d \n", store->c[index], store->f[index]);
+		index++ ;
+	}
+	printf(" ------------------ \n\n");
+	printf("[%s]\n", store->no);
+	printf("[%s]\n", store->so);
+	printf("[%s]\n", store->we);
+	printf("[%s]\n", store->ea);
+
+}
 int	main()
 {
 	t_pars	*map;
@@ -156,5 +172,6 @@ int	main()
 	store = gb(sizeof(t_store), 1);
 	funtion_for_main(map, store);
 	bothwalls(map->array);
+	print_store(store);
 	gb(0, -1);
 }

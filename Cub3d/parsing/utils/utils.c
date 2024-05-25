@@ -6,7 +6,7 @@
 /*   By: mmaghri <mmaghri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 14:09:29 by mmaghri           #+#    #+#             */
-/*   Updated: 2024/05/24 18:41:13 by mmaghri          ###   ########.fr       */
+/*   Updated: 2024/05/25 15:36:12 by mmaghri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,12 +143,13 @@ char	**moveto_array(char *string)
 		elems.array[elems.increment] = " ";
 		while (copy(string[elems.index], '\n') != -1 && string[elems.index + 1])
 		{
-			elems.array[elems.increment] = \
-			caracter_turn(elems.array[elems.increment], string[elems.index]);
+				elems.array[elems.increment] = \
+				caracter_turn(elems.array[elems.increment], string[elems.index]);
 			elems.index++ ;
 		}
-		// elems.array[elems.increment] = \
-		// 	caracter_turn(elems.array[elems.increment], string[elems.index]);
+		if (string[elems.index] != '\n')
+			elems.array[elems.increment] = \
+				caracter_turn(elems.array[elems.increment], string[elems.index]);
 		elems.increment++ ;
 		elems.index++;
 	}

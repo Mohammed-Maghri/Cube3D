@@ -6,7 +6,7 @@
 /*   By: mmaghri <mmaghri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 19:04:35 by mmaghri           #+#    #+#             */
-/*   Updated: 2024/05/24 14:42:25 by mmaghri          ###   ########.fr       */
+/*   Updated: 2024/05/25 16:04:46 by mmaghri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,21 +100,20 @@ void	check_rgb_colors(char **twode, t_store *store)
 	char	*both;
 
 	both = "FC";
-	rb.index = 4;
+	rb.index = 0;
 	rb.increment = 0;
 	while (twode[rb.index])
 	{
 		while (twode[rb.index][rb.increment] == ' ' \
 		|| twode[rb.index][rb.increment] == '\t')
 			rb.increment++ ;
-		if (twode[rb.index][rb.increment] == both[0] && rb.index == 4 \
-		&& (twode[rb.index][rb.increment + 1] == ' ' || \
+		if (twode[rb.index][rb.increment] == both[0] && (twode[rb.index][rb.increment + 1] == ' ' || \
 		twode[rb.index][rb.increment + 1] == '\t'))
 		{
 			rb.increment++ ;
 			check_rgbs(store, &twode[rb.index][rb.increment], 0);
 		}
-		if (twode[rb.index][rb.increment] == both[1] && rb.index == 5 && \
+		if (twode[rb.index][rb.increment] == both[1] && \
 		(twode[rb.index][rb.increment + 1] == ' ' || \
 		twode[rb.index][rb.increment + 1] == '\t'))
 		{
@@ -122,7 +121,7 @@ void	check_rgb_colors(char **twode, t_store *store)
 			check_rgbs(store, &twode[rb.index][rb.increment], 1);
 		}
 		rb.increment = 0;
-		if (rb.index == 5)
+		if (rb.index == 6)
 			break ;
 		rb.index++;
 	}
