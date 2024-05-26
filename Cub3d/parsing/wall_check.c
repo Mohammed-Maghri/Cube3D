@@ -6,7 +6,7 @@
 /*   By: mmaghri <mmaghri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 18:08:43 by mmaghri           #+#    #+#             */
-/*   Updated: 2024/05/25 20:09:09 by mmaghri          ###   ########.fr       */
+/*   Updated: 2024/05/26 15:06:24 by mmaghri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,6 @@ void  bothwalls(char **twode)
 
     ch.index = 0;
     ch.incre = 0;
-    prin_map(twode);
     while (twode[0] && twode[0][ch.index])
     {
         if (twode[count_twode_arr(twode) - 1][ch.index] != '1' \
@@ -111,7 +110,6 @@ void  bothwalls(char **twode)
             exit_message("Map Not closed ...!\n");
         ch.index++ ;
     }
-    printf(" -- > %d", count_twode_arr(twode));
     if (count_twode_arr(twode) != 0)
     {
         while (twode[count_twode_arr(twode) - 1][ch.index])

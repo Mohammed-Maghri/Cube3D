@@ -6,7 +6,7 @@
 /*   By: mmaghri <mmaghri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 20:41:54 by mmaghri           #+#    #+#             */
-/*   Updated: 2024/05/23 20:42:32 by mmaghri          ###   ########.fr       */
+/*   Updated: 2024/05/26 15:06:58 by mmaghri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	function_open_map(char *file_name, t_pars *ithems)
 {
 	ithems->fd = open(file_name, O_RDONLY);
-	ithems->buf = malloc(2);
+	ithems->buf = gb(2, 1);
 	if (ithems->fd == -1)
 		return (putstring("File Not Found"), -1);
 	ithems->read_buf = read(ithems->fd, ithems->buf, 1);

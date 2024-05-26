@@ -6,7 +6,7 @@
 /*   By: mmaghri <mmaghri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 20:38:48 by mmaghri           #+#    #+#             */
-/*   Updated: 2024/05/25 20:54:54 by mmaghri          ###   ########.fr       */
+/*   Updated: 2024/05/26 15:05:44 by mmaghri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,6 +175,7 @@ int	main()
 	bothwalls(map->array);
 	check_side_walls(map->array);
 	check_inside_map(map->array);
+	count_players(map->array);
 	draw_map(map->array, store);
 	gb(0, -1);
 }
