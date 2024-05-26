@@ -6,7 +6,7 @@
 /*   By: mmaghri <mmaghri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 20:38:48 by mmaghri           #+#    #+#             */
-/*   Updated: 2024/05/26 15:05:44 by mmaghri          ###   ########.fr       */
+/*   Updated: 2024/05/26 18:17:37 by mmaghri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,7 @@ void	ini_tila(t_store *store, int flag)
 	if (flag == 1)
 	{
 		store->c = gb(sizeof(int) * 3, 1);
-		store->f = gb(sizeof(int) * 3, 1);
-		store->c[0] = -1;
+		store->f = gb(sizeof(int) * 3, 1); store->c[0] = -1;
 		store->c[1] = -1;
 		store->c[2] = -1;
 		store->f[0] = -1;
@@ -176,6 +175,8 @@ int	main()
 	check_side_walls(map->array);
 	check_inside_map(map->array);
 	count_players(map->array);
-	draw_map(map->array, store);
+	print_store(store);
+	// prin_map(map->array);
+	create_window(map->array, store);
 	gb(0, -1);
 }

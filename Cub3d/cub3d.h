@@ -6,7 +6,7 @@
 /*   By: mmaghri <mmaghri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 20:32:50 by mmaghri           #+#    #+#             */
-/*   Updated: 2024/05/26 15:23:53 by mmaghri          ###   ########.fr       */
+/*   Updated: 2024/05/26 18:49:53 by mmaghri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,11 @@ typedef struct store_map_elem
 	int		*f;
 	int		*c;
 	char	**map;
+	char    **array;
+	void 	*mlx;
+	void 	*win;
+	void 	*imag;
+	
 }	t_store;
 
 typedef struct only_for_map
@@ -60,8 +65,9 @@ void	*gb(int size, int flag);
 void	**garbege_array_fill(void **array, void *add);
 // -----------------
 
+void create_window(char **twode, t_store *elemenets);
 void	count_players(char **twode);
-void	draw_map(char **twode, t_store *elemenets);
+void draw_map(t_store *elemenets);
 void	check_inside_map(char **twode);
 void	check_side_walls(char **twode);
 void	prin_map(char **twode);

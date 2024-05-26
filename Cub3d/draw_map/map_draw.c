@@ -6,7 +6,7 @@
 /*   By: mmaghri <mmaghri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 20:41:16 by mmaghri           #+#    #+#             */
-/*   Updated: 2024/05/26 15:39:06 by mmaghri          ###   ########.fr       */
+/*   Updated: 2024/05/26 18:48:17 by mmaghri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,40 +36,61 @@ void count_players(char **twode)
     if (elem.flag == 0)
         exit_message("It Should Be One player ..!\n");
 }
-void draw_map(char **twode, t_store *elemenets)
+
+void draw_square(t_store *element, int tileSize, int y, int x, int color)
+{
+    int i;
+    int j;
+
+    i = -1;
+    while (++i < tileSize)
+    {
+        j = -1;
+        while (++j < tileSize)
+            mlx_pixel_put(element->mlx, element->win, i + y, j + x, color);
+    }
+}
+
+void draw_map(t_store *elemenets)
+{
+    int y;
+    int x;
+    int tilex;
+    int tiley;
+
+    y = -1;
+    elemenets->imag = mlx_new_image(elemenets->mlx, le_count(elemenets->array[0]) * 50, count_twode_arr(elemenets->array) * 50);
+    while (++y < count_twode_arr(elemenets->array))
+    {
+        x = -1;
+        while (++x < le_count(elemenets->array[0]))
+        {
+            tilex = x * 50;
+            tiley = y * 50;
+            if (elemenets->array[y][x] == '1')
+                draw_square(elemenets, 50, tilex, tiley, 255);
+            else 
+                draw_square(elemenets, 50, tilex, tiley, 0);
+        }
+    }
+}
+
+int draw(t_store *elemenets)
+{
+    draw_map(elemenets);
+    // update
+    // draw player
+    return (0);
+}
+void create_window(char **twode, t_store *elemenets)
 {
     t_pars le;
-    t_map mx;
-    (void)elemenets; 
-    mx.mlx_ptr = mlx_init();
-    le.index = 100;
-    le.incre = 100;
-    mx.images = mlx_new_image(mx.mlx_ptr, 100, 100);
-    mx.pic = mlx_xpm_file_to_image(mx.mlx_ptr, "./textures/sm.xpm", &le.index, &le.incre);
-    mx.direction = mlx_xpm_file_to_image(mx.mlx_ptr, "./textures/dir.xpm", &le.index, &le.incre);
-    if (!mx.pic)
-        exit_message("Error In Drawing Getting The Elment..... !\n");
-    le.index = count_twode_arr(twode) * 50;
-    le.incre = le_count(twode[0]) * 50;
-    void *winss = mlx_new_window(mx.mlx_ptr, le.incre, le.index ,"map_test");
-    le.incre = 0;
-    le.index = 0;
-    int x ;
-    int y ;
-    x = 0 ;
-    y = 0 ;
-    while (twode[le.index])
-    {
-        while (twode[le.index][le.incre])
-        {
-            if (twode[le.index][le.incre] == '1')
-                mlx_put_image_to_window(mx.mlx_ptr, winss, mx.pic, le.incre * 50,  le.index * 50);
-            if (twode[le.index][le.incre] == 'S')
-                mlx_put_image_to_window(mx.mlx_ptr, winss, mx.direction, le.incre * 50,  le.index * 50);
-            le.incre++ ;
-        }
-        le.incre = 0;
-        le.index++ ;
-    }
-    mlx_loop(mx.mlx_ptr);
+
+     elemenets->array = twode;
+    elemenets->mlx = mlx_init();
+    le.index = count_twode_arr(elemenets->array);
+    le.incre = le_count(elemenets->array[0]);
+    elemenets->win = mlx_new_window( elemenets->mlx, le.incre * 50, le.index * 50,"map_test");
+    mlx_loop_hook(elemenets->mlx, draw, (void*)elemenets);
+    mlx_loop( elemenets->mlx);
 }
