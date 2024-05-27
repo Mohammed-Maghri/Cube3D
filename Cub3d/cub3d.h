@@ -6,7 +6,7 @@
 /*   By: mmaghri <mmaghri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 20:32:50 by mmaghri           #+#    #+#             */
-/*   Updated: 2024/05/26 18:49:53 by mmaghri          ###   ########.fr       */
+/*   Updated: 2024/05/27 11:06:01 by mmaghri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,10 @@ typedef struct store_map_elem
 	void 	*mlx;
 	void 	*win;
 	void 	*imag;
-	
+	void	*data ;
+	int		dat ;
+    int		linelenght;
+    int		endian ;
 }	t_store;
 
 typedef struct only_for_map

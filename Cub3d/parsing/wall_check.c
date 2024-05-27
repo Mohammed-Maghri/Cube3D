@@ -6,7 +6,7 @@
 /*   By: mmaghri <mmaghri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 18:08:43 by mmaghri           #+#    #+#             */
-/*   Updated: 2024/05/26 15:06:24 by mmaghri          ###   ########.fr       */
+/*   Updated: 2024/05/26 20:02:13 by mmaghri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,15 @@ void check_inside_map(char **twode)
                 {
                     if (twode[le.index - 1][le.incre] == '-' || \
                     twode[le.index + 1][le.incre] == '-')
+                    {
+                        printf("\n\n\n[e]| %s |", &twode[le.index][le.incre]);
                         exit_message("Ooops  Not a Valid Map ... ! \n");
+                    }
                     if (twode[le.index][le.incre + 1] && (twode[le.index][le.incre + 1] == '-' || twode[le.index][le.incre - 1] == '-'))
+                        {
+                        printf("\n\n\n| %s |", &twode[le.index][le.incre]);
                         exit_message("Ooops  Not a Valid Map ... ! \n");
+                    }
                 }
                 le.incre++ ;
             }

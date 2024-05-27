@@ -6,7 +6,7 @@
 /*   By: mmaghri <mmaghri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 20:38:48 by mmaghri           #+#    #+#             */
-/*   Updated: 2024/05/26 18:17:37 by mmaghri          ###   ########.fr       */
+/*   Updated: 2024/05/26 21:28:58 by mmaghri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,11 +172,11 @@ int	main()
 	store = gb(sizeof(t_store), 1);
 	funtion_for_main(map, store);
 	bothwalls(map->array);
+	prin_map(map->array);
 	check_side_walls(map->array);
 	check_inside_map(map->array);
 	count_players(map->array);
 	print_store(store);
-	// prin_map(map->array);
 	create_window(map->array, store);
 	gb(0, -1);
 }
