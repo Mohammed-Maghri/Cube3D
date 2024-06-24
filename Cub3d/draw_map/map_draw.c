@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_draw.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaghri <mmaghri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 20:41:16 by mmaghri           #+#    #+#             */
-/*   Updated: 2024/05/27 11:41:26 by mmaghri          ###   ########.fr       */
+/*   Updated: 2024/06/24 17:55:23 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void draw_square(t_store *element, int tileSize, int y, int x, int color)
     {
         j = -1;
         while (++j < tileSize)
-           *(unsigned int *)(element->data + ((x + i) * element->linelenght + (y + j) * (element->dat / 8)) ) = color;
+                mlx_put_pixel(element->imag, (j + y), (i + x), color);
     }
 }
 
@@ -57,31 +57,32 @@ void draw_map(t_store *elemenets)
     int x;
     int tilex;
     int tiley;
-
+    int size_x;
+    int size_y;
 
     y = -1;
-    elemenets->imag = mlx_new_image(elemenets->mlx, \
-    (le_count(elemenets->array[0]) - 1) * 30, count_twode_arr(elemenets->array)  * 30);
-    elemenets->data = mlx_get_data_addr(elemenets->imag, &elemenets->dat, &elemenets->linelenght, &elemenets->endian);
+    size_x = (le_count(elemenets->array[0]) - 1) * TSIZE;
+    size_y = count_twode_arr(elemenets->array)  * TSIZE;
+    elemenets->imag = mlx_new_image(elemenets->mlx, size_x, size_y);
     while (elemenets->array[++y])
     {
         x = -1;
         while (elemenets->array[y][++x])
         {
-            tilex = (x - 1) * 30;
-            tiley = y * 30;
+            tilex = (x - 1) * TSIZE;
+            tiley = y * TSIZE;
             if (elemenets->array[y][x] == '0')
-                draw_square(elemenets, 30, tilex , tiley, 0);
+                draw_square(elemenets, TSIZE, tilex , tiley, 0xFFFFFF00);
             if (elemenets->array[y][x] == '1')
-                draw_square(elemenets, 30, tilex , tiley, 255);
+                draw_square(elemenets, TSIZE, tilex , tiley, 0xEEEEEEFF);
             if (elemenets->array[y][x] == 'S')
-                draw_square(elemenets, 10 , tilex, tiley, 65280);
+                draw_square(elemenets, TSIZE / 3 , tilex + TSIZE / 3 , tiley + TSIZE / 3 , 0x90EE90FF);
         }
     }
-    mlx_put_image_to_window(elemenets->mlx, elemenets->win, elemenets->imag, 0, 0);
+    mlx_image_to_window(elemenets->mlx, elemenets->imag, 0, 0);
 }
 
-void get_player_position(t_store *elem, int flag)
+void get_player_position(t_store *elem)
 {
     t_pars le;
 
@@ -94,7 +95,7 @@ void get_player_position(t_store *elem, int flag)
         {
             if (elem->array[le.index][le.incre] == 'S')
             {
-                if (flag == 125)
+                if (mlx_is_key_down(elem->mlx, MLX_KEY_DOWN))
                 {
                     if (elem->array[le.index + 1][le.incre] != '1')
                     {
@@ -103,7 +104,7 @@ void get_player_position(t_store *elem, int flag)
                         return;
                     }
                 }
-                if (flag == 126)
+                if (mlx_is_key_down(elem->mlx, MLX_KEY_UP))
                 {
                     if (elem->array[le.index - 1][le.incre] != '1')
                     {
@@ -112,7 +113,7 @@ void get_player_position(t_store *elem, int flag)
                         return;
                     }
                 }
-                if (flag == 124)
+                if (mlx_is_key_down(elem->mlx, MLX_KEY_RIGHT))
                 {
                     if (elem->array[le.index][le.incre + 1] != '1')
                     {
@@ -121,7 +122,7 @@ void get_player_position(t_store *elem, int flag)
                         return;
                     }
                 }
-                if (flag == 123)
+                if (mlx_is_key_down(elem->mlx, MLX_KEY_LEFT))
                 {
                     if (elem->array[le.index][le.incre - 1] != '1')
                     {
@@ -136,41 +137,55 @@ void get_player_position(t_store *elem, int flag)
         le.index++ ;
     }
 }
-int key_press(int key, t_store *elemenets)
+
+void key_move(mlx_key_data_t key, void *e) // for key_hook
 {
-    (void)key ;
-    printf("---> %d \n" , key);
-    if (key == 53)
-        exit(0);
-    if (key == 125)
-        get_player_position(elemenets, key);
-    if (key == 126)
-        get_player_position(elemenets, key);
-    if (key == 124)
-        get_player_position(elemenets, key);
-    if (key == 123)
-        get_player_position(elemenets, key);
-    prin_map(elemenets->array);
-    return (0);
+    t_store *elemenets;
+
+    elemenets = e;
+    // if (key.action == MLX_PRESS)
+    // {
+        if (key.key == MLX_KEY_ESCAPE)
+            mlx_close_window(elemenets->mlx);
+        get_player_position(elemenets);
+        prin_map(elemenets->array); 
+    // }
+    // if (key.action == MLX_RELEASE)
+    // {
+        
+    // }
 }
-int draw(t_store *elemenets)
+
+int	close_window(t_store *elemenets)
 {
+    (void)elemenets;
+    // free();
+	// mlx_destroy_image();
+	// mlx_destroy_window();
+	exit(0);
+}
+
+void draw(void *e)
+{
+    t_store *elemenets;
+
+    elemenets = e;
     draw_map(elemenets);
     // update
     // draw player
-    return (0);
+    // return (0);
 }
+
 void create_window(char **twode, t_store *elemenets)
 {
     t_pars le;
 
-     elemenets->array = twode;
-    elemenets->mlx = mlx_init();
+    elemenets->array = twode;
     le.index = count_twode_arr(elemenets->array);
     le.incre = le_count(elemenets->array[0]) -1;
-    elemenets->win = mlx_new_window( elemenets->mlx, le.incre * 30, le.index * 30,"map_test");
-    mlx_key_hook(elemenets->win, key_press, (t_store *)elemenets);
-    
+    elemenets->mlx = mlx_init(le.incre * TSIZE, le.index * TSIZE ,"map_test", 0);
+    mlx_key_hook(elemenets->mlx, key_move, (t_store *)elemenets);
     mlx_loop_hook(elemenets->mlx, draw, (void *)elemenets);
-    mlx_loop( elemenets->mlx);
+    mlx_loop(elemenets->mlx);
+    mlx_terminate(elemenets->mlx);
 }

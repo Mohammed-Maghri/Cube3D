@@ -6,16 +6,19 @@ draw_map/map_draw.c
 OBJS = ${SRC:.c=.o}
 NAME = Cub3d
 CC = cc
-CFLAGS = -O3 -I ./mlx -Wall -Wextra -Werror -fsanitize=address -g
+# CFLAGS = -O3 -I ./mlx -Wall -Wextra -Werror -fsanitize=address -g
 RM = rm -rf
-MLX = ./mlx/libmlx.a -lm -framework OpenGL -framework AppKit
+# MLX = ./mlx/libmlx.a -lm -framework OpenGL -framework AppKit
 
-all: $(NAME)
+# all: $(NAME)
 
-$(NAME): $(OBJS) $(mlx_lib) cub3d.h
-	$(CC) $(OBJS) $(MLX) $(CFLAGS) -o $(NAME)
-%.o: %.c cub3d.h
-	$(CC) $(CFLAGS) -c $< -o $@
+# $(NAME): $(OBJS) cub3d.h
+# 	$(CC) $(OBJS) $(MLX) $(CFLAGS) -o $(NAME)
+# %.o: %.c cub3d.h
+# 	$(CC) $(CFLAGS) -c $< -o $@
+all:
+	cc -O3 -ffast-math -framework Cocoa -framework OpenGL -framework IOKit -lglfw libmlx42.a -L/Users/cmasnaou/.brew/opt/glfw/lib/ \
+	$(SRC) -o cub3d -g -fsanitize=address
 clean:
 	$(RM) $(OBJS)
 fclean: clean
