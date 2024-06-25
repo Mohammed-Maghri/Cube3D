@@ -6,14 +6,14 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 20:32:50 by mmaghri           #+#    #+#             */
-/*   Updated: 2024/06/24 17:51:59 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/06/25 09:08:46 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "./MLX42/include/MLX42/MLX42.h"
+# include "./MLX42/MLX42.h"
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
