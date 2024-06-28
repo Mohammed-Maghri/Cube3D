@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 09:27:20 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/06/25 12:09:39 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/06/28 17:21:35 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@
 # include <math.h>
 # include "./MLX42/MLX42.h"
 
-# define TILE_SIZE      32
-# define WINDOW_WIDTH   (50 * TILE_SIZE)
-# define WINDOW_HEIGHT  (30 * TILE_SIZE)
+# define TSIZE      32
+# define WINDOW_WIDTH   (50 * TSIZE)
+# define WINDOW_HEIGHT  (30 * TSIZE)
 // # define WINDOW_WIDTH   1800
 // # define WINDOW_HEIGHT  1000
 # define MAP_WIDTH      25
@@ -63,7 +63,14 @@ typedef struct s_player
 
 typedef struct s_ray
 {
-    double      ray_angle;
+	int		    index;
+	int		    color;
+    int         down;
+    int         up;
+    int         left;
+    int         right;
+    double      angle;
+    double	    start;
     double      distance;
 }   t_ray;
 
@@ -122,11 +129,12 @@ void    ft_key_press(mlx_key_data_t keydata, t_data *data);
 
 /*************** RAY_CAST *************/
 void    ft_cast_rays(t_data *data);
-double	ft_vertical_intersect(t_data *data, double angle);
-double	ft_horizont_intersect(t_data *data, double angle);
+double	ft_vertical_intersect(t_data *data);
+double	ft_horizont_intersect(t_data *data);
 
 /**************** UTILS ***************/
 double  ft_distance(t_coordinate a, t_position b);
-double  ft_normalize(double angle);
+void    ft_normalize(t_data *data);
+int     ft_wall(t_map *map, int x, int y);
 
 #endif

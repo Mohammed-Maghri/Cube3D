@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 15:58:12 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/06/25 09:28:11 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/06/27 10:10:49 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,11 @@ void	ft_move_player(t_data *data, t_coordinate move)
 
 	pos.x = roundf(data->player->pos_in_pixels.x + move.x); // get the new x position
 	pos.y = roundf(data->player->pos_in_pixels.y + move.y); // get the new y position
-	index.x = (pos.x / TILE_SIZE); // get the x position in the map
-	index.y = (pos.y / TILE_SIZE); // get the y position in the map
+	index.x = (pos.x / TSIZE); // get the x position in the map
+	index.y = (pos.y / TSIZE); // get the y position in the map
 	if (data->map->map[index.y][index.x] != '1' && \
-	(data->map->map[index.y][data->player->pos_in_pixels.x / TILE_SIZE] != '1' && \
-	data->map->map[data->player->pos_in_pixels.y / TILE_SIZE][index.x] != '1')) // check the wall hit and the diagonal wall hit
+	(data->map->map[index.y][data->player->pos_in_pixels.x / TSIZE] != '1' && \
+	data->map->map[data->player->pos_in_pixels.y / TSIZE][index.x] != '1')) // check the wall hit and the diagonal wall hit
 	{
 		data->player->pos_in_pixels.x = pos.x; // move the player
 		data->player->pos_in_pixels.y = pos.y; // move the player

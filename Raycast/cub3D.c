@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 12:31:20 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/06/25 12:07:55 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/06/27 10:10:49 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void    ft_init_player(t_data *data)
     data->player->up_down_flag = 0;
     data->player->pos_in_map.x = 14;
     data->player->pos_in_map.y = 3;
-    data->player->pos_in_pixels.x = data->player->pos_in_map.x * TILE_SIZE + TILE_SIZE / 2;
-    data->player->pos_in_pixels.y = data->player->pos_in_map.y * TILE_SIZE + TILE_SIZE / 2;
+    data->player->pos_in_pixels.x = data->player->pos_in_map.x * TSIZE + TSIZE / 2;
+    data->player->pos_in_pixels.y = data->player->pos_in_map.y * TSIZE + TSIZE / 2;
     data->player->angle = M_PI;
 }
 
