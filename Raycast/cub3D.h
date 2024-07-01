@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 09:27:20 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/06/28 17:21:35 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/01 18:06:35 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include "./MLX42/MLX42.h"
 
 # define TSIZE      32
+# define MSIZE      22
+# define UNITY      ((double)MSIZE / TSIZE)
 # define WINDOW_WIDTH   (50 * TSIZE)
 # define WINDOW_HEIGHT  (30 * TSIZE)
 // # define WINDOW_WIDTH   1800
@@ -29,6 +31,7 @@
 # define PLAYER_SPEED   2
 # define ROTATION_SPEED 0.02
 # define FLOOR_COLOR    0x90EE90FF
+# define MINI_COLOR     0xAAAAAAFF
 # define CEILING_COLOR  0xB0E2FFFF
 # define WALL_COLOR     0xFFFFFFFF
 # define WALL_SHADE     0xEEEEEEFF
@@ -84,7 +87,6 @@ typedef struct s_map
 typedef struct s_mlx
 {
     void        *pointer;
-    // void        *window;
     void        *image;
     char        *buffer;
     int         bits_per_pixel;
@@ -129,12 +131,12 @@ void    ft_key_press(mlx_key_data_t keydata, t_data *data);
 
 /*************** RAY_CAST *************/
 void    ft_cast_rays(t_data *data);
-double	ft_vertical_intersect(t_data *data);
-double	ft_horizont_intersect(t_data *data);
-
-/**************** UTILS ***************/
-double  ft_distance(t_coordinate a, t_position b);
+double	ft_hdistance(t_data *data);
+double	ft_vdistance(t_data *data);
 void    ft_normalize(t_data *data);
-int     ft_wall(t_map *map, int x, int y);
 
+/**************** DRAW ***************/
+void ft_draw_map(t_data *data);
+void    ft_draw_ray(t_data *data);
+void ft_draw_player(t_data *data);
 #endif

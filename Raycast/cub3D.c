@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 12:31:20 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/06/27 10:10:49 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/01 13:17:54 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void    ft_init_map(t_data *data)
 
 void    ft_init_mlx(t_data *data)
 {
-    data->mlx->pointer = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "CUB3D", 0);
+    data->mlx->pointer = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "CUB3D", 1);
     mlx_loop_hook(data->mlx->pointer, &ft_update_window, data);
 	mlx_key_hook(data->mlx->pointer, &ft_key_move, data);
 	mlx_loop(data->mlx->pointer);

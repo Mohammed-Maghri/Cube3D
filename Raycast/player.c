@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 15:58:12 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/06/27 10:10:49 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/01 18:06:07 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ void    ft_update_window(void *d)
 	ft_rotate_player(data->player);
 	ft_update_position(data->player, &move);
 	ft_move_player(data, move);
+	ft_draw_map(data); // 
 	ft_cast_rays(data);	// cast the rays
+	ft_draw_player(data); // 
 	mlx_image_to_window(data->mlx->pointer, data->mlx->image, 0, 0); // put the image to the window
 }
