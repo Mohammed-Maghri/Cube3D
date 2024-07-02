@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 09:27:20 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/02 11:42:31 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/02 20:22:22 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,26 @@
 
 # define TSIZE      32
 # define MSIZE      22
+// # define MSIZE      (0.02 * WINDOW_HEIGHT)
 # define UNITY      ((double)MSIZE / TSIZE)
 # define WINDOW_WIDTH   (50 * TSIZE)
 # define WINDOW_HEIGHT  (30 * TSIZE)
 // # define WINDOW_WIDTH   1800
 // # define WINDOW_HEIGHT  1000
+// # define MAP_WIDTH      59
+// # define MAP_HEIGHT     22
 # define MAP_WIDTH      25
 # define MAP_HEIGHT     9
 # define PLAYER_SPEED   2
-# define ROTATION_SPEED 0.02
+// # define ROTATION_SPEED 0.02
+# define ROTATION_SPEED (M_PI / 180)
 # define FLOOR_COLOR    0x90EE90FF
 # define MINI_COLOR     0xAAAAAAFF
 # define CEILING_COLOR  0xB0E2FFFF
 # define WALL_COLOR     0xFFFFFFFF
 # define WALL_SHADE     0xEEEEEEFF
-# define FOV            (60 * M_PI / 180)
+# define FOV            (M_PI / 3)
+// # define FOV            (60 * M_PI / 180)
 # define ANGLE_STEP     (FOV / WINDOW_WIDTH)
 // Projection Plan
 # define HEIGHT_CENTER  (WINDOW_HEIGHT / 2)

@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 15:58:12 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/02 11:57:00 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/02 17:24:48 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,15 @@ void    ft_rotate_player(t_player *player)
 	player->angle += player->rotation_flag * ROTATION_SPEED; // +ROTATION_SPEED or -ROTATION_SPEED
 	player->angle += (player->angle < 0) * (2 * M_PI); // normalize
 	player->angle += -(player->angle > (2 * M_PI)) * (2 * M_PI); // normalize
-	if (player->left_right_flag == 1) //move right
+	if (player->left_right_flag) //move right or left
 	{
-		player->rotate.x = -sin(player->angle) * PLAYER_SPEED;
-		player->rotate.y = cos(player->angle) * PLAYER_SPEED;
+		player->rotate.x = -1 * player->left_right_flag * sin(player->angle) * PLAYER_SPEED;
+		player->rotate.y = player->left_right_flag * cos(player->angle) * PLAYER_SPEED;
 	}
-	if (player->left_right_flag == -1) //move left
+	if (player->up_down_flag) //move up or down
 	{
-		player->rotate.x = sin(player->angle) * PLAYER_SPEED;
-		player->rotate.y = -cos(player->angle) * PLAYER_SPEED;
-	}
-	if (player->up_down_flag == 1) //move up
-	{
-		player->rotate.x = cos(player->angle) * PLAYER_SPEED;
-		player->rotate.y = sin(player->angle) * PLAYER_SPEED;
-	}
-	if (player->up_down_flag == -1) //move down
-	{
-		player->rotate.x = -cos(player->angle) * PLAYER_SPEED;
-		player->rotate.y = -sin(player->angle) * PLAYER_SPEED;
+		player->rotate.x = player->up_down_flag * cos(player->angle) * PLAYER_SPEED;
+		player->rotate.y = player->up_down_flag * sin(player->angle) * PLAYER_SPEED;
 	}
 }
 
