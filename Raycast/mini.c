@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 10:11:23 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/01 18:05:53 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/02 12:02:16 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ void    ft_draw_ray(t_data *data)
 
         pixelX = data->player->pos_in_pixels.x * UNITY;
         pixelY = data->player->pos_in_pixels.y * UNITY;
-        deltaX = cos(data->ray->angle) * (data->ray->distance - data->player->pos_in_pixels.x / TSIZE) * UNITY;
-        deltaY = sin(data->ray->angle) * (data->ray->distance - data->player->pos_in_pixels.y / TSIZE) * UNITY;
-        pixels = sqrt((deltaX * deltaX) + (deltaY * deltaY));
+        deltaX = cos(data->ray->angle) * (data->ray->distance) * UNITY;
+        deltaY = sin(data->ray->angle) * (data->ray->distance) * UNITY;
+        pixels = (data->ray->distance) * UNITY;
         deltaX /= pixels;
         deltaY /= pixels;
-        while (pixels >= 0)
+        while (pixels)
         {
-            ft_mlx_put_pixel(data->mlx, pixelX, pixelY, 0x858536ff);
+            ft_mlx_put_pixel(data->mlx, pixelX, pixelY, 0xAAAAAAFF);
             pixelX += deltaX;
             pixelY += deltaY;
             --pixels;
@@ -73,7 +73,7 @@ void ft_draw_map(t_data *data)
             if (data->map->map[y][x] == '1')
                 ft_draw_square(data, MSIZE, tilex , tiley, WALL_COLOR);
             else
-                ft_draw_square(data, MSIZE, tilex , tiley, 0xAAAAAAFF);
+                ft_draw_square(data, MSIZE, tilex , tiley, 0xAAAAAABF);
         }
     }
 }

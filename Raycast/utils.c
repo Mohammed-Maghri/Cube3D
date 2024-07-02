@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 20:38:22 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/01 08:25:16 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/02 11:05:45 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void  ft_normalize(t_data *data)
 {
-    data->ray->angle = data->ray->angle + ((data->ray->angle < 0) - (data->ray->angle > (2 * M_PI))) * (2 * M_PI);
+    data->ray->angle += ((data->ray->angle < 0) - (data->ray->angle > (2 * M_PI))) * (2 * M_PI);
     data->ray->down = (data->ray->angle > 0 && data->ray->angle < M_PI);//up = 1 down = 0
 	data->ray->left = (data->ray->angle > M_PI / 2 && data->ray->angle < 3 * M_PI / 2);//left = 1 right = 0
     data->ray->up = !data->ray->down;

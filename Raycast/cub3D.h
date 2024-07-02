@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 09:27:20 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/01 18:06:35 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/02 11:42:31 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct s_player
 {
     t_position  pos_in_map;
     t_position  pos_in_pixels;
+    t_coordinate    rotate;
     double      angle;
     int         rotation_flag;
     int         left_right_flag;   
@@ -119,9 +120,9 @@ void    ft_init_mlx(t_data *data);
 void    ft_mlx_put_pixel(t_mlx *mlx, int x, int y, int color);
 
 /*************** PLAYER *************/
-void	ft_rotate_player(t_player *player);
-void    ft_update_position(t_player *player, t_coordinate *move);
-void	ft_move_player(t_data *data, t_coordinate move);
+// void	ft_rotate_player(t_player *player);
+void    ft_rotate_player(t_player *player);
+void	ft_move_player(t_data *data);
 void    ft_update_window(void *d);
 
 /*************** KEY_MOVE *************/
