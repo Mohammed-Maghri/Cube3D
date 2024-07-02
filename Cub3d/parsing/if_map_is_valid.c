@@ -6,7 +6,7 @@
 /*   By: mmaghri <mmaghri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 20:58:07 by mmaghri           #+#    #+#             */
-/*   Updated: 2024/05/25 18:20:01 by mmaghri          ###   ########.fr       */
+/*   Updated: 2024/07/02 09:24:17 by mmaghri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int check_on_check(char string)
 		return (-1);
 	if (string == '1' || string == '0' || string == '\n')
 		return (-1);
-	if (string >= 'A' && string <= 'Z')
+	if (string == 'S' || string == 'W' || string == 'E' || string == 'N')
 		return (-1);
 	return (0);
 }
@@ -85,7 +85,7 @@ void check_on(char *string)
 	{
 		if (check_on_check(string[index]) != -1)
 			{
-				putstring("	Invalid MAP....!");
+				putstring("Invalid MAP....!");
 				exit(1);
 			}
 			index++ ;

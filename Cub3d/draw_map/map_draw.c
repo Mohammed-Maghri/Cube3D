@@ -6,7 +6,7 @@
 /*   By: mmaghri <mmaghri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 20:41:16 by mmaghri           #+#    #+#             */
-/*   Updated: 2024/05/27 11:41:26 by mmaghri          ###   ########.fr       */
+/*   Updated: 2024/07/01 18:10:22 by mmaghri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,9 @@ void draw_map(t_store *elemenets)
             tiley = y * 30;
             if (elemenets->array[y][x] == '0')
                 draw_square(elemenets, 30, tilex , tiley, 0);
-            if (elemenets->array[y][x] == '1')
+            else if (elemenets->array[y][x] == '1')
                 draw_square(elemenets, 30, tilex , tiley, 255);
-            if (elemenets->array[y][x] == 'S')
+            else if (elemenets->array[y][x] == 'S')
                 draw_square(elemenets, 10 , tilex, tiley, 65280);
         }
     }

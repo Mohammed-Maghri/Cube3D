@@ -6,7 +6,7 @@
 /*   By: mmaghri <mmaghri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 20:32:50 by mmaghri           #+#    #+#             */
-/*   Updated: 2024/05/27 11:06:01 by mmaghri          ###   ########.fr       */
+/*   Updated: 2024/07/02 10:36:32 by mmaghri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct parsing
 
 typedef struct store_map_elem
 {
+	double	player_position;
 	char	*no;
 	char	*so;
 	char	*we;
@@ -52,6 +53,7 @@ typedef struct store_map_elem
     int		linelenght;
     int		endian ;
 }	t_store;
+
 
 typedef struct only_for_map
 {

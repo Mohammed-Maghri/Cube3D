@@ -6,7 +6,7 @@
 /*   By: mmaghri <mmaghri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 20:38:48 by mmaghri           #+#    #+#             */
-/*   Updated: 2024/05/26 21:28:58 by mmaghri          ###   ########.fr       */
+/*   Updated: 2024/07/02 11:31:24 by mmaghri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void func_checks(char **twode)
 		index++ ;
 	}
 }
-char **heal_map(char **twode)
+char **heal_map(char **twode, char pass)
 {
 	int index;
 	char **alloca;
@@ -105,34 +105,54 @@ char **heal_map(char **twode)
 	index = 0;
 	while (twode && twode[index])
 	{
-		alloca[index] = heal_line(twode[index], get_longest_line(twode), '-');
+		alloca[index] = heal_line(twode[index], get_longest_line(twode), pass);
 		index++ ;
 	}
 	alloca[index] = NULL ;
 	return (alloca);
 }
 
-
-void funtion_for_main(t_pars *map, t_store *store)
+int check_next(char *string)
 {
-	char	**that;
-	int		index ;
-	char	**other ;
+	int index ;
 	index = 0;
-	that = for_main(map);
-	store->no = copy_move("*");
-	store->ea = copy_move("*");
-	store->so = copy_move("*");
-	store->we = copy_move("*");
-	ini_tila(store, 1);
-	check_directions(that, store);
-	check_on_element(store);
-	ini_tila(store, 0);
-	other = rebuild_map(map->get_map);
-	index = 0;
-	func_checks(other);
-	map->array = heal_map(other);
+	while (string[index])
+	{
+		if (string[index] != '-')
+			return (0);
+		index++ ;
+	}
+	return (-1);
 }
+void function_check_inside(char **twode)
+{
+	t_pars this;
+	int flag ;
+
+	flag = 0;
+	this.index = 0;
+	while (twode[this.index])
+	{
+		putstring(twode[this.index]);
+		paste('\n');
+		if (flag == 1 && check_next(twode[this.index]) == -1)
+		{
+			flag = -1;
+		}
+		if (check_next(twode[this.index]) == 0)
+		{
+			if (flag == -1)
+			{
+				printf("Not a valid Map \n");
+				exit(1);
+			}
+			flag = 1;
+		}
+		this.index++ ;
+	}
+}
+
+
 
 void prin_map(char **twode)
 {
@@ -164,6 +184,156 @@ void print_store(t_store *store)
 
 }
 
+int check_ele(char string)
+{
+	if (string == '0' || string == '1' || \
+	string == 'W' || string == 'N' \
+	|| string == 'S' || string == 'E')
+		return (-1);
+	return (0);
+}
+void check_weird_ithem(char *string)
+{
+	int index ;
+
+	index = 0;
+	while (string[index])
+	{
+		if (check_ele(string[index]) == 0)
+		{
+			printf("Wierd Ithem \n");
+			exit(1);
+		}
+		index++ ;
+	}
+}
+
+void initial_this(char current, t_store *elemes)
+{
+	if (current == 'S')
+		elemes->player_position = 1;
+	if (current == 'W')
+		elemes->player_position = 2;
+	if (current == 'N')
+		elemes->player_position = 3;
+	if (current == 'E')
+		elemes->player_position = 4;
+}
+
+int get_position(t_store *elemes, char *array)
+{
+	t_pars this;
+	int flag ;
+
+	flag = 0;
+	this.index = 0;
+	while (array[this.index])
+	{
+		if (array[this.index] == 'S' || \
+		array[this.index]== 'E' || \
+		array[this.index]== 'N' || 
+		array[this.index] == 'W')
+		{
+			if (flag == 1)
+				{
+					printf("Duplicate Destination's\n");
+					exit(1);
+				}
+			initial_this(array[this.index], elemes);
+			flag = 1;
+		}
+		this.index++ ;
+	}
+	if (flag == 1)
+		return (1);
+	return (0);
+}
+
+int position_recheck(char **array)
+{
+	t_pars this;
+
+	while (array[this.index])
+	{
+		while (array[this.index][this.incre])
+		{
+			if (array[this.index][this.incre] == 'S' || array[this.index][this.incre] == 'N'  
+			|| array[this.index][this.incre] == 'W' || array[this.index][this.incre] == 'E')
+			{
+				printf("%c\n", array[this.index][this.incre - 1]);
+				if (array[this.index][this.incre + 1] == '-')
+					return (-1);
+				if (array[this.index][this.incre - 1] == '-')
+					return (-1);
+				if (array[this.index][this.incre] == '-')
+					return (-1);
+				if (array[this.index][this.incre + 1] == '-')
+					return (-1);
+			}
+			this.incre++;
+		}
+		this.incre = 0;
+		this.index++ ;
+	}
+	return (0);
+}
+
+void function_position_check(char **array, t_store *elemes, char **other)
+{
+	t_pars this;
+	int flag ;
+
+	flag = 0;
+	this.index = 0;
+	while (array[this.index])
+	{
+		check_weird_ithem(array[this.index]);
+		if (get_position(elemes, array[this.index]))
+			{
+				if (flag == 1)
+				{
+					printf("Duplicate Destination's\n");
+					exit(1);
+				}
+				flag = 1;
+			}
+		this.index++ ;
+	}
+	array = heal_map(other, '-');
+	if (position_recheck(array) == -1)
+	{
+		printf("Not a Valid Element \n");
+		exit(1);
+	}
+}
+
+void funtion_for_main(t_pars *map, t_store *store)
+{
+	char	**that;
+	int		index ;
+	char	**other ;
+	index = 0;
+	that = for_main(map);
+
+	store->no = copy_move("*");
+	store->ea = copy_move("*");
+	store->so = copy_move("*");
+	store->we = copy_move("*");
+	ini_tila(store, 1);
+	check_directions(that, store);
+	check_on_element(store);
+	ini_tila(store, 0);
+	other = rebuild_map(map->get_map);
+	// prin_map(other);
+	index = 0;
+	func_checks(other);
+	map->array = heal_map(other, '-');
+	function_check_inside(map->array);
+	free(map->array);
+	map->array = heal_map(other, '1');
+	function_position_check(map->array, store, other);
+	printf(" %f \n" , store->player_position);
+}
 int	main()
 {
 	t_pars	*map;
@@ -172,11 +342,9 @@ int	main()
 	store = gb(sizeof(t_store), 1);
 	funtion_for_main(map, store);
 	bothwalls(map->array);
-	prin_map(map->array);
+	// prin_map(map->array);
 	check_side_walls(map->array);
 	check_inside_map(map->array);
-	count_players(map->array);
-	print_store(store);
-	create_window(map->array, store);
+	// print_store(store);
 	gb(0, -1);
 }
