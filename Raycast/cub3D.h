@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 09:27:20 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/02 20:22:22 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/04 17:58:42 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,29 +23,35 @@
 # define MSIZE      22
 // # define MSIZE      (0.02 * WINDOW_HEIGHT)
 # define UNITY      ((double)MSIZE / TSIZE)
-# define WINDOW_WIDTH   (50 * TSIZE)
 # define WINDOW_HEIGHT  (30 * TSIZE)
+# define WINDOW_WIDTH   (50 * TSIZE)
+# define MINI_HEIGHT  (WINDOW_HEIGHT / 4)
+# define MINI_WIDTH   (WINDOW_WIDTH / 4)
 // # define WINDOW_WIDTH   1800
 // # define WINDOW_HEIGHT  1000
 // # define MAP_WIDTH      59
 // # define MAP_HEIGHT     22
 # define MAP_WIDTH      25
 # define MAP_HEIGHT     9
-# define PLAYER_SPEED   2
+# define PLAYER_SPEED   2 // 2 pixels
 // # define ROTATION_SPEED 0.02
-# define ROTATION_SPEED (M_PI / 180)
+# define ROTATION_SPEED (M_PI / 180) // 1 degree
 # define FLOOR_COLOR    0x90EE90FF
-# define MINI_COLOR     0xAAAAAAFF
+// # define MINI_COLOR     0xAAAAAAFF
+# define MINI_COLOR     0xAAAAAA00
 # define CEILING_COLOR  0xB0E2FFFF
 # define WALL_COLOR     0xFFFFFFFF
 # define WALL_SHADE     0xEEEEEEFF
-# define FOV            (M_PI / 3)
+# define FOV            (M_PI / 3) // 60 degree
 // # define FOV            (60 * M_PI / 180)
 # define ANGLE_STEP     (FOV / WINDOW_WIDTH)
 // Projection Plan
-# define HEIGHT_CENTER  (WINDOW_HEIGHT / 2)
-# define WIDTH_CENTER   (WINDOW_WIDTH / 2)
-# define DISTANCE_PLAN  (WIDTH_CENTER / tan(FOV / 2))
+# define HALF_HEIGHT  (WINDOW_HEIGHT / 2)
+# define HALF_WIDTH   (WINDOW_WIDTH / 2)
+# define DISTANCE_PLAN  ((double)TSIZE * HALF_WIDTH / tan(FOV / 2))
+# define ESC            256
+# define R              262
+# define L              263
 
 typedef struct s_position
 {
@@ -63,11 +69,11 @@ typedef struct s_player
 {
     t_position  pos_in_map;
     t_position  pos_in_pixels;
-    t_coordinate    rotate;
+    t_coordinate    move;
     double      angle;
-    int         rotation_flag;
-    int         left_right_flag;   
-    int         up_down_flag;   
+    int         rotation;
+    int         left_right;   
+    int         up_down;   
 }   t_player;
 
 typedef struct s_ray
@@ -88,16 +94,14 @@ typedef struct s_map
     char        **map;
     int         map_width;
     int         map_height;
+    int         mini_width;
+    int         mini_height;
 }   t_map;
 
 typedef struct s_mlx
 {
     void        *pointer;
     void        *image;
-    char        *buffer;
-    int         bits_per_pixel;
-    int         size_line;
-    int         endian;
 }   t_mlx;
 
 typedef struct s_data
@@ -123,17 +127,12 @@ void	ft_close(t_data *data);
 /**************** MLX **************/
 void    ft_init_mlx(t_data *data);
 void    ft_mlx_put_pixel(t_mlx *mlx, int x, int y, int color);
+void    ft_key_move(mlx_key_data_t keydata, void *d);
 
-/*************** PLAYER *************/
-// void	ft_rotate_player(t_player *player);
-void    ft_rotate_player(t_player *player);
+/*************** MOVE *************/
+
 void	ft_move_player(t_data *data);
 void    ft_update_window(void *d);
-
-/*************** KEY_MOVE *************/
-void    ft_key_move(mlx_key_data_t keydata, void *d);
-void    ft_key_release(mlx_key_data_t keydata, t_data *data);
-void    ft_key_press(mlx_key_data_t keydata, t_data *data);
 
 /*************** RAY_CAST *************/
 void    ft_cast_rays(t_data *data);
@@ -142,7 +141,9 @@ double	ft_vdistance(t_data *data);
 void    ft_normalize(t_data *data);
 
 /**************** DRAW ***************/
-void ft_draw_map(t_data *data);
-void    ft_draw_ray(t_data *data);
+void ft_draw_minimap(t_data *data);
+void ft_draw_ray(t_data *data);
 void ft_draw_player(t_data *data);
+int ft_wall(t_map *map, int x, int y);
+// unsigned long color(int r, int g, int b, int a);
 #endif
