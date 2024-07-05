@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 12:31:20 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/04 17:52:09 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/05 14:41:10 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,13 +103,16 @@ void    ft_init_map(t_data *data)
 	// data->map->map[9] = NULL;
 }
 
-void    ft_init_mlx(t_data *data)
-{
-    mlx_loop_hook(data->mlx->pointer, &ft_update_window, data);
-	mlx_key_hook(data->mlx->pointer, &ft_key_move, data);
-	mlx_loop(data->mlx->pointer);
-}
 
+void    ft_mouse_move(mouse_key_t button, action_t action, modifier_key_t mods, void* d)
+{
+    t_data	*data;
+	data = d;
+    (void)mods;
+    
+    (button == 1) && (data->player->rotation = action); // right
+    (button == 0) && (data->player->rotation = -action); // left
+}
 
 int main()
 {
@@ -119,6 +122,10 @@ int main()
     ft_init_data(&data);
     ft_init_player(data);
     ft_init_map(data);
-    ft_init_mlx(data);
+    mlx_loop_hook(data->mlx->pointer, &ft_update_window, data);
+	mlx_key_hook(data->mlx->pointer, &ft_key_move, data);
+    mlx_mouse_hook(data->mlx->pointer, &ft_mouse_move, data);
+	mlx_loop(data->mlx->pointer);
+
     return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 09:27:20 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/04 17:58:42 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/05 10:55:53 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,11 +139,12 @@ void    ft_cast_rays(t_data *data);
 double	ft_hdistance(t_data *data);
 double	ft_vdistance(t_data *data);
 void    ft_normalize(t_data *data);
+double  ft_distance(t_coordinate a, t_position b);
 
 /**************** DRAW ***************/
-void ft_draw_minimap(t_data *data);
 void ft_draw_ray(t_data *data);
-void ft_draw_player(t_data *data);
+void ft_draw_minimap(t_data *data);
+void ft_draw_miniplayer(t_data *data);
 int ft_wall(t_map *map, int x, int y);
 // unsigned long color(int r, int g, int b, int a);
 #endif
