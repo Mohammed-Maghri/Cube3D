@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 10:11:23 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/05 14:20:15 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/06 13:55:33 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,48 +18,29 @@ void    ft_mlx_put_pixel(t_mlx *mlx, int x, int y, int color)
 	    mlx_put_pixel(mlx->image, x, y, color);
 }
 
-// void    ft_draw_ray(t_data *data) // fixed player
-// {
-// 	t_coordinate start;
-// 	t_coordinate step;
-// 	int pixel_count;
-
-// 	start.x = MINI_WIDTH / 2;
-// 	start.y = MINI_HEIGHT / 2;
-// 	step.x = cos(data->ray->angle);
-// 	step.y = sin(data->ray->angle);
-// 	pixel_count = data->ray->distance * UNITY + 1;
-// 	while (--pixel_count)
-// 	{
-// 		if (step.x * pixel_count < MINI_WIDTH / 2 && step.y * pixel_count < MINI_HEIGHT / 2)
-// 			ft_mlx_put_pixel(data->mlx, start.x + step.x * pixel_count, \
-// 										start.y + step.y * pixel_count, \
-// 										0xAAAAAAEE);
-// 	}
-// }
-
-void    ft_draw_ray(t_data *data) // fixed player
+void    ft_draw_ray(t_data *data)
 {
-	t_coordinate player;
 	t_coordinate start;
 	t_coordinate step;
-	t_coordinate	diff;
+	t_coordinate diff;
 	int pixel_count;
-
+	
 	start.x = data->player->pos_in_pixels.x * UNITY;
 	start.y = data->player->pos_in_pixels.y * UNITY;
-	diff.x = start.x - floor(start.x);
-	diff.y = start.y - floor(start.y);
-	player.x = floor(MINI_WIDTH / 2) + diff.x;
-	player.y = floor(MINI_HEIGHT / 2) + diff.y;
+	diff.x = MINI_WIDTH / 2 - floor(start.x);
+	diff.y = MINI_HEIGHT / 2 - floor(start.y);
+	start.x += diff.x;
+	start.y += diff.y;
 	step.x = cos(data->ray->angle);
 	step.y = sin(data->ray->angle);
-	pixel_count = floor(data->ray->distance * UNITY) + 1;
+	pixel_count = data->ray->distance * UNITY + 1;
 	while (--pixel_count >= 0)
-		if (step.x * pixel_count < MINI_WIDTH / 2 && step.y * pixel_count < MINI_HEIGHT / 2)
-			ft_mlx_put_pixel(data->mlx, player.x + step.x * pixel_count, \
-										player.y + step.y * pixel_count, \
+	{
+		if (start.x + step.x * pixel_count < MINI_WIDTH && start.y + step.y * pixel_count < MINI_HEIGHT)
+			ft_mlx_put_pixel(data->mlx, start.x + step.x * pixel_count, \
+										start.y + step.y * pixel_count, \
 										0xAAAAAAEE);
+	}
 }
 
 void ft_draw_square(t_data *data, int tileSize, int color, int y, int x)
@@ -89,8 +70,8 @@ void ft_draw_minimap(t_data *data)// moving map
 	int j;
 	t_coordinate diff;
 	
-	diff.x = (MINI_WIDTH / 2 - data->player->pos_in_pixels.x * UNITY) / MSIZE;
-	diff.y = (MINI_HEIGHT / 2 - data->player->pos_in_pixels.y * UNITY) / MSIZE;
+	diff.x = MINI_WIDTH / 2 - floor(data->player->pos_in_pixels.x * UNITY);
+	diff.y = MINI_HEIGHT / 2 - floor(data->player->pos_in_pixels.y * UNITY);
 	i = -1;
 	while (++i < data->map->map_height)
 	{
@@ -98,7 +79,7 @@ void ft_draw_minimap(t_data *data)// moving map
 		while (++j < data->map->map_width)
 		{
 			if (data->map->map[i][j] == '1')
-				ft_draw_square(data, MSIZE, WALL_COLOR, (j + diff.x) * MSIZE, (i + diff.y) * MSIZE);
+				ft_draw_square(data, MSIZE, WALL_COLOR, j * MSIZE + diff.x, i * MSIZE + diff.y);
 			// else
 			// 	ft_draw_square(data, MSIZE, MINI_COLOR, (j + diff.x) * MSIZE , (i + diff.y) * MSIZE);
 		}
