@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   valid_map1.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaghri <mmaghri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:07:18 by mmaghri           #+#    #+#             */
-/*   Updated: 2024/07/03 11:52:52 by mmaghri          ###   ########.fr       */
+/*   Updated: 2024/07/06 15:24:35 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	keep_check(long number)
 {
-	if (number > 250 || number < 0)
+	if (number > 255 || number < 0)
 	{
 		putstring("RGB'S Are Not Valid .. !\n");
 		exit(1);

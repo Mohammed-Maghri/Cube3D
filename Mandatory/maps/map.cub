@@ -8,9 +8,9 @@ NO ./path_to_the_north_texture
 
 
 
-C       0,0,0
+C       176,226,255
 
-F 0,5,0
+F 144,238,144
 
 SO ./path_to_the_south_texture
 

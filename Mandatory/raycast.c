@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 16:06:13 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/05 17:58:56 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/06 15:11:56 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,10 @@ void    ft_draw_all(t_data *data)
     while (pixel < HALF_HEIGHT - (wall_height / 2))
 	{
 		if (data->ray->index >= MINI_WIDTH)// fixed
-			ft_mlx_put_pixel(data->mlx, data->ray->index, pixel, CEILING_COLOR); // ceiling
+			ft_mlx_put_pixel(data->mlx, data->ray->index, pixel, data->ceiling_color); // ceiling
 		if (pixel >= MINI_HEIGHT)// fixed
-			ft_mlx_put_pixel(data->mlx, data->ray->index, pixel, CEILING_COLOR); // ceiling
-		ft_mlx_put_pixel(data->mlx, data->ray->index, HALF_HEIGHT + (wall_height / 2) + pixel++, FLOOR_COLOR); // floor
+			ft_mlx_put_pixel(data->mlx, data->ray->index, pixel, data->ceiling_color); // ceiling
+		ft_mlx_put_pixel(data->mlx, data->ray->index, HALF_HEIGHT + (wall_height / 2) + pixel++, data->floor_color); // floor
 	}
     while (pixel <= HALF_HEIGHT)
 	{

@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 09:27:20 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/05 17:59:19 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/06 15:11:43 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@
 # define MOUSE_SPEED    0.7
 // # define ROTATION_SPEED 0.02
 # define ROTATION_SPEED (M_PI / 180) // 1 degree
-# define FLOOR_COLOR    0x90EE90FF
+// # define FLOOR_COLOR    0x90EE90FF
 // # define MINI_COLOR     0xAAAAAAFF
 # define MINI_COLOR     0xAAAAAA00
-# define CEILING_COLOR  0xB0E2FFFF
+// # define CEILING_COLOR  0xB0E2FFFF
 # define WALL_COLOR     0xFFFFFFFF
 # define WALL_SHADE     0xEEEEEEFF
 # define FOV            (M_PI / 3) // 60 degree
@@ -111,6 +111,8 @@ typedef struct s_data
     t_map       *map;
     t_ray       *ray;
     t_player    *player;
+    unsigned int floor_color;
+    unsigned int ceiling_color;
 }   t_data;
 
 typedef struct parsing
@@ -185,7 +187,7 @@ void ft_draw_ray(t_data *data);
 void ft_draw_minimap(t_data *data);
 void ft_draw_miniplayer(t_data *data);
 int ft_wall(t_map *map, int x, int y);
-// unsigned long color(int r, int g, int b, int a);
+unsigned long color(int r, int g, int b, int a);
 
 
 

@@ -6,16 +6,16 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 20:38:22 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/05 10:53:17 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/06 15:04:11 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-// unsigned long color(int r, int g, int b, int a)
-// {   
-//     return ((r & 0xff) << 24) + ((g & 0xff) << 16) + ((b & 0xff) << 8) + (a & 0xff);
-// }
+unsigned long color(int r, int g, int b, int a)
+{   
+    return ((r & 0xff) << 24) + ((g & 0xff) << 16) + ((b & 0xff) << 8) + (a & 0xff);
+}
 
 
 int     ft_strlen(char *s)

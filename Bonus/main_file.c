@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 20:38:48 by mmaghri           #+#    #+#             */
-/*   Updated: 2024/07/05 17:38:47 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/06 15:32:41 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,8 @@ void	ini_tila(t_store *store, int flag)
 	if (flag == 1)
 	{
 		store->c = gb(sizeof(int) * 3, 1);
-		store->f = gb(sizeof(int) * 3, 1); store->c[0] = -1;
+		store->f = gb(sizeof(int) * 3, 1);
+		store->c[0] = -1;
 		store->c[1] = -1;
 		store->c[2] = -1;
 		store->f[0] = -1;

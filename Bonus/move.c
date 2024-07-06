@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 15:58:12 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/05 18:00:32 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/05 18:01:18 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,12 @@ void	ft_move_player(t_data *data)
 		player->move = (t_coordinate){0, 0};
 		if (!ft_wall(data->map, pos.x / TSIZE, pos.y / TSIZE) \
 			&& data->map->map[pos.y / TSIZE][data->player->pos_in_pixels.x / TSIZE] != '1' \
-			&& data->map->map[data->player->pos_in_pixels.y / TSIZE][pos.x / TSIZE] != '1') // check the wall hit and the diagonal wall hit
+			&& data->map->map[data->player->pos_in_pixels.y / TSIZE][pos.x / TSIZE] != '1')
 		{
 			player->pos_in_pixels.x = pos.x; // move the player
 			player->pos_in_pixels.y = pos.y; // move the player
 		}
+			
 	}
 }
 
