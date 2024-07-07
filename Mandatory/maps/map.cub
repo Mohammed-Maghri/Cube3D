@@ -2,8 +2,8 @@
 
 
 
-EA ./path_to_the_east_texture
-NO ./path_to_the_north_texture
+EA textures/stone.png
+NO textures/stone.png
 
 
 
@@ -12,10 +12,10 @@ C       176,226,255
 
 F 144,238,144
 
-SO ./path_to_the_south_texture
+SO textures/wall.xpm
 
 
-WE ./path_to_the_west_texture
+WE textures/stone.png
 
 
 

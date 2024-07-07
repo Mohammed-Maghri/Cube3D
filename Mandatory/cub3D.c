@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 12:31:20 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/06 15:26:17 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/07 16:22:17 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,12 @@ void    ft_init_player(t_data *data, t_store *store)
     data->player->pos_in_pixels.x = data->player->pos_in_map.x * TSIZE + TSIZE / 2;
     data->player->pos_in_pixels.y = data->player->pos_in_map.y * TSIZE + TSIZE / 2;
     data->player->angle = store->player_position;
-    data->floor_color = color(store->f[0], store->f[1], store->f[2], 255);
-    data->ceiling_color = color(store->c[0], store->c[1], store->c[2], 255);
+    data->floor_color = ft_color(store->f[0], store->f[1], store->f[2]);
+    data->ceiling_color = ft_color(store->c[0], store->c[1], store->c[2]);
+    data->wall = mlx_load_png(store->no);// protect!
+    // xpm_t* xpm = mlx_load_xpm42(store->so);
+    // data->wall = &(xpm->texture);
+    // printf("%s\n%d\n%d\n%u\n", store->no, data->wall->width, data->wall->height, data->wall->bytes_per_pixel);
 }
 
 void    ft_mouse_move(mouse_key_t button, action_t action, modifier_key_t mods, void* d)

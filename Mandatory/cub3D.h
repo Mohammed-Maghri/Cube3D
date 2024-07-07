@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 09:27:20 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/06 15:11:43 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/07 16:21:20 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ typedef struct s_data
     t_player    *player;
     unsigned int floor_color;
     unsigned int ceiling_color;
+    mlx_texture_t	*wall;
 }   t_data;
 
 typedef struct parsing
@@ -187,7 +188,7 @@ void ft_draw_ray(t_data *data);
 void ft_draw_minimap(t_data *data);
 void ft_draw_miniplayer(t_data *data);
 int ft_wall(t_map *map, int x, int y);
-unsigned long color(int r, int g, int b, int a);
+unsigned int ft_color(int r, int g, int b);
 
 
 

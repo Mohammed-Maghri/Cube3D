@@ -6,7 +6,7 @@
 #    By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/25 09:26:25 by cmasnaou          #+#    #+#              #
-#    Updated: 2024/07/05 17:36:17 by cmasnaou         ###   ########.fr        #
+#    Updated: 2024/07/07 09:56:04 by cmasnaou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,11 @@ CC		=	cc
 RM		=	rm -rf
 FLAGS	=	-O3 -ffast-math -Wall -Wextra -Werror -g -fsanitize=address
 FLMLX	=	-framework Cocoa -framework OpenGL -framework IOKit
-LFLAG	=	-lglfw MLX42/libmlx42.a -L/Users/$(USER)/.brew/opt/glfw/lib/
+# GLFW is a library that allows to create and manage windows, receiving input and events...
+# -lglfw is the flag to link GLFW during the linking stage.
+# use flags -framework Cocoa -framework OpenGL -framework in order to link the program with the correct frameworks.
+# -lglfw -L/Users/$(USER)/.brew/opt/glfw/lib/ are the compilation flags
+LFLAG	=	MLX42/libmlx42.a -lglfw -L/Users/$(USER)/.brew/opt/glfw/lib/
 HEADM	=	Mandatory/cub3D.h
 HEADB	=	Bonus/cub3D.h
 SRCS	=	Mandatory/cub3D.c Mandatory/main_file.c Mandatory/move.c Mandatory/raycast.c \

@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 15:58:12 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/05 18:01:18 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/07 10:24:39 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,11 @@ int ft_wall(t_map *map, int x, int y)
 	return ((x < 0 || y < 0 || y >= map->map_height || x >= map->map_width || (map->map[y][x] == '1')));
 }
 
-double  ft_distance(t_coordinate a, t_position b)
-{
-    return (sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2)));
-}
+// double  ft_distance(t_coordinate a, t_position b)
+// {
+//     // return (sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2)));
+//     return (hypot(a.x - b.x, a.y - b.y));
+// }
 
 void    ft_key_move(mlx_key_data_t keydata, void *d)
 {
@@ -53,8 +54,8 @@ void	ft_move_player(t_data *data)
 	{
 		player->move.x = PLAYER_SPEED * cos(player->angle + player->left_right * (M_PI / 2) + (player->up_down < 0) * M_PI);
 		player->move.y = PLAYER_SPEED * sin(player->angle + player->left_right * (M_PI / 2) + (player->up_down < 0) * M_PI);
-		pos.x = roundf(player->pos_in_pixels.x + player->move.x); // get the new x position
-		pos.y = roundf(player->pos_in_pixels.y + player->move.y); // get the new y position
+		pos.x = rint(player->pos_in_pixels.x + player->move.x); // get the new x position
+		pos.y = rint(player->pos_in_pixels.y + player->move.y); // get the new y position
 		player->move = (t_coordinate){0, 0};
 		if (!ft_wall(data->map, pos.x / TSIZE, pos.y / TSIZE) \
 			&& data->map->map[pos.y / TSIZE][data->player->pos_in_pixels.x / TSIZE] != '1' \

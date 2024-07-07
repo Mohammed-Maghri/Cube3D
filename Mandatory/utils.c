@@ -6,15 +6,17 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 20:38:22 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/06 15:04:11 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/07 14:27:09 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-unsigned long color(int r, int g, int b, int a)
+unsigned int ft_color(int r, int g, int b)
 {   
-    return ((r & 0xff) << 24) + ((g & 0xff) << 16) + ((b & 0xff) << 8) + (a & 0xff);
+    // return ((r & 0xff) << 24) + ((g & 0xff) << 16) + ((b & 0xff) << 8) + (255 & 0xff);
+    // return ((r * pow(2, 24) + g * pow(2, 16)) + b * pow(2, 8) + 255);
+    return ((((r * 256 + g) * 256) + b) * 256 + 255);
 }
 
 
