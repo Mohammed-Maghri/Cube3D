@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 16:06:13 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/07 16:21:59 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/07 17:40:10 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ double	ft_hdistance(t_data *data)
 	step.x = fabs(TSIZE / tan(data->ray->angle)) * (2 * data->ray->right - 1);
 	while (!ft_wall(data->map, point.x / TSIZE, (point.y - data->ray->up) / TSIZE))
 		(point.x += step.x) && (point.y += step.y);
+	data->ray->h_distance = point.x;
 	point.x -= data->player->pos_in_pixels.x;
 	point.y -= data->player->pos_in_pixels.y;
 	return (hypot(point.x, point.y));
@@ -54,6 +55,7 @@ double	ft_vdistance(t_data *data)
 	step.y = fabs(TSIZE * tan(data->ray->angle)) * (2 * data->ray->down - 1);
 	while (!ft_wall(data->map, (point.x - data->ray->left)/ TSIZE, point.y / TSIZE))
 		(point.x += step.x) && (point.y += step.y);
+	data->ray->v_distance = point.y;
 	point.x -= data->player->pos_in_pixels.x;
 	point.y -= data->player->pos_in_pixels.y;
 	return (hypot(point.x, point.y));
@@ -62,7 +64,7 @@ double	ft_vdistance(t_data *data)
 
 void    ft_draw_all(t_data *data)
 {
-	int			start;
+	int			start = 0;
 	double			index;
 	uint32_t		*texture;
 	double			step;
@@ -73,11 +75,28 @@ void    ft_draw_all(t_data *data)
 	(wall_height > WINDOW_HEIGHT) && (wall_height = WINDOW_HEIGHT);//
 	texture = (uint32_t *)data->wall->pixels;
 	step = (double)data->wall->height / wall_height;
-	data->ray->distance *= data->wall->width / TSIZE;
-	start = fmod(data->ray->distance, data->wall->width);
+	// data->ray->distance *= data->wall->width / TSIZE;
+	// start = fmod(data->ray->distance, data->wall->width);
+	// printf("dist = %d\n", start);
+	if (data->ray->view == 'h')
+	{
+		data->ray->h_distance *= data->wall->width / TSIZE;
+		start = fmod(data->ray->h_distance, data->wall->width);
+		// printf("hdist = %d\n", (int)fmod(data->ray->h_distance, data->wall->width));
+		if ((int)fmod(data->ray->h_distance, data->wall->width) < 0)
+			exit(1);
+	}
+	else
+	{
+		data->ray->v_distance *= data->wall->width / TSIZE;
+		start = fmod(data->ray->v_distance, data->wall->width);
+		// printf("vdist = %d\n", (int)fmod(data->ray->v_distance, data->wall->width));
+		if ((int)fmod(data->ray->v_distance, data->wall->width) < 0)
+			exit(1);
+	}
 	index = 0;
     pixel = 0;
-    while (pixel < HALF_HEIGHT - (wall_height / 2))
+    while (pixel < HALF_HEIGHT - (int)(wall_height / 2))
 	{
 		if (data->ray->index >= MINI_WIDTH)// fixed
 			ft_mlx_put_pixel(data->mlx, data->ray->index, pixel, data->ceiling_color); // ceiling
@@ -85,10 +104,10 @@ void    ft_draw_all(t_data *data)
 			ft_mlx_put_pixel(data->mlx, data->ray->index, pixel, data->ceiling_color); // ceiling
 		ft_mlx_put_pixel(data->mlx, data->ray->index, HALF_HEIGHT + (wall_height / 2) + pixel++, data->floor_color); // floor
 	}
-    while (pixel <= HALF_HEIGHT + (wall_height / 2) - 1)
+    while (pixel <= HALF_HEIGHT + (int)(wall_height / 2))
 	{
 		if (data->ray->index >= MINI_WIDTH || pixel >= MINI_HEIGHT)// fixed
-        	ft_mlx_put_pixel(data->mlx, data->ray->index, pixel, texture[start + (int)index * data->wall->width]);//wall
+        	ft_mlx_put_pixel(data->mlx, data->ray->index, pixel, texture[(start + (int)index * data->wall->width)]);//wall
 		index += step;
 		pixel++;
 	}
@@ -107,6 +126,7 @@ void    ft_cast_rays(t_data *data)
 		distance = ft_hdistance(data);
 		data->ray->distance = ft_vdistance(data);
 		data->ray->color = WALL_COLOR;//
+		data->ray->view = 'v';
 		/**** for a different color for each side: ***/
 		// if ((distance > data->ray->distance) && data->ray->left)
 		// 	data->ray->color = 0xFFE2FFFF;
@@ -116,9 +136,15 @@ void    ft_cast_rays(t_data *data)
 		// 	data->ray->color = 0xFFE255FF;
 		// if ((distance <= data->ray->distance) &&  data->ray->down)
 		// 	data->ray->color = 0xB112AAFF;
-		(distance <= data->ray->distance) && (data->ray->color = WALL_SHADE);//
 		/*******************************************/
-		data->ray->distance = fmin(data->ray->distance, distance);
+		// (distance <= data->ray->distance) && (data->ray->color = WALL_SHADE);//
+		// data->ray->distance = fmin(data->ray->distance, distance);
+		if (distance <= data->ray->distance)
+		{
+			data->ray->distance = distance;
+			data->ray->color = WALL_SHADE;
+			data->ray->view = 'h';
+		}
 		ft_draw_ray(data); // mini map
 		data->ray->distance *= cos(data->ray->angle - data->player->angle); // fix the fisheye
 		ft_draw_all(data); // render the wall, floor and ceiling

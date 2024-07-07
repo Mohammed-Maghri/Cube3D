@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 09:27:20 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/07 16:21:20 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/07 17:24:27 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,11 @@ typedef struct s_ray
     int         up;
     int         left;
     int         right;
+    char        view;
     double      angle;
     double	    start;
+    double      h_distance;
+    double      v_distance;
     double      distance;
 }   t_ray;
 
