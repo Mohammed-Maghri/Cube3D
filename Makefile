@@ -28,7 +28,8 @@ SRCS	=	Mandatory/cub3D.c Mandatory/main_file.c Mandatory/move.c Mandatory/raycas
 			Mandatory/parsing/utils/utils.c Mandatory/parsing/utils/utils1.c \
 			Mandatory/parsing/map_validity.c Mandatory/parsing/map_valid2.c Mandatory/parsing/valid_map_check.c \
 			Mandatory/parsing/valid_map1.c Mandatory/gcollector/gb.c Mandatory/parsing/if_map_is_valid.c Mandatory/parsing/wall_check.c
-SRCB	=	Bonus/cub3D.c Bonus/main_file.c Bonus/move.c Bonus/raycast.c \
+
+SRCB	=	Bonus/background_sound.c Bonus/cub3D.c Bonus/main_file.c Bonus/move.c Bonus/raycast.c \
 			Bonus/close.c Bonus/utils.c Bonus/minimap.c Bonus/mouse.c \
 			Bonus/parsing/utils/utils.c Bonus/parsing/utils/utils1.c \
 			Bonus/parsing/map_validity.c Bonus/parsing/map_valid2.c Bonus/parsing/valid_map_check.c \

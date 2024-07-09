@@ -36,14 +36,15 @@ void    ft_init_player(t_data *data, t_store *store)
     data->player->pos_in_map.x = store->x;
     data->player->pos_in_map.y = store->y;
     data->player->move.y = 0;
+    data->check_reload = 0;
     data->player->pos_in_pixels.x = data->player->pos_in_map.x * TSIZE + TSIZE / 2;
     data->player->pos_in_pixels.y = data->player->pos_in_map.y * TSIZE + TSIZE / 2;
     data->player->angle = store->player_position;
     data->floor_color = ft_color(store->f[0], store->f[1], store->f[2]);
     data->ceiling_color = ft_color(store->c[0], store->c[1], store->c[2]);
-    data->wall = mlx_load_png(store->no);// protect!
+    data->wall = mlx_load_png(store->no); // protect! 
+    // data->ima = mlx_texture_to_image(data->mlx->pointer, data->bonus2);
     // xpm_t* xpm = mlx_load_xpm42(store->so);
-    // data->wall = &(xpm->texture);
     // printf("%s\n%d\n%d\n%u\n", store->no, data->wall->width, data->wall->height, data->wall->bytes_per_pixel);
 }
 

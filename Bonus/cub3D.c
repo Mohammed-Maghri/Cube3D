@@ -41,6 +41,10 @@ void    ft_init_player(t_data *data, t_store *store)
     data->player->angle = store->player_position;
     data->floor_color = color(store->f[0], store->f[1], store->f[2], 255);
     data->ceiling_color = color(store->c[0], store->c[1], store->c[2], 255);
+    data->bonus2 = mlx_load_png("/Users/mmaghri/Desktop/Cube3D/textures/gun.png"); // protect!
+    data->reload = mlx_load_png("/Users/mmaghri/Desktop/Cube3D/textures/reload/re1.png"); // protect!
+    data->reload2 = mlx_load_png("/Users/mmaghri/Desktop/Cube3D/textures/reload/re2.png"); // protect!
+    data->reload3 = mlx_load_png("/Users/mmaghri/Desktop/Cube3D/textures/reload/re3.png"); // protect!
 }
 
 void    ft_mouse_move(mouse_key_t button, action_t action, modifier_key_t mods, void* d)
@@ -70,10 +74,11 @@ int main()
     data->map->map_width = le_count(map->array[0]);
     data->map->map = map->array ;
     prin_map(map->array);
+
     mlx_loop_hook(data->mlx->pointer, &ft_update_window, data);
 	mlx_key_hook(data->mlx->pointer, &ft_key_move, data);
     mlx_set_cursor_mode(data->mlx->pointer, MLX_MOUSE_HIDDEN);
-    // mlx_cursor_hook(data->mlx->pointer, &mlx_cursor_move, data);
+    mlx_cursor_hook(data->mlx->pointer, &mlx_cursor_move, data);
 	mlx_loop(data->mlx->pointer);
     // prin_map(map->array);
     return (0);

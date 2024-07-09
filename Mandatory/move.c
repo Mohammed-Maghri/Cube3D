@@ -68,17 +68,22 @@ void	ft_move_player(t_data *data)
 	}
 }
 
-
 void    ft_update_window(void *d)
 {
 	t_data			*data;
-
+	// mouse_key_t act;
 	data = d;
 	mlx_delete_image(data->mlx->pointer, data->mlx->image);	// delete the image
 	data->mlx->image = mlx_new_image(data->mlx->pointer, WINDOW_WIDTH, WINDOW_HEIGHT);	// create new image
 	ft_move_player(data);
 	ft_draw_minimap(data); // 
 	ft_cast_rays(data);	// cast the rays
-	ft_draw_miniplayer(data); // 
+	// printf("This %d\n", mlx_is_mouse_down(data->mlx->pointer, act));
+
+	// printf("data->player->pos_in_pixels.x = %d\n", data->bonus2->width);
+	// printf("data-height  = %d\n", data->bonus2->height);
+	// mlx_image_to_window(data->mlx->pointer, data->ima,0, 200); // put the image to the window
 	mlx_image_to_window(data->mlx->pointer, data->mlx->image, 0, 0); // put the image to the window
+	// mlx_image_to_window(data->mlx->pointer, data->ima,640 + 10, 200); // put the image to the window
+	// mlx_image_to_window(data->mlx->pointer, data->ima,640*2 + 20, 200); // put the image to the window
 }

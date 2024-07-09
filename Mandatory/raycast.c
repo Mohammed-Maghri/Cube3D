@@ -107,7 +107,7 @@ void    ft_draw_all(t_data *data)
     while (pixel <= HALF_HEIGHT + (int)(wall_height / 2))
 	{
 		if (data->ray->index >= MINI_WIDTH || pixel >= MINI_HEIGHT)// fixed
-        	ft_mlx_put_pixel(data->mlx, data->ray->index, pixel, texture[(start + (int)index * data->wall->width)]);//wall
+        	ft_mlx_put_pixel(data->mlx, data->ray->index, pixel, 0xffffffff);//wall
 		index += step;
 		pixel++;
 	}
@@ -128,8 +128,6 @@ void    ft_cast_rays(t_data *data)
 		data->ray->color = WALL_COLOR;//
 		data->ray->view = 'v';
 		/**** for a different color for each side: ***/
-		// if ((distance > data->ray->distance) && data->ray->left)
-		// 	data->ray->color = 0xFFE2FFFF;
 		// if ((distance > data->ray->distance) && data->ray->right)
 		// 	data->ray->color = 0xB0E2AAFF;
 		// if ((distance <= data->ray->distance) &&  data->ray->up)
@@ -150,4 +148,5 @@ void    ft_cast_rays(t_data *data)
 		ft_draw_all(data); // render the wall, floor and ceiling
 		data->ray->angle = data->ray->start + ++data->ray->index * ANGLE_STEP; // next angle
 	}
+
 }

@@ -19,6 +19,8 @@
 # include <math.h>
 # include "../MLX42/MLX42.h"
 #include <fcntl.h>
+#include <pthread.h>
+
 # define TSIZE      32
 # define MSIZE      22
 // # define MSIZE      (0.02 * WINDOW_HEIGHT)
@@ -112,11 +114,17 @@ typedef struct s_data
 {
     t_mlx       *mlx;
     t_map       *map;
+    mlx_image_t *ima;
     t_ray       *ray;
     t_player    *player;
     unsigned int floor_color;
     unsigned int ceiling_color;
     mlx_texture_t	*wall;
+    mlx_texture_t    *bonus2;
+    mlx_texture_t    *reload;
+    mlx_texture_t    *reload2;
+    mlx_texture_t    *reload3;
+    int         check_reload;
 }   t_data;
 
 typedef struct parsing
@@ -202,7 +210,7 @@ unsigned int ft_color(int r, int g, int b);
 // 	void *pic;
 // 	void *direction;
 // } t_map;
-
+//Sound 
 // Garbege Collector
 int		count_lenght(void **array);
 void	optins(void **array);

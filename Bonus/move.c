@@ -67,17 +67,82 @@ void	ft_move_player(t_data *data)
 	}
 }
 
+unsigned int ft_color2(int r, int g, int b, int a)
+{
+	return ((r << 24) | (g << 16) | (b << 8) | a);
+}
+
+void draw_image_on_image(t_data *data, mlx_texture_t *bonus, int x, int y)
+{
+	int index ;
+	int increment ;
+	(void)x;
+	(void)y;
+	int i;
+	int r, g, b, a;
+
+	// value = 0;
+	index = 0;
+	increment = 0;
+	while (index < (int)bonus->height)
+	{
+		increment = 0;
+		while (increment < (int)bonus->width)
+		{
+			i = (index * bonus->width + increment) * 4;
+			r = bonus->pixels[i];
+			g = bonus->pixels[i + 1];
+			b = bonus->pixels[i + 2];
+			a = bonus->pixels[i + 3];
+			if (a != 0 && b != 0 && g != 0 && r != 0)
+				mlx_put_pixel(data->mlx->image, increment + x, index + y, ft_color2(r, g, b, a));
+			increment++;
+		}
+		index++;
+	}
+}
+
+// void function_check_if_reload(t_data *data)
+// {
+// 	if (data->check_reload == 0)
+// 		draw_image_on_image(data, data->bonus2, 500, 586);
+// 	else if (data->check_reload == 1)
+// 	{
+// 		draw_image_on_image(data, data->reload, 500, 400);
+// 		draw_image_on_image(data, data->reload, 500, 400);
+// 		draw_image_on_image(data, data->reload, 500, 400);
+// 		data->check_reload = 2;
+// 	}
+// 	else if (data->check_reload == 2)
+// 	{
+// 		draw_image_on_image(data, data->reload2, 500, 400);
+// 		draw_image_on_image(data, data->reload2, 500, 400);
+// 		draw_image_on_image(data, data->reload2, 500, 400);
+// 		draw_image_on_image(data, data->reload2, 500, 400);
+
+// 		data->check_reload = 3;
+// 	}
+// 	else if (data->check_reload == 3)
+// 	{
+// 		draw_image_on_image(data, data->reload3, 500, 400);
+// 		data->check_reload = 0;
+	
+// 	}
+// }
 
 void    ft_update_window(void *d)
 {
 	t_data			*data;
 
 	data = d;
+
 	mlx_delete_image(data->mlx->pointer, data->mlx->image);	// delete the image
 	data->mlx->image = mlx_new_image(data->mlx->pointer, WINDOW_WIDTH, WINDOW_HEIGHT);	// create new image
 	ft_move_player(data);
 	ft_draw_minimap(data); // 
 	ft_cast_rays(data);	// cast the rays
 	ft_draw_miniplayer(data); // 
+	draw_image_on_image(data, data->bonus2, 500, 586);
+	// function_check_if_reload(data);
 	mlx_image_to_window(data->mlx->pointer, data->mlx->image, 0, 0); // put the image to the window
 }

@@ -27,8 +27,8 @@ void    ft_draw_ray(t_data *data)
 	
 	start.x = data->player->pos_in_pixels.x * UNITY;
 	start.y = data->player->pos_in_pixels.y * UNITY;
-	diff.x = MINI_WIDTH / 2 - floor(start.x);
-	diff.y = MINI_HEIGHT / 2 - floor(start.y);
+	diff.x	= MINI_WIDTH / 2 - floor(start.x);
+	diff.y 	= MINI_HEIGHT / 2 - floor(start.y);
 	start.x += diff.x;
 	start.y += diff.y;
 	step.x = cos(data->ray->angle);

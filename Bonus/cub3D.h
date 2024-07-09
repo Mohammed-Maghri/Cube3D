@@ -13,6 +13,7 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
+# include <pthread.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
@@ -113,6 +114,10 @@ typedef struct s_data
     t_player    *player;
     unsigned int floor_color;
     unsigned int ceiling_color;
+    mlx_texture_t *reload;
+    mlx_texture_t *bonus2;
+    mlx_texture_t *reload2;
+    mlx_texture_t *reload3;
 }   t_data;
 
 typedef struct parsing
