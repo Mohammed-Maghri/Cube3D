@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 15:58:12 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/07 10:24:39 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/11 09:48:29 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ void    ft_update_window(void *d)
 	ft_move_player(data);
 	ft_draw_minimap(data); // 
 	ft_cast_rays(data);	// cast the rays
+	ft_draw_miniplayer(data); // 
 	// printf("This %d\n", mlx_is_mouse_down(data->mlx->pointer, act));
 
 	// printf("data->player->pos_in_pixels.x = %d\n", data->bonus2->width);

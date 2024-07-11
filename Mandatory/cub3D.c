@@ -6,13 +6,13 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 12:31:20 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/07 17:06:55 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/11 13:28:19 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void    ft_init_data(t_data **data)
+void    ft_init_data(t_data **data, t_store *store)
 {
     (*data) = (t_data *)malloc(sizeof(t_data));
     if (!*data)
@@ -23,6 +23,10 @@ void    ft_init_data(t_data **data)
     // (*data)->map->map = (char **)malloc((MAP_HEIGHT + 1) * sizeof(char *));
     (*data)->mlx = (t_mlx *)malloc(sizeof(t_mlx));//// add protection
     (*data)->mlx->pointer = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "CUB3D", 0);
+    (*data)->mlx->no_wall = mlx_load_png(store->no);// protect!
+    (*data)->mlx->so_wall = mlx_load_png(store->so);// protect!
+    (*data)->mlx->we_wall = mlx_load_png(store->we);// protect!
+    (*data)->mlx->ea_wall = mlx_load_png(store->ea);// protect!
     if (!(*data)->ray || !(*data)->player || !(*data)->mlx->pointer)
         ft_close(*data);
 }
@@ -40,23 +44,23 @@ void    ft_init_player(t_data *data, t_store *store)
     data->player->pos_in_pixels.x = data->player->pos_in_map.x * TSIZE + TSIZE / 2;
     data->player->pos_in_pixels.y = data->player->pos_in_map.y * TSIZE + TSIZE / 2;
     data->player->angle = store->player_position;
-    data->floor_color = ft_color(store->f[0], store->f[1], store->f[2]);
-    data->ceiling_color = ft_color(store->c[0], store->c[1], store->c[2]);
-    data->wall = mlx_load_png(store->no); // protect! 
+    data->floor_color = ft_color(store->f[0], store->f[1], store->f[2], 255);
+    data->ceiling_color = ft_color(store->c[0], store->c[1], store->c[2], 255);
+    // data->wall = mlx_load_png(store->no); // protect! 
     // data->ima = mlx_texture_to_image(data->mlx->pointer, data->bonus2);
     // xpm_t* xpm = mlx_load_xpm42(store->so);
     // printf("%s\n%d\n%d\n%u\n", store->no, data->wall->width, data->wall->height, data->wall->bytes_per_pixel);
 }
 
-void    ft_mouse_move(mouse_key_t button, action_t action, modifier_key_t mods, void* d)
-{
-    t_data	*data;
-	data = d;
-    (void)mods;
+// void    ft_mouse_move(mouse_key_t button, action_t action, modifier_key_t mods, void* d)
+// {
+//     t_data	*data;
+// 	data = d;
+//     (void)mods;
     
-    (button == 1) && (data->player->rotation = action); // right
-    (button == 0) && (data->player->rotation = -action); // left
-}
+//     (button == 1) && (data->player->rotation = action); // right
+//     (button == 0) && (data->player->rotation = -action); // left
+// }
 
 int main()
 {
@@ -69,7 +73,7 @@ int main()
 
     merge_all_functions(map, store);
     data = (t_data *){0};
-    ft_init_data(&data);
+    ft_init_data(&data, store);
     ft_init_player(data, store);
      data->map->map_height = count_twode_arr(map->array);
     data->map->map_width = le_count(map->array[0]);

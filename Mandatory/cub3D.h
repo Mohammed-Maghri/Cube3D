@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 09:27:20 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/07 17:24:27 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/11 13:27:58 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,8 @@ typedef struct s_ray
     char        view;
     double      angle;
     double	    start;
-    double      h_distance;
-    double      v_distance;
+    double      x_distance;
+    double      y_distance;
     double      distance;
 }   t_ray;
 
@@ -108,6 +108,11 @@ typedef struct s_mlx
 {
     void        *pointer;
     void        *image;
+    // mlx_texture_t	*wall;
+    mlx_texture_t	*no_wall;
+    mlx_texture_t	*so_wall;
+    mlx_texture_t	*we_wall;
+    mlx_texture_t	*ea_wall;
 }   t_mlx;
 
 typedef struct s_data
@@ -119,7 +124,8 @@ typedef struct s_data
     t_player    *player;
     unsigned int floor_color;
     unsigned int ceiling_color;
-    mlx_texture_t	*wall;
+    uint32_t		*texture;
+    mlx_texture_t	 *wall;
     mlx_texture_t    *bonus2;
     mlx_texture_t    *reload;
     mlx_texture_t    *reload2;
@@ -171,7 +177,7 @@ char	*ft_strdup(char *s);
 /*************** INIT *************/
 void    ft_init_map(t_data *data);
 void    ft_init_player(t_data *data, t_store *store);
-void    ft_init_data(t_data **data);
+void    ft_init_data(t_data **data, t_store *store);
 void    ft_init(t_data *data);
 void	ft_close(t_data *data);
 
@@ -185,7 +191,7 @@ void    ft_key_move(mlx_key_data_t keydata, void *d);
 void	ft_move_player(t_data *data);
 void    ft_update_window(void *d);
 // void    ft_mouse_move(mouse_key_t button, action_t action, modifier_key_t mods, void* d);
-void    mlx_cursor_move(double xpos, double ypos, void* d);
+void    ft_mouse_move(void* d);
 
 /*************** RAY_CAST *************/
 void    ft_cast_rays(t_data *data);
@@ -199,8 +205,8 @@ void ft_draw_ray(t_data *data);
 void ft_draw_minimap(t_data *data);
 void ft_draw_miniplayer(t_data *data);
 int ft_wall(t_map *map, int x, int y);
-unsigned int ft_color(int r, int g, int b);
-
+unsigned int ft_color(int r, int g, int b, int a);
+unsigned int	ft_texture_color(int c);
 
 
 // typedef struct only_for_map
