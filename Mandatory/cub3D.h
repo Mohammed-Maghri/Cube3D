@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 09:27:20 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/11 13:27:58 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/12 14:12:51 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,18 +36,20 @@
 # define MAP_WIDTH      25
 # define MAP_HEIGHT     9
 # define PLAYER_SPEED   2 // 2 pixels
-# define MOUSE_SPEED    0.7
+// # define MOUSE_SPEED    0.7
 // # define ROTATION_SPEED 0.02
 # define ROTATION_SPEED (M_PI / 180) // 1 degree
 // # define FLOOR_COLOR    0x90EE90FF
 // # define MINI_COLOR     0xAAAAAAFF
-# define MINI_COLOR     0xAAAAAA00
+# define MINI_COLOR     0xAAAAAAAA
+// # define MINI_COLOR     0xAAAAAA00
 // # define CEILING_COLOR  0xB0E2FFFF
 # define WALL_COLOR     0xFFFFFFFF
 # define WALL_SHADE     0xEEEEEEFF
 # define FOV            (M_PI / 3) // 60 degree
 // # define FOV            (60 * M_PI / 180)
 # define ANGLE_STEP     (FOV / WINDOW_WIDTH)
+# define PIXI           (double)(MSIZE / 6)
 // Projection Plan
 # define HALF_HEIGHT  (WINDOW_HEIGHT / 2)
 # define HALF_WIDTH   (WINDOW_WIDTH / 2)
@@ -204,7 +206,8 @@ double  ft_distance(t_coordinate a, t_position b);
 void ft_draw_ray(t_data *data);
 void ft_draw_minimap(t_data *data);
 void ft_draw_miniplayer(t_data *data);
-int ft_wall(t_map *map, int x, int y);
+int ft_wall(t_map *map, double a, double b);
+int ft_near_wall(t_map *map, double a, double b);
 unsigned int ft_color(int r, int g, int b, int a);
 unsigned int	ft_texture_color(int c);
 

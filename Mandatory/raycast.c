@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 16:06:13 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/11 12:54:27 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/12 14:12:29 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ double	ft_hdistance(t_data *data)
 	point.x = data->player->pos_in_pixels.x + (point.y - data->player->pos_in_pixels.y) / tan(data->ray->angle);
 	step.y = TSIZE * (2 * data->ray->down - 1);
 	step.x = fabs(TSIZE / tan(data->ray->angle)) * (2 * data->ray->right - 1);
-	while (!ft_wall(data->map, point.x / TSIZE, (point.y - data->ray->up) / TSIZE))
+	while (!ft_wall(data->map, point.x, point.y - data->ray->up))
 		(point.x += step.x) && (point.y += step.y);
 	data->ray->x_distance = point.x;
 	point.x -= data->player->pos_in_pixels.x;
@@ -53,7 +53,7 @@ double	ft_vdistance(t_data *data)
 	point.y = data->player->pos_in_pixels.y + (point.x - data->player->pos_in_pixels.x) * tan(data->ray->angle);
 	step.x = TSIZE * (2 * data->ray->right - 1);
 	step.y = fabs(TSIZE * tan(data->ray->angle)) * (2 * data->ray->down - 1);
-	while (!ft_wall(data->map, (point.x - data->ray->left)/ TSIZE, point.y / TSIZE))
+	while (!ft_wall(data->map, point.x - data->ray->left, point.y))
 		(point.x += step.x) && (point.y += step.y);
 	data->ray->y_distance = point.y;
 	point.x -= data->player->pos_in_pixels.x;

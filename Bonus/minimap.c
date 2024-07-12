@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 10:11:23 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/06 13:49:47 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/12 09:56:58 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void ft_draw_square(t_data *data, int tileSize, int color, int y, int x)
 
 void    ft_draw_miniplayer(t_data *data) // fixed player
 {
-	ft_draw_square(data, MSIZE / 3, WALL_COLOR, \
+	ft_draw_square(data, MSIZE / 3, MINI_COLOR, \
 					MINI_WIDTH / 2 - MSIZE / 6, \
 					MINI_HEIGHT / 2 - MSIZE / 6);
 }
@@ -79,7 +79,7 @@ void ft_draw_minimap(t_data *data)// moving map
 		while (++j < data->map->map_width)
 		{
 			if (data->map->map[i][j] == '1')
-				ft_draw_square(data, MSIZE, WALL_COLOR, j * MSIZE + diff.x, i * MSIZE + diff.y);
+				ft_draw_square(data, MSIZE, MINI_COLOR, j * MSIZE + diff.x, i * MSIZE + diff.y);
 			// else
 			// 	ft_draw_square(data, MSIZE, MINI_COLOR, (j + diff.x) * MSIZE , (i + diff.y) * MSIZE);
 		}

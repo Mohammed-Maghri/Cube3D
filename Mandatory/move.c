@@ -6,15 +6,32 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 15:58:12 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/11 09:48:29 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/12 14:11:30 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int ft_wall(t_map *map, int x, int y)
+int ft_wall(t_map *map, double a, double b)
 {
-	return ((x < 0 || y < 0 || y >= map->map_height || x >= map->map_width || (map->map[y][x] == '1')));
+	int x;
+	int y;
+	
+	x = a / TSIZE;	
+	y = b / TSIZE;
+	if (x < 0 || y < 0 || y >= map->map_height || x >= map->map_width \
+				|| (map->map[y][x] == '1'))
+		return (1);
+	return (0);
+}
+
+int ft_near_wall(t_map *map, double a, double b)
+{
+	if (ft_wall(map, a, b) || ft_wall(map, a + PIXI, b) || ft_wall(map, a - PIXI, b) \
+		|| ft_wall(map, a, b + PIXI) || ft_wall(map, a, b - PIXI) || ft_wall(map, a + PIXI, b + PIXI) \
+		|| ft_wall(map, a - PIXI, b - PIXI))
+		return (1);
+	return (0);
 }
 
 // double  ft_distance(t_coordinate a, t_position b)
@@ -57,9 +74,9 @@ void	ft_move_player(t_data *data)
 		pos.x = rint(player->pos_in_pixels.x + player->move.x); // get the new x position
 		pos.y = rint(player->pos_in_pixels.y + player->move.y); // get the new y position
 		player->move = (t_coordinate){0, 0};
-		if (!ft_wall(data->map, pos.x / TSIZE, pos.y / TSIZE) \
-			&& data->map->map[pos.y / TSIZE][data->player->pos_in_pixels.x / TSIZE] != '1' \
-			&& data->map->map[data->player->pos_in_pixels.y / TSIZE][pos.x / TSIZE] != '1')
+		if (!ft_near_wall(data->map, pos.x, pos.y) \
+			&& !ft_near_wall(data->map, player->pos_in_pixels.x, pos.y) \
+			&& !ft_near_wall(data->map, pos.x, player->pos_in_pixels.y))
 		{
 			player->pos_in_pixels.x = pos.x; // move the player
 			player->pos_in_pixels.y = pos.y; // move the player

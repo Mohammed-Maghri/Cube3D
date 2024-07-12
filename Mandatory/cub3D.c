@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 12:31:20 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/11 13:28:19 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/12 14:06:13 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,16 +51,6 @@ void    ft_init_player(t_data *data, t_store *store)
     // xpm_t* xpm = mlx_load_xpm42(store->so);
     // printf("%s\n%d\n%d\n%u\n", store->no, data->wall->width, data->wall->height, data->wall->bytes_per_pixel);
 }
-
-// void    ft_mouse_move(mouse_key_t button, action_t action, modifier_key_t mods, void* d)
-// {
-//     t_data	*data;
-// 	data = d;
-//     (void)mods;
-    
-//     (button == 1) && (data->player->rotation = action); // right
-//     (button == 0) && (data->player->rotation = -action); // left
-// }
 
 int main()
 {

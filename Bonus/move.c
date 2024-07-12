@@ -6,21 +6,37 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 15:58:12 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/05 18:01:18 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/12 14:01:58 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int ft_wall(t_map *map, int x, int y)
+int ft_wall(t_map *map, double a, double b)
 {
-	return ((x < 0 || y < 0 || y >= map->map_height || x >= map->map_width || (map->map[y][x] == '1')));
+	int x;
+	int y;
+	
+	x = a / TSIZE;	
+	y = b / TSIZE;
+	if (x < 0 || y < 0 || y >= map->map_height || x >= map->map_width \
+				|| (map->map[y][x] == '1'))
+		return (1);
+	return (0);
+}
+int ft_near_wall(t_map *map, double a, double b)
+{
+	if (ft_wall(map, a, b) || ft_wall(map, a + PIXI, b) || ft_wall(map, a - PIXI, b) \
+		|| ft_wall(map, a, b + PIXI) || ft_wall(map, a, b - PIXI) || ft_wall(map, a + PIXI, b + PIXI) \
+		|| ft_wall(map, a - PIXI, b - PIXI))
+		return (1);
+	return (0);
 }
 
-double  ft_distance(t_coordinate a, t_position b)
-{
-    return (sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2)));
-}
+// double  ft_distance(t_coordinate a, t_position b)
+// {
+//     return (sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2)));
+// }
 
 void    ft_key_move(mlx_key_data_t keydata, void *d)
 {
@@ -56,9 +72,11 @@ void	ft_move_player(t_data *data)
 		pos.x = roundf(player->pos_in_pixels.x + player->move.x); // get the new x position
 		pos.y = roundf(player->pos_in_pixels.y + player->move.y); // get the new y position
 		player->move = (t_coordinate){0, 0};
-		if (!ft_wall(data->map, pos.x / TSIZE, pos.y / TSIZE) \
-			&& data->map->map[pos.y / TSIZE][data->player->pos_in_pixels.x / TSIZE] != '1' \
-			&& data->map->map[data->player->pos_in_pixels.y / TSIZE][pos.x / TSIZE] != '1')
+		if (!ft_near_wall(data->map, pos.x, pos.y) \
+			&& !ft_near_wall(data->map, player->pos_in_pixels.x, pos.y) \
+			&& !ft_near_wall(data->map, pos.x, player->pos_in_pixels.y))
+			// && data->map->map[pos.y / TSIZE][player->pos_in_pixels.x / TSIZE] != '1' \
+			// && data->map->map[player->pos_in_pixels.y / TSIZE][pos.x / TSIZE] != '1')
 		{
 			player->pos_in_pixels.x = pos.x; // move the player
 			player->pos_in_pixels.y = pos.y; // move the player
@@ -71,6 +89,7 @@ unsigned int ft_color2(int r, int g, int b, int a)
 {
 	return ((r << 24) | (g << 16) | (b << 8) | a);
 }
+
 
 void draw_image_on_image(t_data *data, mlx_texture_t *bonus, int x, int y)
 {

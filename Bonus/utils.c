@@ -6,28 +6,39 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 20:38:22 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/11 15:18:34 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/12 12:58:35 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-unsigned long color(int r, int g, int b, int a)
-{   
-    return ((r & 0xff) << 24) + ((g & 0xff) << 16) + ((b & 0xff) << 8) + (a & 0xff);
-}
-
-unsigned int	ft_texture_color(int c)
+unsigned int ft_color(int r, int g, int b, int a)
 {
-	unsigned int	b;
-
-	b = 0;
-	b |= (c & 0xFF) << 24;
-	b |= (c & 0xFF00) << 8;
-	b |= (c & 0xFF0000) >> 8;
-	b |= (c & 0xFF000000) >> 24;
-	return (b);
+    return ((((r * 256 + g) * 256) + b) * 256 + a);
 }
+
+unsigned int	ft_texture_color(unsigned int c)
+{
+	int a = c % (int)pow(2, 8);
+	c = c / (int)pow(2, 8);
+	int b = c % (int)pow(2, 8);
+	c = c / (int)pow(2, 8);
+	int g = c % (int)pow(2, 8);
+	int r = c / (int)pow(2, 8);
+	return (ft_color(a, b, g, r));
+}
+
+// unsigned int	ft_texture_color(unsigned int c)
+// {
+// 	unsigned int	b;
+
+// 	b = 0;
+// 	b |= (c & 0xFF) << 24;
+// 	b |= (c & 0xFF00) << 8;
+// 	b |= (c & 0xFF0000) >> 8;
+// 	b |= (c & 0xFF000000) >> 24;
+// 	return (b);
+// }
 
 int     ft_strlen(char *s)
 {
