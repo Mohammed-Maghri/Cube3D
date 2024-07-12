@@ -49,7 +49,21 @@ void    ft_init_player(t_data *data, t_store *store)
     data->reload = mlx_load_png("textures/reload/re1.png"); // protect!
     data->reload2 = mlx_load_png("textures/reload/re2.png"); // protect!
     data->reload3 = mlx_load_png("textures/reload/re3.png"); // protect!
-
+    data->reload = mlx_load_png("textures/reload/re1.png"); // protect!
+    data->reload2  = mlx_load_png("textures/reload/1.png"); // protect!
+    data->reload2  = mlx_load_png("textures/reload/1.png"); // protect 
+    data->reload3  = mlx_load_png("textures/reload/2.png"); // protect!
+    data->reload4  = mlx_load_png("textures/reload/3.png"); // protect!
+    data->reload5  = mlx_load_png("textures/reload/4.png"); // protect!
+    data->reload6  = mlx_load_png("textures/reload/5.png"); // protect!
+    data->reload7  = mlx_load_png("textures/reload/7.png"); // protect!
+    data->reload8  = mlx_load_png("textures/reload/8.png"); // protect!
+    data->reload9  = mlx_load_png("textures/reload/9.png"); // protect!
+    data->reload10 = mlx_load_png("textures/reload/10.png"); // protect!
+    data->reload11 = mlx_load_png("textures/reload/13.png"); // protect!
+    data->reload12 = mlx_load_png("textures/reload/14.png"); // protect!
+    data->reload13 = mlx_load_png("textures/reload/14.png");
+    data->check_reload = -1;
 }
 
 int main()

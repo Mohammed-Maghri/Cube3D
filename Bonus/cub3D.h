@@ -34,7 +34,7 @@
 // # define MAP_HEIGHT     22
 # define MAP_WIDTH      25
 # define MAP_HEIGHT     9
-# define PLAYER_SPEED   2 // 2 pixels
+# define PLAYER_SPEED   3 // 2 pixels
 # define MOUSE_SPEED    0.1
 // # define ROTATION_SPEED 0.02
 # define ROTATION_SPEED (M_PI / 180) // 1 degree
@@ -116,18 +116,31 @@ typedef struct s_mlx
 
 typedef struct s_data
 {
-    t_mlx       *mlx;
-    t_map       *map;
-    t_ray       *ray;
-    t_player    *player;
-    unsigned int floor_color;
-    unsigned int ceiling_color;
+    t_mlx           *mlx;
+    t_map           *map;
+    t_ray           *ray;
+    t_player        *player;
+    unsigned int    floor_color;
+    unsigned int    ceiling_color;
+    int             check_reload;
+    int             var_check;
     uint32_t		*texture;
     mlx_texture_t	*wall;
-    mlx_texture_t *reload;
-    mlx_texture_t *bonus2;
-    mlx_texture_t *reload2;
-    mlx_texture_t *reload3;
+    mlx_texture_t   *reload;
+    mlx_texture_t   *bonus2;
+    mlx_texture_t   *reload2;
+    mlx_texture_t   *reload3;
+    mlx_texture_t   *reload4;
+    mlx_texture_t   *reload5;
+    mlx_texture_t   *reload6;
+    mlx_texture_t   *reload7;
+    mlx_texture_t   *reload8;
+    mlx_texture_t   *reload9;
+    mlx_texture_t   *reload10;
+    mlx_texture_t   *reload11;
+    mlx_texture_t   *reload12;
+    mlx_texture_t   *reload13;
+    mlx_texture_t   *reload14;
 }   t_data;
 
 typedef struct parsing
@@ -207,20 +220,13 @@ int ft_near_wall(t_map *map, double a, double b);
 unsigned int ft_color(int r, int g, int b, int a);
 unsigned int	ft_texture_color(unsigned int c);
 
-
-// typedef struct only_for_map
-// {
-// 	void *mlx_ptr;
-// 	void *images;
-// 	void *pic;
-// 	void *direction;
-// } t_map;
-
-// Garbege Collector
 int		count_lenght(void **array);
 void	optins(void **array);
 void	*gb(int size, int flag);
 void	**garbege_array_fill(void **array, void *add);
+void function_background_sound(char *text);
+void kill_sound(void);
+
 // -----------------
 void merge_all_functions(t_pars *map, t_store	*store);
 void create_window(char **twode, t_store *elemenets);

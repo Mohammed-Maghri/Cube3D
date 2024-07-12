@@ -49,6 +49,8 @@ void    ft_key_move(mlx_key_data_t keydata, void *d)
 	action = keydata.action; // 1 for key_press // 0 for key_release // 2 for key_repeat 
 	if (key == ESC)
 		ft_close(data);
+	if (key == 82)
+		data->check_reload = 1;
 	(action == 2) && (action = 1);
 	(key == R) && (data->player->rotation = action); // right
 	(key == L) && (data->player->rotation = -action); // left
@@ -121,33 +123,45 @@ void draw_image_on_image(t_data *data, mlx_texture_t *bonus, int x, int y)
 	}
 }
 
-// void function_check_if_reload(t_data *data)
-// {
-// 	if (data->check_reload == 0)
-// 		draw_image_on_image(data, data->bonus2, 500, 586);
-// 	else if (data->check_reload == 1)
-// 	{
-// 		draw_image_on_image(data, data->reload, 500, 400);
-// 		draw_image_on_image(data, data->reload, 500, 400);
-// 		draw_image_on_image(data, data->reload, 500, 400);
-// 		data->check_reload = 2;
-// 	}
-// 	else if (data->check_reload == 2)
-// 	{
-// 		draw_image_on_image(data, data->reload2, 500, 400);
-// 		draw_image_on_image(data, data->reload2, 500, 400);
-// 		draw_image_on_image(data, data->reload2, 500, 400);
-// 		draw_image_on_image(data, data->reload2, 500, 400);
-
-// 		data->check_reload = 3;
-// 	}
-// 	else if (data->check_reload == 3)
-// 	{
-// 		draw_image_on_image(data, data->reload3, 500, 400);
-// 		data->check_reload = 0;
-	
-// 	}
-// }
+void function_check_if_reload(t_data *data)
+{
+	if (data->var_check == 0)
+	{
+		function_background_sound("afplay ./Bonus/rel.mp3");
+		data->var_check = 1;
+	}
+	if (data->check_reload == -1)
+		draw_image_on_image(data, data->bonus2, 500, 586);
+	 if (data->check_reload >= 1 && data->check_reload <= 5)
+		draw_image_on_image(data, data->reload2, 500, 585);
+	else if (data->check_reload >= 5 && data->check_reload < 10)
+		draw_image_on_image(data, data->reload3, 500, 585);
+	else if (data->check_reload >= 10 && data->check_reload < 15)
+		draw_image_on_image(data, data->reload4, 500, 585);
+	else if (data->check_reload >= 15 && data->check_reload < 20)
+		draw_image_on_image(data, data->reload5, 500, 585);
+	else if (data->check_reload >= 20 && data->check_reload < 25)
+		draw_image_on_image(data, data->reload7, 500, 585);
+	else if(data->check_reload >= 25 && data->check_reload < 30)
+		draw_image_on_image(data, data->reload8, 500, 585);
+	else if (data->check_reload >= 30 && data->check_reload < 35)
+		draw_image_on_image(data, data->reload9, 500, 585);
+	else if (data->check_reload >= 35 && data->check_reload < 40)
+		draw_image_on_image(data, data->reload10, 500, 585);
+	else if (data->check_reload >= 40 && data->check_reload < 45)
+		draw_image_on_image(data, data->reload11, 500, 585);
+	else if (data->check_reload >= 45 && data->check_reload < 50)
+		draw_image_on_image(data, data->reload12, 500, 585);
+	else if (data->check_reload >= 50 && data->check_reload < 55)
+		draw_image_on_image(data, data->reload13, 500, 585);
+	if (data->check_reload >= 1)
+		data->check_reload++;
+	if (data->check_reload == 55)
+	{
+		data->var_check = 0;
+		data->check_reload = -1;
+	}
+}
 
 void    ft_update_window(void *d)
 {
@@ -157,11 +171,12 @@ void    ft_update_window(void *d)
 
 	mlx_delete_image(data->mlx->pointer, data->mlx->image);	// delete the image
 	data->mlx->image = mlx_new_image(data->mlx->pointer, WINDOW_WIDTH, WINDOW_HEIGHT);	// create new image
+	function_background_sound("afplay ./Bonus/te.mp3"); 
 	ft_move_player(data);
 	ft_draw_minimap(data); // 
 	ft_cast_rays(data);	// cast the rays
 	ft_draw_miniplayer(data); // 
-	draw_image_on_image(data, data->bonus2, 500, 586);
-	// function_check_if_reload(data);
+	function_check_if_reload(data);
+
 	mlx_image_to_window(data->mlx->pointer, data->mlx->image, 0, 0); // put the image to the window
 }

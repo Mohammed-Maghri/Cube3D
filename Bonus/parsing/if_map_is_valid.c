@@ -72,7 +72,7 @@ int	check_on_check(char string)
 		return (-1);
 	if (string == '1' || string == '0' || string == '\n')
 		return (-1);
-	if (string == 'S' || string == 'W' || string == 'E' || string == 'N')
+	if (string == 'S' || string == 'W' || string == 'E' || string == 'N' || string == 'D')
 		return (-1);
 	return (0);
 }

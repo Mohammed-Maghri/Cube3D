@@ -12,19 +12,20 @@
 
 #include "cub3D.h"
 
-void *thread_function_handler(void)
+void *thread_function_handler(char *text)
 {
-    system("afplay ./Mandatory/te.mp3");
+    system(text);
     return (NULL);
 }
 
-void function_background_sound(void)
+void function_background_sound(char *text)
 {
     pthread_t thread;
-    pthread_create(&thread, NULL, (void *)thread_function_handler, NULL);
+    pthread_create(&thread, NULL, (void *)thread_function_handler, (text));
     pthread_detach(thread);
 }
 void kill_sound(void)
 {
     execve("/usr/bin/killall", (char *[]){"killall", "afplay", NULL}, NULL);
 }
+

@@ -187,7 +187,7 @@ int check_ele(char string)
 {
 	if (string == '0' || string == '1' || \
 	string == 'W' || string == 'N' \
-	|| string == 'S' || string == 'E')
+	|| string == 'S' || string == 'E' || string == 'D')
 		return (-1);
 	return (0);
 }
@@ -258,7 +258,7 @@ int position_recheck(char **array)
 		while (array[this.index][this.incre])
 		{
 			if (array[this.index][this.incre] == 'S' || array[this.index][this.incre] == 'N'  
-			|| array[this.index][this.incre] == 'W' || array[this.index][this.incre] == 'E')
+			|| array[this.index][this.incre] == 'W' || array[this.index][this.incre] == 'E' || array[this.index][this.incre] == 'D')
 			{
 				if (array[this.index][this.incre + 1] == '-')
 					return (-1);

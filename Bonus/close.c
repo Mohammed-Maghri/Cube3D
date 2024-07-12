@@ -28,5 +28,6 @@ void	ft_close(t_data *data)
 	free(data->ray);
     free(data);
 	write(1, "GAME OVER!\n", 12);
+	kill_sound();
 	exit(0);
 }
