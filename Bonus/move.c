@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 15:58:12 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/12 14:01:58 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/19 15:10:51 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int ft_wall(t_map *map, double a, double b)
 		return (1);
 	return (0);
 }
+
 int ft_near_wall(t_map *map, double a, double b)
 {
 	if (ft_wall(map, a, b) || ft_wall(map, a + PIXI, b) || ft_wall(map, a - PIXI, b) \

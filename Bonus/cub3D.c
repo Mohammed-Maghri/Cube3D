@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 12:31:20 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/12 14:06:04 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/19 15:07:09 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void    ft_init_data(t_data **data, t_store *store)
     (*data)->mlx->so_wall = mlx_load_png(store->so);// protect!
     (*data)->mlx->we_wall = mlx_load_png(store->we);// protect!
     (*data)->mlx->ea_wall = mlx_load_png(store->ea);// protect!
+    (*data)->mlx->door = mlx_load_png("textures/wall1.png");// protect!
     if (!(*data)->ray || !(*data)->player || !(*data)->mlx->pointer)
         ft_close(*data);
 }
