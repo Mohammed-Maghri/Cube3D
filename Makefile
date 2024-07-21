@@ -6,7 +6,7 @@
 #    By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/25 09:26:25 by cmasnaou          #+#    #+#              #
-#    Updated: 2024/07/21 17:58:42 by cmasnaou         ###   ########.fr        #
+#    Updated: 2024/07/21 20:41:58 by cmasnaou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME	=	cub3D
 BONUS	=	cub3D_bonus
 CC		=	cc
 RM		=	rm -rf
-FLAGS	=	-O3 -ffast-math -Wall -Wextra -Werror -g -fsanitize=address
+FLAGS	=	-O3 -ffast-math -Wall -Wextra -Werror# -g -fsanitize=address
 FLMLX	=	-framework Cocoa -framework OpenGL -framework IOKit
 # GLFW is a library that allows to create and manage windows, receiving input and events...
 # -lglfw is the flag to link GLFW during the linking stage.
@@ -24,7 +24,7 @@ LFLAG	=	MLX42/libmlx42.a -lglfw -L/Users/$(USER)/.brew/opt/glfw/lib/
 HEADM	=	Mandatory/cub3D.h
 HEADB	=	Bonus/cub3D_bonus.h
 SRCS	=	Mandatory/cub3D.c Mandatory/main_file.c Mandatory/move.c Mandatory/raycast.c \
-			Mandatory/close.c Mandatory/utils.c Mandatory/minimap.c Mandatory/mouse.c \
+			Mandatory/draw.c Mandatory/utils.c Mandatory/minimap.c\
 			Mandatory/parsing/utils/utils.c Mandatory/parsing/utils/utils1.c \
 			Mandatory/parsing/map_validity.c Mandatory/parsing/map_valid2.c Mandatory/parsing/valid_map_check.c \
 			Mandatory/parsing/valid_map1.c Mandatory/gcollector/gb.c Mandatory/parsing/if_map_is_valid.c Mandatory/parsing/wall_check.c

@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 16:06:13 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/21 17:58:09 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/21 19:28:55 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,7 @@ double	ft_hdistance(t_data *data)
 	while (!ft_wall(data->map, point.x, point.y - data->ray->up) \
 			&& !ft_door(data, point.x, point.y - data->ray->up))
 		(1) && (point.x += step.x) && (point.y += step.y);
-	data->ray->h_distance.x = point.x;
-	data->ray->h_distance.y = point.y;
+	data->ray->h_distance = point.x;
 	point.x -= data->player->pos_in_pixels.x;
 	point.y -= data->player->pos_in_pixels.y;
 	return (hypot(point.x, point.y));
@@ -58,8 +57,7 @@ double	ft_vdistance(t_data *data)
 	while (!ft_wall(data->map, point.x - data->ray->left, point.y) \
 			&& !ft_door(data, point.x - data->ray->left, point.y))
 		(1) && (point.x += step.x) && (point.y += step.y);
-	data->ray->v_distance.x = point.x;
-	data->ray->v_distance.y = point.y;
+	data->ray->v_distance = point.y;
 	point.x -= data->player->pos_in_pixels.x;
 	point.y -= data->player->pos_in_pixels.y;
 	return (hypot(point.x, point.y));

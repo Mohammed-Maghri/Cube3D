@@ -6,55 +6,77 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 20:38:22 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/11 14:37:59 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/21 20:39:12 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-unsigned int	ft_texture_color(int c)
+unsigned int	ft_color(int r, int g, int b, int a)
 {
-	unsigned int	b;
-
-	b = 0;
-	b |= (c & 0xFF) << 24;
-	b |= (c & 0xFF00) << 8;
-	b |= (c & 0xFF0000) >> 8;
-	b |= (c & 0xFF000000) >> 24;
-	return (b);
+	return ((((r * 256 + g) * 256) + b) * 256 + a);
 }
 
-unsigned int ft_color(int r, int g, int b, int a)
-{   
-    // return ((r & 0xff) << 24) + ((g & 0xff) << 16) + ((b & 0xff) << 8) + (255 & 0xff);
-    // return ((r * pow(2, 24) + g * pow(2, 16)) + b * pow(2, 8) + 255);
-    return ((((r * 256 + g) * 256) + b) * 256 + a);
+unsigned int	ft_texture_color(unsigned int c)
+{
+	int	r;
+	int	g;
+	int	b;
+	int	a;
+
+	a = c % 256;
+	c /= 256;
+	b = c % 256;
+	c /= 256;
+	g = c % 256;
+	c /= 256;
+	r = c;
+	return (ft_color(a, b, g, r));
 }
 
-
-int     ft_strlen(char *s)
+int	ft_wall(t_map *map, double a, double b)
 {
-    int i;
+	int	x;
+	int	y;
 
-    i = 0;
-    while (s[i])
-        i++;
-    return (i);
+	x = a / TSIZE;
+	y = b / TSIZE;
+	if (x < 0 || y < 0 || y >= map->map_height || x >= map->map_width \
+				|| (map->map[y][x] == '1'))
+		return (1);
+	return (0);
 }
 
-char	*ft_strdup(char *s)
+int	ft_near_wall(t_map *map, double a, double b)
 {
-	char	*p;
-	int 	n;
-    int     i;
-    
-    i = -1;
-	n = ft_strlen(s);
-	p = (char *)malloc((n + 1) * sizeof(char));
-	if (!p)
-		return (NULL);
-    while (++i < n)
-        p[i] = s[i];
-    p[i] = '\0';
-	return (p);
+	if (ft_wall(map, a, b) || ft_wall(map, a + PIXI, b) || \
+		ft_wall(map, a - PIXI, b) || ft_wall(map, a, b + PIXI) || \
+		ft_wall(map, a, b - PIXI) || ft_wall(map, a + PIXI, b + PIXI) || \
+		ft_wall(map, a - PIXI, b - PIXI))
+		return (1);
+	return (0);
+}
+
+void	ft_close(t_data *data)
+{
+	int	i;
+
+	i = -1;
+	free(data->player);
+	free(data->ray);
+	// while (data->map->map[++i])
+	// 	free(data->map->map[i]);
+	// free(data->map->map);
+	free(data->map);
+	free(data->mlx->no_wall);
+	free(data->mlx->so_wall);
+	free(data->mlx->we_wall);
+	free(data->mlx->ea_wall);
+	mlx_delete_image(data->mlx->pointer, data->mlx->image);
+	mlx_close_window(data->mlx->pointer);
+	mlx_terminate(data->mlx->pointer);
+	free(data->mlx);
+	free(data);
+	write(1, "GAME OVER!\n", 12);
+	exit(0);
 }

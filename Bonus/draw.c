@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 17:56:44 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/21 18:00:41 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/21 19:28:31 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,10 @@ void	ft_wall_data(t_data *data, int *top, int *bot)
 		data->wall = data->mlx->door;
 	data->texture = (uint32_t *)data->wall->pixels;
 	if (data->ray->view == 'v')
-		data->wall_start = (int)(data->ray->v_distance.y * \
+		data->wall_start = (int)(data->ray->v_distance * \
 			data->wall->height / TSIZE) % data->wall->height;
 	else
-		data->wall_start = (int)(data->ray->h_distance.x * \
+		data->wall_start = (int)(data->ray->h_distance * \
 			data->wall->width / TSIZE) % data->wall->width;
 }
 

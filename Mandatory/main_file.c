@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 20:38:48 by mmaghri           #+#    #+#             */
-/*   Updated: 2024/07/11 11:38:48 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/21 19:19:40 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	**for_main(t_pars *map)
 {
 	map->map = NULL;
 	map->buf = NULL;
-	function_open_map("maps/map.cub", map);
+	function_open_map("Mandatory/maps/map.cub", map);
 	map->get_map = moveto_array(map->map);
 	return (move_only_content(moveto_array(map->map)));
 }

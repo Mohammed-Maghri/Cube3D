@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 09:27:20 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/12 14:12:51 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/21 19:42:46 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@
 # define HALF_WIDTH   (WINDOW_WIDTH / 2)
 # define DISTANCE_PLAN  ((double)TSIZE * HALF_WIDTH / tan(FOV / 2))
 # define ESC            256
-# define R              262
-# define L              263
+# define RIGHT              262
+# define LEFT              263
 
 typedef struct s_position
 {
@@ -92,8 +92,8 @@ typedef struct s_ray
     char        view;
     double      angle;
     double	    start;
-    double      x_distance;
-    double      y_distance;
+    double      h_distance;
+    double      v_distance;
     double      distance;
 }   t_ray;
 
@@ -127,6 +127,9 @@ typedef struct s_data
     unsigned int floor_color;
     unsigned int ceiling_color;
     uint32_t		*texture;
+    int             wall_start;
+    double          wall_height;
+    double          wall_distance;
     mlx_texture_t	 *wall;
     mlx_texture_t    *bonus2;
     mlx_texture_t    *reload;
@@ -192,24 +195,23 @@ void    ft_key_move(mlx_key_data_t keydata, void *d);
 
 void	ft_move_player(t_data *data);
 void    ft_update_window(void *d);
-// void    ft_mouse_move(mouse_key_t button, action_t action, modifier_key_t mods, void* d);
-void    ft_mouse_move(void* d);
 
 /*************** RAY_CAST *************/
 void    ft_cast_rays(t_data *data);
 double	ft_hdistance(t_data *data);
 double	ft_vdistance(t_data *data);
-void    ft_normalize(t_data *data);
+void    ft_normalize(t_ray *ray);
 double  ft_distance(t_coordinate a, t_position b);
 
 /**************** DRAW ***************/
 void ft_draw_ray(t_data *data);
 void ft_draw_minimap(t_data *data);
 void ft_draw_miniplayer(t_data *data);
+void	ft_draw_all(t_data *data);
 int ft_wall(t_map *map, double a, double b);
 int ft_near_wall(t_map *map, double a, double b);
 unsigned int ft_color(int r, int g, int b, int a);
-unsigned int	ft_texture_color(int c);
+unsigned int	ft_texture_color(unsigned int c);
 
 
 // typedef struct only_for_map

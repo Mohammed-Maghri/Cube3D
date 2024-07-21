@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 09:27:20 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/21 17:59:43 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/21 19:43:26 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,8 @@ typedef struct s_ray
     char        view;
     double      angle;
     double	    start;
-    t_coordinate      h_distance;
-    t_coordinate      v_distance;
+    double      h_distance;
+    double      v_distance;
     double      distance;
 }   t_ray;
 
@@ -130,7 +130,7 @@ typedef struct s_data
     uint32_t		*texture;
     int             check_reload;
     int             var_check;
-    int          wall_start;
+    int             wall_start;
     double          wall_height;
     double          wall_distance;
     mlx_texture_t	*wall;
