@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 09:27:20 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/20 13:47:11 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/21 09:50:07 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -223,6 +223,7 @@ int ft_wall(t_map *map, double x, double y);
 int ft_near_wall(t_map *map, double a, double b);
 unsigned int ft_color(int r, int g, int b, int a);
 unsigned int	ft_texture_color(unsigned int c);
+void draw_image_on_image(t_data *data, mlx_texture_t *bonus, int x, int y);
 
 int		count_lenght(void **array);
 void	optins(void **array);

@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 15:58:12 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/19 15:10:51 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/21 09:53:08 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,6 @@ int ft_near_wall(t_map *map, double a, double b)
 		return (1);
 	return (0);
 }
-
-// double  ft_distance(t_coordinate a, t_position b)
-// {
-//     return (sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2)));
-// }
 
 void    ft_key_move(mlx_key_data_t keydata, void *d)
 {
@@ -78,8 +73,6 @@ void	ft_move_player(t_data *data)
 		if (!ft_near_wall(data->map, pos.x, pos.y) \
 			&& !ft_near_wall(data->map, player->pos_in_pixels.x, pos.y) \
 			&& !ft_near_wall(data->map, pos.x, player->pos_in_pixels.y))
-			// && data->map->map[pos.y / TSIZE][player->pos_in_pixels.x / TSIZE] != '1' \
-			// && data->map->map[player->pos_in_pixels.y / TSIZE][pos.x / TSIZE] != '1')
 		{
 			player->pos_in_pixels.x = pos.x; // move the player
 			player->pos_in_pixels.y = pos.y; // move the player

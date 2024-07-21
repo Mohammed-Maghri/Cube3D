@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 12:31:20 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/19 15:07:09 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/21 09:52:47 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,13 @@ void    ft_init_data(t_data **data, t_store *store)
     (*data)->ray = (t_ray *)malloc(sizeof(t_ray));
     (*data)->player = (t_player *)malloc(sizeof(t_player));
     (*data)->map = (t_map *)malloc(sizeof(t_map));//// add protection
-    // (*data)->map->map = (char **)malloc((MAP_HEIGHT + 1) * sizeof(char *));
     (*data)->mlx = (t_mlx *)malloc(sizeof(t_mlx));//// add protection
     (*data)->mlx->pointer = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "CUB3D", 0);
     (*data)->mlx->no_wall = mlx_load_png(store->no);// protect!
     (*data)->mlx->so_wall = mlx_load_png(store->so);// protect!
     (*data)->mlx->we_wall = mlx_load_png(store->we);// protect!
     (*data)->mlx->ea_wall = mlx_load_png(store->ea);// protect!
-    (*data)->mlx->door = mlx_load_png("textures/wall1.png");// protect!
+    (*data)->mlx->door = mlx_load_png("textures/door.png");// protect!
     if (!(*data)->ray || !(*data)->player || !(*data)->mlx->pointer)
         ft_close(*data);
 }
