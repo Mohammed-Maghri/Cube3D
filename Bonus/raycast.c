@@ -6,60 +6,36 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 16:06:13 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/21 09:52:40 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/21 17:58:09 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3D_bonus.h"
 
-void  ft_normalize(t_data *data)
+void	ft_normalize(t_ray *ray)
 {
-	data->ray->angle = fmod(data->ray->angle, 2 * M_PI);
-	data->ray->angle += (data->ray->angle < 0) * 2 * M_PI;
-    data->ray->down = (data->ray->angle > 0 && data->ray->angle < M_PI);//up = 1 down = 0
-	data->ray->left = (data->ray->angle > M_PI / 2 && data->ray->angle < 3 * M_PI / 2);//left = 1 right = 0
-    data->ray->up = !data->ray->down;
-    data->ray->right = !data->ray->left;
-}
-
-int ft_door(t_map *map, double a, double b, char view, t_data *data)
-{
-	int x;
-	int y;
-	
-	x = a / TSIZE;	
-	y = b / TSIZE;
-	if (x < 0 || y < 0 || y >= map->map_height || x >= map->map_width)
-		return (0);
-	if (map->map[y][x] == 'D' && hypot(a - data->player->pos_in_pixels.x, b - data->player->pos_in_pixels.y) > TSIZE)
-	{
-		if (view == 'h')
-		{
-			map->h_door = 1;
-			map->v_door = 0;	
-		}
-		else
-		{
-			map->v_door = 1;
-			map->h_door = 0;	
-		}
-		return (1);
-	}
-	return (0);
+	ray->angle = fmod(ray->angle, 2 * M_PI);
+	ray->angle += (ray->angle < 0) * 2 * M_PI;
+	ray->down = (ray->angle > 0 && ray->angle < M_PI);
+	ray->left = (ray->angle > M_PI / 2 && ray->angle < 3 * M_PI / 2);
+	ray->up = !ray->down;
+	ray->right = !ray->left;
 }
 
 double	ft_hdistance(t_data *data)
 {
-	t_coordinate    point;
-    t_coordinate    step;
-	
+	t_coordinate	point;
+	t_coordinate	step;
+
+	data->ray->view = 'h';
 	point.y = (data->player->pos_in_pixels.y / TSIZE + data->ray->down) * TSIZE;
-	point.x = data->player->pos_in_pixels.x + (point.y - data->player->pos_in_pixels.y) / tan(data->ray->angle);
+	point.x = data->player->pos_in_pixels.x + \
+		(point.y - data->player->pos_in_pixels.y) / tan(data->ray->angle);
 	step.y = TSIZE * (2 * data->ray->down - 1);
 	step.x = fabs(TSIZE / tan(data->ray->angle)) * (2 * data->ray->right - 1);
-	while (!ft_wall(data->map, point.x, point.y - data->ray->up)/* || (data->map->map[(int)((point.y - data->ray->up) / TSIZE)][(int)(point.x / TSIZE)] == 'D')*/ \
-			&& !ft_door(data->map, point.x, point.y - data->ray->up, 'h', data))
-		(point.x += step.x) && (point.y += step.y);
+	while (!ft_wall(data->map, point.x, point.y - data->ray->up) \
+			&& !ft_door(data, point.x, point.y - data->ray->up))
+		(1) && (point.x += step.x) && (point.y += step.y);
 	data->ray->h_distance.x = point.x;
 	data->ray->h_distance.y = point.y;
 	point.x -= data->player->pos_in_pixels.x;
@@ -69,16 +45,19 @@ double	ft_hdistance(t_data *data)
 
 double	ft_vdistance(t_data *data)
 {
-    t_coordinate    point;
-    t_coordinate    step;
-	
-	point.x = (data->player->pos_in_pixels.x / TSIZE + data->ray->right) * TSIZE;
-	point.y = data->player->pos_in_pixels.y + (point.x - data->player->pos_in_pixels.x) * tan(data->ray->angle);
+	t_coordinate	point;
+	t_coordinate	step;
+
+	data->ray->view = 'v';
+	point.x = (data->player->pos_in_pixels.x / TSIZE + \
+				data->ray->right) * TSIZE;
+	point.y = data->player->pos_in_pixels.y + (point.x - \
+				data->player->pos_in_pixels.x) * tan(data->ray->angle);
 	step.x = TSIZE * (2 * data->ray->right - 1);
 	step.y = fabs(TSIZE * tan(data->ray->angle)) * (2 * data->ray->down - 1);
-	while (!ft_wall(data->map, point.x - data->ray->left, point.y)/* || (data->map->map[(int)(point.y / TSIZE)][(int)((point.x - data->ray->left) / TSIZE)] == 'D')*/ \
-			&& !ft_door(data->map, point.x - data->ray->left, point.y, 'v', data))
-		(point.x += step.x) && (point.y += step.y);
+	while (!ft_wall(data->map, point.x - data->ray->left, point.y) \
+			&& !ft_door(data, point.x - data->ray->left, point.y))
+		(1) && (point.x += step.x) && (point.y += step.y);
 	data->ray->v_distance.x = point.x;
 	data->ray->v_distance.y = point.y;
 	point.x -= data->player->pos_in_pixels.x;
@@ -86,81 +65,45 @@ double	ft_vdistance(t_data *data)
 	return (hypot(point.x, point.y));
 }
 
-
-void    ft_draw_all(t_data *data)
+void	ft_min_distance(t_data *data, double distance)
 {
-    double	wall_height;
-    int     pixel;
-	double distance;
-
-	distance = (WINDOW_WIDTH / 2) / tan(FOV / 2);
-	wall_height = (int)((TSIZE / data->ray->distance) * distance); // get the wall height
-	int top = (WINDOW_HEIGHT / 2) - (wall_height / 2);
-	(top < 0) && (top = 0);
-	int bot = (WINDOW_HEIGHT / 2) + (wall_height / 2);
-	(bot > WINDOW_HEIGHT) && (bot = WINDOW_HEIGHT);
-    pixel = 0;
-	int start;
-	int wall_start;
-	int step;
-	if (data->map->door == 1)
-			data->wall = data->mlx->door;
-	data->texture = (uint32_t *)data->wall->pixels;
-	if (data->ray->view == 'v')
-		start = (int)(data->ray->v_distance.y * data->wall->height / TSIZE) % data->wall->height;
-	else
-		start = (int)(data->ray->h_distance.x * data->wall->width / TSIZE) % data->wall->width;
-    while (pixel < top)
+	if (distance >= data->ray->distance)
 	{
-		if (data->ray->index >= MINI_WIDTH || pixel >= MINI_HEIGHT)// fixed
-			ft_mlx_put_pixel(data->mlx, data->ray->index, pixel, data->ceiling_color); // ceiling
-		ft_mlx_put_pixel(data->mlx, data->ray->index, bot + pixel++, data->floor_color); // floor
+		data->ray->view = 'v';
+		data->wall = data->mlx->ea_wall;
+		data->map->door = data->map->v_door;
+		if (data->ray->left)
+			data->wall = data->mlx->we_wall;
 	}
-    while (pixel < bot)
+	if (distance < data->ray->distance)
 	{
-		wall_start = pixel + (wall_height / 2) - (WINDOW_HEIGHT / 2);
-		step = wall_start * ((double)data->wall->height / wall_height);
-		if (data->ray->index >= MINI_WIDTH || pixel >= MINI_HEIGHT)// fixed
-        	ft_mlx_put_pixel(data->mlx, data->ray->index, pixel, ft_texture_color(data->texture[data->wall->width * step + start]));//wall
-    pixel++;
+		data->ray->view = 'h';
+		data->ray->distance = distance;
+		data->map->door = data->map->h_door;
+		data->wall = data->mlx->so_wall;
+		if (data->ray->up)
+			data->wall = data->mlx->no_wall;
 	}
-	data->map->door = 0;
 }
 
-void    ft_cast_rays(t_data *data)
+void	ft_cast_rays(t_data *data)
 {
-    double    distance;
+	double	distance;
 
 	data->ray->index = 0;
 	data->ray->start = data->player->angle - (FOV / 2);
 	data->ray->angle = data->ray->start;
 	while (data->ray->angle < data->ray->start + FOV)
-	{	
+	{
 		data->map->v_door = 0;
 		data->map->h_door = 0;
-		ft_normalize(data);
+		ft_normalize(data->ray);
 		distance = ft_hdistance(data);
 		data->ray->distance = ft_vdistance(data);
-		if (distance >= data->ray->distance)
-		{
-			data->ray->view = 'v';
-			data->wall = data->mlx->ea_wall;
-			data->map->door = data->map->v_door;
-			if (data->ray->left)
-				data->wall = data->mlx->we_wall;
-		}
-		if (distance < data->ray->distance)
-		{
-			data->ray->view = 'h';
-			data->ray->distance = distance;
-			data->map->door = data->map->h_door;
-			data->wall = data->mlx->so_wall;
-			if (data->ray->up)
-				data->wall = data->mlx->no_wall;
-		}
-		ft_draw_ray(data); // mini map
-		data->ray->distance *= cos(data->ray->angle - data->player->angle); // fix the fisheye
-		ft_draw_all(data); // render the wall, floor and ceiling
-		data->ray->angle = data->ray->start + ++data->ray->index * ANGLE_STEP; // next angle
+		ft_min_distance(data, distance);
+		ft_draw_ray(data);
+		data->ray->distance *= cos(data->ray->angle - data->player->angle);
+		ft_draw_all(data);
+		data->ray->angle = data->ray->start + ++data->ray->index * ANGLE_STEP;
 	}
 }
