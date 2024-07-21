@@ -6,11 +6,11 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 17:11:16 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/11 11:04:34 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/21 15:50:13 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3D_bonus.h"
 
 // void    ft_mouse_move(mouse_key_t button, action_t action, modifier_key_t mods, void* d)
 // {
