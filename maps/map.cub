@@ -2,8 +2,8 @@
 
 
 
-EA textures/wall3.png
-NO textures/wall3.png
+EA textures/wall.png
+NO textures/wall.png
 
 
 
@@ -12,10 +12,10 @@ C       42,42,53
 
 F 41,39,32
 
-SO textures/wall3.png
+SO textures/wall.png
 
 
-WE textures/wall3.png
+WE textures/wall.png
 
 
 

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   map_validity.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaghri <mmaghri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 20:41:54 by mmaghri           #+#    #+#             */
-/*   Updated: 2024/07/02 15:30:36 by mmaghri          ###   ########.fr       */
+/*   Updated: 2024/07/21 15:48:59 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "../cub3D_bonus.h"
 
 int	function_open_map(char *file_name, t_pars *ithems)
 {

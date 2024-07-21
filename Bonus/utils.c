@@ -6,76 +6,74 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 20:38:22 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/20 18:53:01 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/21 17:26:04 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3D_bonus.h"
 
-// unsigned int ft_rgba_to_hex(int r, int g, int b, int a)
-// {
-//     return ((((r * 256 + g) * 256) + b) * 256 + a);
-// }
-
-// void	ft_hex_to_rgba(unsigned int c, int *r, int *g, int *b, int *a)
-// {
-// 	*a = c % (int)pow(2, 8);
-// 	c = c / (int)pow(2, 8);
-// 	*b = c % (int)pow(2, 8);
-// 	c = c / (int)pow(2, 8);
-// 	*g = c % (int)pow(2, 8);
-// 	*r = c / (int)pow(2, 8);
-// }
-
-// unsigned int	ft_texture_color(unsigned int c)
-// {
-// 	int r;
-// 	int g;
-// 	int b;
-// 	int a;
-// 	ft_hex_to_rgba(c, &r, &g, &b, &a);
-// 	return (ft_rgba_to_hex(a, b, g, r));
-// }
-
-unsigned int ft_color(int r, int g, int b, int a)
+unsigned int	ft_color(int r, int g, int b, int a)
 {
-    return ((((r * 256 + g) * 256) + b) * 256 + a);
+	return ((((r * 256 + g) * 256) + b) * 256 + a);
 }
 
 unsigned int	ft_texture_color(unsigned int c)
 {
-	int a = c % (int)pow(2, 8);
-	c = c / (int)pow(2, 8);
-	int b = c % (int)pow(2, 8);
-	c = c / (int)pow(2, 8);
-	int g = c % (int)pow(2, 8);
-	int r = c / (int)pow(2, 8);
+	int	r;
+	int	g;
+	int	b;
+	int	a;
+
+	a = c % 256;
+	c /= 256;
+	b = c % 256;
+	c /= 256;
+	g = c % 256;
+	c /= 256;
+	r = c;
 	return (ft_color(a, b, g, r));
 }
 
-int     ft_strlen(char *s)
+int	ft_wall(t_map *map, double a, double b)
 {
-    int i;
+	int	x;
+	int	y;
 
-    i = 0;
-    while (s[i])
-        i++;
-    return (i);
+	x = a / TSIZE;
+	y = b / TSIZE;
+	if (x < 0 || y < 0 || y >= map->map_height || x >= map->map_width \
+				|| (map->map[y][x] == '1'))
+		return (1);
+	return (0);
 }
 
-char	*ft_strdup(char *s)
+int	ft_near_wall(t_map *map, double a, double b)
 {
-	char	*p;
-	int 	n;
-    int     i;
-    
-    i = -1;
-	n = ft_strlen(s);
-	p = (char *)malloc((n + 1) * sizeof(char));
-	if (!p)
-		return (NULL);
-    while (++i < n)
-        p[i] = s[i];
-    p[i] = '\0';
-	return (p);
+	if (ft_wall(map, a, b) || ft_wall(map, a + PIXI, b) || \
+		ft_wall(map, a - PIXI, b) || ft_wall(map, a, b + PIXI) || \
+		ft_wall(map, a, b - PIXI) || ft_wall(map, a + PIXI, b + PIXI) || \
+		ft_wall(map, a - PIXI, b - PIXI))
+		return (1);
+	return (0);
+}
+
+void	ft_close(t_data *data)
+{
+	int	i;
+
+	i = -1;
+	mlx_delete_image(data->mlx->pointer, data->mlx->image);
+	mlx_close_window(data->mlx->pointer);
+	mlx_terminate(data->mlx->pointer);
+	free(data->mlx);
+	while (data->map->map[++i])
+		free(data->map->map[i]);
+	free(data->map->map);
+	free(data->map);
+	free(data->player);
+	free(data->ray);
+	free(data);
+	write(1, "GAME OVER!\n", 12);
+	kill_sound();
+	exit(0);
 }

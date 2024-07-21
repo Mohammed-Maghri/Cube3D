@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   background_sound.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaghri <mmaghri@student.42.fr>            #+#  +:+       +#+        */
+/*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024-07-08 12:34:15 by mmaghri           #+#    #+#             */
-/*   Updated: 2024-07-08 12:34:15 by mmaghri          ###   ########.fr       */
+/*   Created: 2024/07/08 12:34:15 by mmaghri           #+#    #+#             */
+/*   Updated: 2024/07/21 15:49:48 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3D_bonus.h"
 
 void *thread_function_handler(char *text)
 {

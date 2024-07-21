@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.h                                            :+:      :+:    :+:   */
+/*   cub3D_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 09:27:20 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/21 09:50:07 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/21 17:59:43 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef CUB3D_BONUS_H
+# define CUB3D_BONUS_H
 
 # include <pthread.h>
 # include <unistd.h>
@@ -41,6 +41,7 @@
 // # define FLOOR_COLOR    0x90EE90FF
 // # define MINI_COLOR     0xAAAAAAFF
 # define MINI_COLOR     0xAAAAAAAA
+# define DOOR_COLOR     0xAAAAAA33
 // # define CEILING_COLOR  0xB0E2FFFF
 # define WALL_COLOR     0xFFFFFFFF
 # define WALL_SHADE     0xEEEEEEFF
@@ -53,8 +54,8 @@
 # define HALF_WIDTH   (WINDOW_WIDTH / 2)
 # define DISTANCE_PLAN  ((double)TSIZE * HALF_WIDTH / tan(FOV / 2))
 # define ESC            256
-# define R              262
-# define L              263
+# define RIGHT              262
+# define LEFT              263
 
 typedef struct s_position
 {
@@ -126,25 +127,29 @@ typedef struct s_data
     t_player        *player;
     unsigned int    floor_color;
     unsigned int    ceiling_color;
+    uint32_t		*texture;
     int             check_reload;
     int             var_check;
-    uint32_t		*texture;
+    int          wall_start;
+    double          wall_height;
+    double          wall_distance;
     mlx_texture_t	*wall;
-    mlx_texture_t   *reload;
-    mlx_texture_t   *bonus2;
-    mlx_texture_t   *reload2;
-    mlx_texture_t   *reload3;
-    mlx_texture_t   *reload4;
-    mlx_texture_t   *reload5;
-    mlx_texture_t   *reload6;
-    mlx_texture_t   *reload7;
-    mlx_texture_t   *reload8;
-    mlx_texture_t   *reload9;
-    mlx_texture_t   *reload10;
-    mlx_texture_t   *reload11;
-    mlx_texture_t   *reload12;
-    mlx_texture_t   *reload13;
-    mlx_texture_t   *reload14;
+    mlx_texture_t   *bonus;
+    mlx_texture_t   *reload[10];
+    // mlx_texture_t   *reload;
+    // mlx_texture_t   *reload2;
+    // mlx_texture_t   *reload3;
+    // mlx_texture_t   *reload4;
+    // mlx_texture_t   *reload5;
+    // mlx_texture_t   *reload6;
+    // mlx_texture_t   *reload7;
+    // mlx_texture_t   *reload8;
+    // mlx_texture_t   *reload9;
+    // mlx_texture_t   *reload10;
+    // mlx_texture_t   *reload11;
+    // mlx_texture_t   *reload12;
+    // mlx_texture_t   *reload13;
+    // mlx_texture_t   *reload14;
 }   t_data;
 
 typedef struct parsing
@@ -184,9 +189,9 @@ typedef struct store_map_elem
     int		endian ;
 }	t_store;
 /**************** LIBFT **************/
-int     ft_strlen(char *s);
-void	*ft_calloc(int count, int size);
-char	*ft_strdup(char *s);
+// int     ft_strlen(char *s);
+// void	*ft_calloc(int count, int size);
+// char	*ft_strdup(char *s);
 
 /*************** INIT *************/
 void    ft_init_map(t_data *data);
@@ -212,14 +217,16 @@ void    ft_mouse_move(double xpos, double ypos, void* d);
 void    ft_cast_rays(t_data *data);
 double	ft_hdistance(t_data *data);
 double	ft_vdistance(t_data *data);
-void    ft_normalize(t_data *data);
+void    ft_normalize(t_ray *ray);
 double  ft_distance(t_coordinate a, t_position b);
 
 /**************** DRAW ***************/
 void ft_draw_ray(t_data *data);
+void	ft_draw_all(t_data *data);
 void ft_draw_minimap(t_data *data);
 void ft_draw_miniplayer(t_data *data);
 int ft_wall(t_map *map, double x, double y);
+int	ft_door(t_data *data, double a, double b);
 int ft_near_wall(t_map *map, double a, double b);
 unsigned int ft_color(int r, int g, int b, int a);
 unsigned int	ft_texture_color(unsigned int c);

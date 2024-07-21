@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.c                                            :+:      :+:    :+:   */
+/*   cub3D_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 12:31:20 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/21 09:52:47 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/21 18:13:21 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3D_bonus.h"
 
 void    ft_init_data(t_data **data, t_store *store)
 {
@@ -20,6 +20,7 @@ void    ft_init_data(t_data **data, t_store *store)
     (*data)->ray = (t_ray *)malloc(sizeof(t_ray));
     (*data)->player = (t_player *)malloc(sizeof(t_player));
     (*data)->map = (t_map *)malloc(sizeof(t_map));//// add protection
+    // (*data)->map->map = (char **)malloc((MAP_HEIGHT + 1) * sizeof(char *));
     (*data)->mlx = (t_mlx *)malloc(sizeof(t_mlx));//// add protection
     (*data)->mlx->pointer = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "CUB3D", 0);
     (*data)->mlx->no_wall = mlx_load_png(store->no);// protect!
@@ -45,24 +46,38 @@ void    ft_init_player(t_data *data, t_store *store)
     data->player->angle = store->player_position;
     data->floor_color = ft_color(store->f[0], store->f[1], store->f[2], 255);
     data->ceiling_color = ft_color(store->c[0], store->c[1], store->c[2], 255);
-    data->bonus2 = mlx_load_png("textures/gun.png"); // protect!
-    data->reload = mlx_load_png("textures/reload/re1.png"); // protect!
-    data->reload2 = mlx_load_png("textures/reload/re2.png"); // protect!
-    data->reload3 = mlx_load_png("textures/reload/re3.png"); // protect!
-    data->reload = mlx_load_png("textures/reload/re1.png"); // protect!
-    data->reload2  = mlx_load_png("textures/reload/1.png"); // protect!
-    data->reload2  = mlx_load_png("textures/reload/1.png"); // protect 
-    data->reload3  = mlx_load_png("textures/reload/2.png"); // protect!
-    data->reload4  = mlx_load_png("textures/reload/3.png"); // protect!
-    data->reload5  = mlx_load_png("textures/reload/4.png"); // protect!
-    data->reload6  = mlx_load_png("textures/reload/5.png"); // protect!
-    data->reload7  = mlx_load_png("textures/reload/7.png"); // protect!
-    data->reload8  = mlx_load_png("textures/reload/8.png"); // protect!
-    data->reload9  = mlx_load_png("textures/reload/9.png"); // protect!
-    data->reload10 = mlx_load_png("textures/reload/10.png"); // protect!
-    data->reload11 = mlx_load_png("textures/reload/13.png"); // protect!
-    data->reload12 = mlx_load_png("textures/reload/14.png"); // protect!
-    data->reload13 = mlx_load_png("textures/reload/14.png");
+    data->bonus = mlx_load_png("textures/gun.png"); // protect!
+    // // data->reload = mlx_load_png("textures/reload/re1.png"); // protect!
+    // // data->reload2 = mlx_load_png("textures/reload/re2.png"); // protect!
+    // // data->reload3 = mlx_load_png("textures/reload/re3.png"); // protect!
+    // data->reload = mlx_load_png("textures/reload/re1.png"); // protect!
+    // data->reload2  = mlx_load_png("textures/reload/1.png"); // protect!
+    // data->reload2  = mlx_load_png("textures/reload/1.png"); // protect 
+    // data->reload3  = mlx_load_png("textures/reload/2.png"); // protect!
+    // data->reload4  = mlx_load_png("textures/reload/3.png"); // protect!
+    // data->reload5  = mlx_load_png("textures/reload/4.png"); // protect!
+    // data->reload6  = mlx_load_png("textures/reload/5.png"); // protect!
+    // data->reload7  = mlx_load_png("textures/reload/7.png"); // protect!
+    // data->reload8  = mlx_load_png("textures/reload/8.png"); // protect!
+    // data->reload9  = mlx_load_png("textures/reload/9.png"); // protect!
+    // data->reload10 = mlx_load_png("textures/reload/10.png"); // protect!
+    // data->reload11 = mlx_load_png("textures/reload/13.png"); // protect!
+    // data->reload12 = mlx_load_png("textures/reload/14.png"); // protect!
+    // data->reload13 = mlx_load_png("textures/reload/14.png");
+    // data->reload[0] = mlx_load_png("textures/reload/re1.png"); // protect!
+    // data->reload[1] = mlx_load_png("textures/reload/1.png"); // protect!
+    data->reload[0] = mlx_load_png("textures/reload/1.png"); // protect 
+    data->reload[1] = mlx_load_png("textures/reload/2.png"); // protect!
+    data->reload[2] = mlx_load_png("textures/reload/3.png"); // protect!
+    data->reload[3] = mlx_load_png("textures/reload/4.png"); // protect!
+    // data->reload[4] = mlx_load_png("textures/reload/5.png"); // protect!
+    data->reload[4] = mlx_load_png("textures/reload/7.png"); // protect!
+    data->reload[5] = mlx_load_png("textures/reload/8.png"); // protect!
+    data->reload[6] = mlx_load_png("textures/reload/9.png"); // protect!
+    data->reload[7] = mlx_load_png("textures/reload/10.png"); // protect!
+    data->reload[8] = mlx_load_png("textures/reload/13.png"); // protect!
+    data->reload[9] = mlx_load_png("textures/reload/14.png"); // protect!
+    // data->reload[13] = mlx_load_png("textures/reload/14.png");
     data->check_reload = -1;
 }
 

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   valid_map_check.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaghri <mmaghri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 11:03:09 by mmaghri           #+#    #+#             */
-/*   Updated: 2024/07/05 15:26:55 by mmaghri          ###   ########.fr       */
+/*   Updated: 2024/07/21 15:49:02 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "../cub3D_bonus.h"
 
 char	**initial_it(void)
 {

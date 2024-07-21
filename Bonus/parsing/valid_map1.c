@@ -6,11 +6,11 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:07:18 by mmaghri           #+#    #+#             */
-/*   Updated: 2024/07/06 15:24:35 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/21 15:49:06 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "../cub3D_bonus.h"
 
 void	keep_check(long number)
 {
