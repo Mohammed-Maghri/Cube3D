@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 16:06:13 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/21 19:28:55 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/22 08:21:13 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,19 +68,19 @@ void	ft_min_distance(t_data *data, double distance)
 	if (distance >= data->ray->distance)
 	{
 		data->ray->view = 'v';
-		data->wall = data->mlx->ea_wall;
+		data->texture = data->mlx->ea_wall;
 		data->map->door = data->map->v_door;
 		if (data->ray->left)
-			data->wall = data->mlx->we_wall;
+			data->texture = data->mlx->we_wall;
 	}
 	if (distance < data->ray->distance)
 	{
 		data->ray->view = 'h';
 		data->ray->distance = distance;
 		data->map->door = data->map->h_door;
-		data->wall = data->mlx->so_wall;
+		data->texture = data->mlx->so_wall;
 		if (data->ray->up)
-			data->wall = data->mlx->no_wall;
+			data->texture = data->mlx->no_wall;
 	}
 }
 
