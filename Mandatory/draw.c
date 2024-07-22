@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 19:24:42 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/21 19:40:17 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/22 10:13:35 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ void	ft_wall_data(t_data *data, int *top, int *bot)
 	*top = (WINDOW_HEIGHT / 2) - (data->wall_height / 2);
 	*bot = (WINDOW_HEIGHT / 2) + (data->wall_height / 2);
 	(*bot > WINDOW_HEIGHT) && (*bot = WINDOW_HEIGHT);
-	data->texture = (uint32_t *)data->wall->pixels;
+	data->color = (uint32_t *)data->texture->pixels;
 	if (data->ray->view == 'v')
 		data->wall_start = (int)(data->ray->v_distance * \
-			data->wall->height / TSIZE) % data->wall->height;
+			data->texture->height / TSIZE) % data->texture->height;
 	else
 		data->wall_start = (int)(data->ray->h_distance * \
-			data->wall->width / TSIZE) % data->wall->width;
+			data->texture->width / TSIZE) % data->texture->width;
 }
 
 void	ft_draw_all(t_data *data)
@@ -48,10 +48,11 @@ void	ft_draw_all(t_data *data)
 	}
 	while (pixel < bot)
 	{
-		step = (pixel - top) * ((double)data->wall->height / data->wall_height);
+		step = (pixel - top) * \
+				((double)data->texture->height / data->wall_height);
 		if (data->ray->index >= MINI_WIDTH || pixel >= MINI_HEIGHT)
 			ft_mlx_put_pixel(data->mlx, data->ray->index, pixel, \
-				ft_texture_color(data->texture[data->wall->width * \
+				ft_texture_color(data->color[data->texture->width * \
 					step + data->wall_start]));
 		pixel++;
 	}
