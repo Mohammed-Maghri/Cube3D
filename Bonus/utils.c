@@ -6,18 +6,18 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 20:38:22 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/21 17:26:04 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/22 09:59:29 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
 
-unsigned int	ft_color(int r, int g, int b, int a)
+int	ft_color(int r, int g, int b, int a)
 {
 	return ((((r * 256 + g) * 256) + b) * 256 + a);
 }
 
-unsigned int	ft_texture_color(unsigned int c)
+int	ft_texture_color(unsigned int c)
 {
 	int	r;
 	int	g;
