@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 15:58:12 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/22 15:21:32 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/22 21:54:11 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,11 @@ void	ft_key_move(mlx_key_data_t keydata, void *d)
 	(key == LEFT) && (data->player->rotation = -action);
 	(key == RIGHT) && (data->player->rotation = action);
 	(key == 'N') && (data->hide_mouse = 1);
-	(key == 'M') && (data->hide_mouse = 0)
-				&& (data->player->rotation = 0);
+	if (key == 'M')
+	{
+		data->hide_mouse = 0;
+		data->player->rotation = 0;
+	}
 }
 
 void	ft_move_player(t_data *data)
@@ -77,28 +80,6 @@ void	ft_check_reload(t_data *data)
 			data->reload[data->check_reload / 5], 500, 585);
 		data->check_reload++;
 	}
-		// if (data->check_reload >= 1 && data->check_reload < 5)
-	// 	draw_image_on_image(data, data->reload[0], 500, 585);
-	// else if (data->check_reload >= 5 && data->check_reload < 10)
-	// 	draw_image_on_image(data, data->reload[1], 500, 585);
-	// else if (data->check_reload >= 10 && data->check_reload < 15)
-	// 	draw_image_on_image(data, data->reload[2], 500, 585);
-	// else if (data->check_reload >= 15 && data->check_reload < 20)
-	// 	draw_image_on_image(data, data->reload[3], 500, 585);
-	// else if (data->check_reload >= 20 && data->check_reload < 25)
-	// 	draw_image_on_image(data, data->reload[4], 500, 585);
-	// else if(data->check_reload >= 25 && data->check_reload < 30)
-	// 	draw_image_on_image(data, data->reload[5], 500, 585);
-	// else if (data->check_reload >= 30 && data->check_reload < 35)
-	// 	draw_image_on_image(data, data->reload[6], 500, 585);
-	// else if (data->check_reload >= 35 && data->check_reload < 40)
-	// 	draw_image_on_image(data, data->reload[7], 500, 585);
-	// else if (data->check_reload >= 40 && data->check_reload < 45)
-	// 	draw_image_on_image(data, data->reload[8], 500, 585);
-	// else if (data->check_reload >= 45 && data->check_reload < 50)
-	// 	draw_image_on_image(data, data->reload[9], 500, 585);
-	// if (data->check_reload >= 1)
-	// 	data->check_reload++;
 	if (data->check_reload == 50)
 	{
 		data->var_check = 0;

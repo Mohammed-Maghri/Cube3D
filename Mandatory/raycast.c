@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 16:06:13 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/22 13:48:32 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/22 21:59:38 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ void	ft_cast_rays(t_data *data)
 		ft_draw_ray(data);
 		data->ray->distance *= cos(data->ray->angle - data->player->angle);
 		ft_draw_all(data);
-		data->ray->angle = data->ray->start + ++data->ray->index * (fov / data->win_width);
+		data->ray->angle = data->ray->start + ++data->ray->index * \
+							(fov / data->win_width);
 	}
 }

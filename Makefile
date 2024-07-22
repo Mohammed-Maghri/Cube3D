@@ -6,7 +6,7 @@
 #    By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/25 09:26:25 by cmasnaou          #+#    #+#              #
-#    Updated: 2024/07/21 20:41:58 by cmasnaou         ###   ########.fr        #
+#    Updated: 2024/07/22 21:33:03 by cmasnaou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME	=	cub3D
 BONUS	=	cub3D_bonus
 CC		=	cc
 RM		=	rm -rf
-FLAGS	=	-O3 -ffast-math -Wall -Wextra -Werror# -g -fsanitize=address
+FLAGS	=	-O3 -ffast-math -Wall -Wextra -Werror #-g -fsanitize=address #-fsanitize=thread
 FLMLX	=	-framework Cocoa -framework OpenGL -framework IOKit
 # GLFW is a library that allows to create and manage windows, receiving input and events...
 # -lglfw is the flag to link GLFW during the linking stage.

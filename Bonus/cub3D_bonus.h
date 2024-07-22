@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 09:27:20 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/22 14:07:46 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/22 21:33:13 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,6 @@ typedef struct s_map
 	char	**map;
 	int		map_width;
 	int		map_height;
-	// int		mini_width;
-	// int		mini_height;
 	int		h_door;
 	int		v_door;
 	int		door;

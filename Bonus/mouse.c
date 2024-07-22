@@ -6,53 +6,26 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 17:11:16 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/22 14:09:48 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/22 21:53:51 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
 
-// void    ft_mouse_move(mouse_key_t button, action_t action, modifier_key_t mods, void* d)
-// {
-//     t_data	*data;
-// 	data = d;
-//     (void)mods;
-    
-//     // (button == 1) && (data->player->rotation = action); // right
-//     // (button == 0) && (data->player->rotation = -action); // left
-// }
-
-void ft_mouse_move(double xpos, double ypos, void* d)
+void	ft_mouse_move(double xpos, double ypos, void *d)
 {
-    t_data	*data;
-    (void)xpos;
-    (void)ypos;
-    t_position mouse;
-	data = d;
-    
-    if (data->hide_mouse)
-    {
-        mlx_get_mouse_pos(data->mlx->pointer, &mouse.x, &mouse.y);
-        // data->player->rotation = MOUSE_SPEED * (double)(mouse.x - (data->win_width / 2)) / (data->win_height / 2); // right
-        data->player->rotation = MOUSE_SPEED * (double)(mouse.x - (data->win_width / 2)); // right
-        mlx_set_mouse_pos(data->mlx->pointer, (data->win_width / 2), (data->win_height / 2));
-    }
-}
+	t_data		*data;
+	t_position	mouse;
 
-// void mlx_cursor_move(double xpos, double ypos, void* d)
-// {
-//     t_data	*data;
-//     static double position;
-// 	data = d;
-//     (void)ypos;
-    
-//     data->player->rotation = 0;
-//     if (xpos < 0 || xpos > data->win_width || ypos < 0 || ypos > data->win_height)
-//     {
-//         data->player->rotation = 0;
-//         return ;
-//     }
-//     (position < xpos) && (data->player->rotation = MOUSE_SPEED); // right
-//     (position > xpos) && (data->player->rotation = -MOUSE_SPEED); // left
-//     position = xpos;
-// }
+	data = d;
+	(void)xpos;
+	(void)ypos;
+	if (data->hide_mouse)
+	{
+		mlx_get_mouse_pos(data->mlx->pointer, &mouse.x, &mouse.y);
+		data->player->rotation = MOUSE_SPEED * (double)(mouse.x - \
+												(data->win_width / 2));
+		mlx_set_mouse_pos(data->mlx->pointer, (data->win_width / 2), \
+												(data->win_height / 2));
+	}
+}

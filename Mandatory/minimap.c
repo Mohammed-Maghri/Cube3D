@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 10:11:23 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/22 13:41:42 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/22 21:59:14 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,10 @@ void	ft_draw_minimap(t_data *data)
 	int				i;
 	int				j;
 
-	diff.x = data->mini_width / 2 - floor(data->player->pos_in_pixels.x * data->scale);
-	diff.y = data->mini_height / 2 - floor(data->player->pos_in_pixels.y * data->scale);
+	diff.x = data->mini_width / 2 - \
+			floor(data->player->pos_in_pixels.x * data->scale);
+	diff.y = data->mini_height / 2 - \
+			floor(data->player->pos_in_pixels.y * data->scale);
 	i = -1;
 	while (++i < data->map->map_height)
 	{
