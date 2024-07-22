@@ -1,4 +1,4 @@
-`/* ************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   cub3D_bonus.c                                      :+:      :+:    :+:   */
@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 12:31:20 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/21 19:13:00 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/22 10:28:49 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void    ft_init_data(t_data **data, t_store *store)
     (*data)->ray = (t_ray *)malloc(sizeof(t_ray));
     (*data)->player = (t_player *)malloc(sizeof(t_player));
     (*data)->map = (t_map *)malloc(sizeof(t_map));//// add protection
-    // (*data)->map->map = (char **)malloc((MAP_HEIGHT + 1) * sizeof(char *));
     (*data)->mlx = (t_mlx *)malloc(sizeof(t_mlx));//// add protection
     (*data)->mlx->pointer = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "CUB3D", 0);
     (*data)->mlx->no_wall = mlx_load_png(store->no);// protect!
@@ -81,10 +80,10 @@ void    ft_init_player(t_data *data, t_store *store)
     data->check_reload = -1;
 }
 
-// void leak(){system("leaks cub3D_bonus");}
+void leak(){system("leaks cub3D_bonus");}
 int main()
 {
-    // atexit("leak");
+    atexit("leak");
     t_data  *data;
     t_store *store ;
     t_pars *map ;
