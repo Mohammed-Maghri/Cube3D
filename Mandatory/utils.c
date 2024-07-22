@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 20:38:22 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/22 10:23:09 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/22 14:02:45 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,18 +62,18 @@ void	ft_close(t_data *data)
 	int	i;
 
 	i = -1;
-	free(data->player);
-	free(data->ray);
-	free(data->map);
-	free(data->mlx->no_wall);
-	free(data->mlx->so_wall);
-	free(data->mlx->we_wall);
-	free(data->mlx->ea_wall);
+	// free(data->player);
+	// free(data->ray);
+	// free(data->map);
+	// free(data->mlx->no_wall);
+	// free(data->mlx->so_wall);
+	// free(data->mlx->we_wall);
+	// free(data->mlx->ea_wall);
 	mlx_delete_image(data->mlx->pointer, data->mlx->image);
 	mlx_close_window(data->mlx->pointer);
 	mlx_terminate(data->mlx->pointer);
-	free(data->mlx);
-	free(data);
+	// free(data->mlx);
+	// free(data);
 	write(1, "GAME OVER!\n", 12);
 	exit(0);
 }

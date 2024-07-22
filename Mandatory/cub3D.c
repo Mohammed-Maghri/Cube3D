@@ -6,31 +6,31 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 12:31:20 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/22 10:29:32 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/22 13:59:41 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void    ft_init_data(t_data **data, t_store *store)
+void    ft_allocate_data(t_data **data, t_store *store)
 {
-    (*data) = (t_data *)malloc(sizeof(t_data));//ok
+    (*data) = (t_data *)gb(sizeof(t_data), 1);//ok
     if (!data || !*data)
         exit(1);
-    (*data)->player = (t_player *)malloc(sizeof(t_player));//fix
-    (*data)->ray = (t_ray *)malloc(sizeof(t_ray));//fix
-    (*data)->map = (t_map *)malloc(sizeof(t_map));//fix
-    (*data)->mlx = (t_mlx *)malloc(sizeof(t_mlx));//fix
+    (*data)->player = (t_player *)gb(sizeof(t_player), 1);//fix
+    (*data)->ray = (t_ray *)gb(sizeof(t_ray), 1);//fix
+    (*data)->map = (t_map *)gb(sizeof(t_map), 1);//fix
+    (*data)->mlx = (t_mlx *)gb(sizeof(t_mlx), 1);//fix
     if (!(*data)->ray || !(*data)->player || !(*data)->map || !(*data)->mlx)
         ft_close(*data);
-    (*data)->mlx->pointer = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "CUB3D", 0);
+    (*data)->mlx->pointer = mlx_init(WINDOW_WIDTH * TSIZE, WINDOW_HEIGHT * TSIZE, "Cub3D", 0);
     (*data)->mlx->no_wall = mlx_load_png(store->no);// protect!
     (*data)->mlx->so_wall = mlx_load_png(store->so);// protect!
     (*data)->mlx->we_wall = mlx_load_png(store->we);// protect!
     (*data)->mlx->ea_wall = mlx_load_png(store->ea);// protect!
 }
 
-void    ft_init_player(t_data *data, t_store *store)
+void    ft_init_data(t_data *data, t_store *store)
 {
     data->player->rotation = 0;
     data->player->left_right = 0;
@@ -42,15 +42,20 @@ void    ft_init_player(t_data *data, t_store *store)
     data->player->pos_in_pixels.x = data->player->pos_in_map.x * TSIZE + TSIZE / 2;
     data->player->pos_in_pixels.y = data->player->pos_in_map.y * TSIZE + TSIZE / 2;
     data->player->angle = store->player_position;
+    data->scale = ((double)MSIZE / TSIZE);
+    data->win_height = WINDOW_HEIGHT * TSIZE;
+    data->win_width = WINDOW_WIDTH * TSIZE;
+    data->mini_height = data->win_height / 4;
+    data->mini_width = data->win_width / 4;
     data->floor_color = ft_color(store->f[0], store->f[1], store->f[2], 255);
     data->ceiling_color = ft_color(store->c[0], store->c[1], store->c[2], 255);
 }
 
-// void leak(){system("leaks cub3D");}
+void leak(){system("leaks cub3D");}
 
 int main()
 {
-    // atexit(leak);
+    atexit(leak);
     t_data  *data;
     t_store *store ;
     t_pars *map ;
@@ -60,8 +65,8 @@ int main()
 
     merge_all_functions(map, store);
     data = (t_data *){0};
-    ft_init_data(&data, store);
-    ft_init_player(data, store);
+    ft_allocate_data(&data, store);
+    ft_init_data(data, store);
     data->map->map_height = count_twode_arr(map->array);
     data->map->map_width = le_count(map->array[0]);
     data->map->map = map->array ;

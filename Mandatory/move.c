@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 15:58:12 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/22 10:18:41 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/22 12:21:20 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	ft_update_window(void *d)
 	data = d;
 	mlx = data->mlx;
 	mlx_delete_image(mlx->pointer, mlx->image);
-	mlx->image = mlx_new_image(mlx->pointer, WINDOW_WIDTH, WINDOW_HEIGHT);
+	mlx->image = mlx_new_image(mlx->pointer, data->win_width, data->win_height);
 	ft_move_player(data);
 	ft_draw_minimap(data);
 	ft_cast_rays(data);

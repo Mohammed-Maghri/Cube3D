@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 09:27:20 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/22 10:21:12 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/22 14:07:46 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,12 @@
 # define ESC			256
 # define RIGHT			262
 # define LEFT			263
-# define PLAYER_SPEED	3 // 2 pixels
+# define PIXI			3
+# define PLAYER_SPEED	3
 # define MOUSE_SPEED	0.1
-# define ROTATION_SPEED	(M_PI / 180) // 1 degree
-# define FOV			(M_PI / 3) // 60 degree
-# define WINDOW_HEIGHT	(30 * TSIZE)
-# define WINDOW_WIDTH	(50 * TSIZE)
-# define MINI_HEIGHT	(WINDOW_HEIGHT / 4)
-# define MINI_WIDTH		(WINDOW_WIDTH / 4)
-# define UNITY			((double)MSIZE / TSIZE)
-# define ANGLE_STEP		(FOV / WINDOW_WIDTH)
-# define PIXI			(double)(MSIZE / 6)
+# define ROTATION_SPEED	0.02
+# define WINDOW_HEIGHT	30
+# define WINDOW_WIDTH	50
 # define MINI_COLOR		0xAAAAAAAA
 # define DOOR_COLOR		0xAAAAAA33
 
@@ -84,8 +79,8 @@ typedef struct s_map
 	char	**map;
 	int		map_width;
 	int		map_height;
-	int		mini_width;
-	int		mini_height;
+	// int		mini_width;
+	// int		mini_height;
 	int		h_door;
 	int		v_door;
 	int		door;
@@ -108,14 +103,20 @@ typedef struct s_data
 	t_map			*map;
 	t_ray			*ray;
 	t_player		*player;
-	unsigned int	floor_color;
-	unsigned int	ceiling_color;
+	int				hide_mouse;
 	int				check_reload;
 	int				var_check;
 	int				wall_start;
+	int				win_width;
+	int				win_height;
+	int				mini_width;
+	int				mini_height;
 	double			wall_height;
 	double			wall_distance;
+	double			scale;
 	uint32_t		*color;
+	unsigned int	floor_color;
+	unsigned int	ceiling_color;
 	mlx_texture_t	*texture;
 	mlx_texture_t	*bonus;
 	mlx_texture_t	*reload[10];
@@ -160,8 +161,8 @@ typedef struct store_map_elem
 
 /*************** INIT *************/
 void	ft_init_map(t_data *data);
-void	ft_init_player(t_data *data, t_store *store);
-void	ft_init_data(t_data **data, t_store *store);
+void	ft_init_data(t_data *data, t_store *store);
+void	ft_allocate_data(t_data **data, t_store *store);
 void	ft_init_mlx(t_data *data);
 void	ft_init(t_data *data);
 void	ft_close(t_data *data);
@@ -190,7 +191,7 @@ int		ft_near_wall(t_map *map, double a, double b);
 int		ft_color(int r, int g, int b, int a);
 int		ft_texture_color(unsigned int c);
 void	ft_draw_image(t_data *data, mlx_texture_t *bonus, int x, int y);
-void	ft_mlx_put_pixel(t_mlx *mlx, int x, int y, int color);
+void	ft_mlx_put_pixel(t_data *data, int x, int y, int color);
 
 /**************** PARSING ***************/
 int		count_lenght(void **array);

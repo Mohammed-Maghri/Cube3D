@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 16:06:13 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/22 08:21:13 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/22 13:47:25 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,11 +87,13 @@ void	ft_min_distance(t_data *data, double distance)
 void	ft_cast_rays(t_data *data)
 {
 	double	distance;
+	double	fov;
 
+	fov = M_PI / 3.;
 	data->ray->index = 0;
-	data->ray->start = data->player->angle - (FOV / 2);
+	data->ray->start = data->player->angle - (fov / 2);
 	data->ray->angle = data->ray->start;
-	while (data->ray->angle < data->ray->start + FOV)
+	while (data->ray->angle < data->ray->start + fov)
 	{
 		data->map->v_door = 0;
 		data->map->h_door = 0;
@@ -102,6 +104,6 @@ void	ft_cast_rays(t_data *data)
 		ft_draw_ray(data);
 		data->ray->distance *= cos(data->ray->angle - data->player->angle);
 		ft_draw_all(data);
-		data->ray->angle = data->ray->start + ++data->ray->index * ANGLE_STEP;
+		data->ray->angle = data->ray->start + ++data->ray->index * (fov / data->win_width);
 	}
 }

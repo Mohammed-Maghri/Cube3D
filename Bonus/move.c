@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 15:58:12 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/22 09:28:31 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/22 14:16:50 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ void	ft_key_move(mlx_key_data_t keydata, void *d)
 	(key == 'A') && (data->player->left_right = -action);
 	(key == LEFT) && (data->player->rotation = -action);
 	(key == RIGHT) && (data->player->rotation = action);
+	(key == 'N') && (data->hide_mouse = 1);
+	(key == 'M') && (data->hide_mouse = 0)
+				&& (data->player->rotation = 0);
 }
 
 void	ft_move_player(t_data *data)
@@ -89,7 +92,7 @@ void	ft_update_window(void *d)
 	data = d;
 	mlx = data->mlx;
 	mlx_delete_image(mlx->pointer, mlx->image);
-	mlx->image = mlx_new_image(mlx->pointer, WINDOW_WIDTH, WINDOW_HEIGHT);
+	mlx->image = mlx_new_image(mlx->pointer, data->win_width, data->win_height);
 	ft_background_sound("afplay ./Bonus/te.mp3");
 	ft_move_player(data);
 	ft_draw_minimap(data);
