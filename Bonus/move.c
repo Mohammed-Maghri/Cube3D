@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 15:58:12 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/21 17:25:48 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/22 09:28:31 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,66 +59,21 @@ void	ft_move_player(t_data *data)
 	}
 }
 
-void	draw_image_on_image(t_data *data, mlx_texture_t *texture, int x, int y)
-{
-	int	index ;
-	int	increment ;
-	int	i;
-	int	r, g, b, a;
-
-	index = 0;
-	increment = 0;
-	while (index < (int)texture->height)
-	{
-		increment = 0;
-		while (increment < (int)texture->width)
-		{
-			i = (index * texture->width + increment) * 4;
-			r = texture->pixels[i];
-			g = texture->pixels[i + 1];
-			b = texture->pixels[i + 2];
-			a = texture->pixels[i + 3];
-			if (a != 0 && b != 0 && g != 0 && r != 0)
-				mlx_put_pixel(data->mlx->image, increment + x, index + y, ft_color(r, g, b, a));
-			increment++;
-		}
-		index++;
-	}
-}
-
-void	function_check_if_reload(t_data *data)
+void	ft_check_reload(t_data *data)
 {
 	if (data->var_check == 0)
 	{
-		function_background_sound("afplay ./Bonus/rel.mp3");
+		ft_background_sound("afplay ./Bonus/rel.mp3");
 		data->var_check = 1;
 	}
 	if (data->check_reload == -1)
-		draw_image_on_image(data, data->bonus, 500, 586);
+		ft_draw_image(data, data->bonus, 500, 586);
 	else
-		draw_image_on_image(data, data->reload[data->check_reload / 5], 500, 585);
-	// if (data->check_reload >= 1 && data->check_reload < 5)
-	// 	draw_image_on_image(data, data->reload[0], 500, 585);
-	// else if (data->check_reload >= 5 && data->check_reload < 10)
-	// 	draw_image_on_image(data, data->reload[1], 500, 585);
-	// else if (data->check_reload >= 10 && data->check_reload < 15)
-	// 	draw_image_on_image(data, data->reload[2], 500, 585);
-	// else if (data->check_reload >= 15 && data->check_reload < 20)
-	// 	draw_image_on_image(data, data->reload[3], 500, 585);
-	// else if (data->check_reload >= 20 && data->check_reload < 25)
-	// 	draw_image_on_image(data, data->reload[4], 500, 585);
-	// else if(data->check_reload >= 25 && data->check_reload < 30)
-	// 	draw_image_on_image(data, data->reload[5], 500, 585);
-	// else if (data->check_reload >= 30 && data->check_reload < 35)
-	// 	draw_image_on_image(data, data->reload[6], 500, 585);
-	// else if (data->check_reload >= 35 && data->check_reload < 40)
-	// 	draw_image_on_image(data, data->reload[7], 500, 585);
-	// else if (data->check_reload >= 40 && data->check_reload < 45)
-	// 	draw_image_on_image(data, data->reload[8], 500, 585);
-	// else if (data->check_reload >= 45 && data->check_reload < 50)
-	// 	draw_image_on_image(data, data->reload[9], 500, 585);
-	if (data->check_reload >= 1)
+	{
+		ft_draw_image(data, \
+			data->reload[data->check_reload / 5], 500, 585);
 		data->check_reload++;
+	}
 	if (data->check_reload == 50)
 	{
 		data->var_check = 0;
@@ -135,11 +90,11 @@ void	ft_update_window(void *d)
 	mlx = data->mlx;
 	mlx_delete_image(mlx->pointer, mlx->image);
 	mlx->image = mlx_new_image(mlx->pointer, WINDOW_WIDTH, WINDOW_HEIGHT);
-	function_background_sound("afplay ./Bonus/te.mp3");
+	ft_background_sound("afplay ./Bonus/te.mp3");
 	ft_move_player(data);
 	ft_draw_minimap(data);
 	ft_cast_rays(data);
 	ft_draw_miniplayer(data);
-	function_check_if_reload(data);
+	ft_check_reload(data);
 	mlx_image_to_window(mlx->pointer, mlx->image, 0, 0);
 }
