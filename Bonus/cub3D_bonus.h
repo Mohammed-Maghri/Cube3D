@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 09:27:20 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/22 10:05:21 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/22 10:21:12 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,7 +193,6 @@ void	ft_draw_image(t_data *data, mlx_texture_t *bonus, int x, int y);
 void	ft_mlx_put_pixel(t_mlx *mlx, int x, int y, int color);
 
 /**************** PARSING ***************/
-
 int		count_lenght(void **array);
 void	optins(void **array);
 void	*gb(int size, int flag);
