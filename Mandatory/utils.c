@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 20:38:22 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/21 20:39:12 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/22 10:11:41 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,6 @@ void	ft_close(t_data *data)
 	i = -1;
 	free(data->player);
 	free(data->ray);
-	// while (data->map->map[++i])
-	// 	free(data->map->map[i]);
-	// free(data->map->map);
 	free(data->map);
 	free(data->mlx->no_wall);
 	free(data->mlx->so_wall);
