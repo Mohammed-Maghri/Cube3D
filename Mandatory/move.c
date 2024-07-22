@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 15:58:12 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/21 19:37:03 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/22 10:18:41 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	ft_key_move(mlx_key_data_t keydata, void *d)
 	if (key == ESC)
 		ft_close(data);
 	(action == 2) && (action = 1);
-	(key == 'R') && (data->check_reload = 1);
 	(key == 'W') && (data->player->up_down = action);
 	(key == 'S') && (data->player->up_down = -action);
 	(key == 'D') && (data->player->left_right = action);
