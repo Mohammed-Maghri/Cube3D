@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 12:31:20 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/21 20:43:24 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/22 10:29:32 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void    ft_init_player(t_data *data, t_store *store)
     data->player->pos_in_map.x = store->x;
     data->player->pos_in_map.y = store->y;
     data->player->move.y = 0;
-    data->check_reload = 0;
     data->player->pos_in_pixels.x = data->player->pos_in_map.x * TSIZE + TSIZE / 2;
     data->player->pos_in_pixels.y = data->player->pos_in_map.y * TSIZE + TSIZE / 2;
     data->player->angle = store->player_position;
