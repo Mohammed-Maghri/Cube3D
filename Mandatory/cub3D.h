@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmaghri <mmaghri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 09:27:20 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/22 13:54:34 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/23 14:58:16 by mmaghri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,6 +183,30 @@ void	optins(void **array);
 void	*gb(int size, int flag);
 void	**garbege_array_fill(void **array, void *add);
 // -----------------
+int		get_position(t_store *elemes, char *array);
+void	initializetwo(int *var, int *var2);
+int		turnfunction(char **array, int index, int incre);
+int		check_next(char *string);
+void	print_store(t_store *store);
+void	function_check_inside(char **twode);
+void	func_checks(char **twode);
+void	check_on_element(t_store *store);
+void	ini_tila(t_store *store, int flag);
+char	**for_main(t_pars *map);
+char	**heal_map(char **twode, char pass);
+void	check_weird_ithem(char *string);
+void	initial_this(char current, t_store *elemes);
+char	*caracter_turn(char *string, char copy);
+int		get_last_wall_position(char **twode);
+char	**initial_it(void);
+void	function_fill(char *string, int flag, t_store *store, char **twode);
+void	function_fill_to_check(t_store *store, char **elemet, \
+char *string, char **twode);
+void	keep_check(long number);
+int		check_nonumbers(char *string);
+int		check_numbers(char *string);
+void	initail_it(t_store *store, int number, int index, int ff);
+int		check_on_check(char string);
 void	merge_all_functions(t_pars *map, t_store	*store);
 void	create_window(char **twode, t_store *elemenets);
 void	count_players(char **twode);

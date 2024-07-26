@@ -6,46 +6,17 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 17:56:44 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/22 16:08:27 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/25 15:20:44 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
 
-int	ft_door(t_data *data, double a, double b)
-{
-	int		x;
-	int		y;
-
-	x = a / TSIZE;
-	y = b / TSIZE;
-	if (x < 0 || x >= data->map->map_width || \
-		y < 0 || y >= data->map->map_height)
-		return (0);
-	if (data->map->map[y][x] == 'D' && \
-		hypot(a - data->player->pos_in_pixels.x, b - \
-		data->player->pos_in_pixels.y) > 1.5 * TSIZE)
-	{
-		if (data->ray->view == 'h')
-		{
-			data->map->h_door = 1;
-			data->map->v_door = 0;
-		}
-		else
-		{
-			data->map->v_door = 1;
-			data->map->h_door = 0;
-		}
-		return (1);
-	}
-	return (0);
-}
-
 int	ft_wall_data(t_data *data, int *top, int *bot)
 {
 	data->wall_distance = (data->win_width / 2) / tan(M_PI / 6);
-	data->wall_height = (int)((TSIZE / data->ray->distance) * \
-							data->wall_distance);
+	data->wall_height = (TSIZE / data->ray->distance) * \
+							data->wall_distance;
 	*top = (data->win_height / 2) - (data->wall_height / 2);
 	*bot = (data->win_height / 2) + (data->wall_height / 2);
 	(*bot > data->win_height) && (*bot = data->win_height);

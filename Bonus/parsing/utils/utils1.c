@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmaghri <mmaghri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 20:43:00 by mmaghri           #+#    #+#             */
-/*   Updated: 2024/07/21 15:48:49 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/23 15:03:43 by mmaghri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ int	function_check_ithems(char *string)
 		return (-1);
 	while (string[index])
 	{
-		if ((string[index] != ' ' && string[index] != '\t') || string[index] != '\0')
+		if ((string[index] != ' ' && string[index] != '\t') \
+		|| string[index] != '\0')
 			return (0);
 		index++ ;
 	}
@@ -37,7 +38,8 @@ int	function_check_ithem(char *string)
 		return (-1);
 	while (string[index])
 	{
-		if ((string[index] != ' ' && string[index] != '\t') || string[index] != '\0')
+		if ((string[index] != ' ' && string[index] != '\t') \
+		|| string[index] != '\0')
 			return (0);
 		index++ ;
 	}
@@ -55,7 +57,6 @@ int	count_twode_arr(char **array)
 		index++ ;
 	return (index);
 }
-
 
 char	**move_only_content(char **twode)
 {

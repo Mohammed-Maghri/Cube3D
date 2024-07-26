@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   valid_map_check.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmaghri <mmaghri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 11:03:09 by mmaghri           #+#    #+#             */
-/*   Updated: 2024/07/21 15:49:02 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/23 15:04:01 by mmaghri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,71 +66,4 @@ void	function_fill(char *string, int flag, t_store *store, char **twode)
 		check_rgb_colors(twode, store);
 	if (flag == 5)
 		check_rgb_colors(twode, store);
-}
-
-void	function_fill_to_check(t_store *store, char **elemet, \
-char *string, char **twode)
-{
-	t_pars	lem;
-
-	lem.index = 0;
-	lem.incre = 0;
-	while (elemet[lem.index] && lem.index <= 6)
-	{
-		if (elemet[lem.index][0] == string[lem.incre] && lem.index < 4)
-		{
-			lem.incre++ ;
-			if (elemet[lem.index][1] == string[lem.incre] && \
-			(string[lem.incre + 1] == ' ' || string[lem.incre + 1] == '\t'))
-			{
-				function_fill(string, lem.index, store, twode);
-				return ;
-			}
-		}
-		else if (lem.index >= 4)
-		{
-			lem.incre = 0;
-			if (elemet[lem.index][0] == string[lem.incre] && \
-			(string[lem.incre + 1] == ' ' || string[lem.incre + 1] == '\t'))
-			{
-				function_fill(string, lem.index, store, twode);
-				return ;
-			}
-		}
-		lem.index++ ;
-	}
-}
-
-int	check_directions(char **twode, t_store *store)
-{
-	t_pars	elems;
-	char	**element;
-
-	elems.index = 0;
-	elems.increment = 0;
-	element = initial_it();
-	while (twode[elems.index])
-	{
-		while (twode[elems.index][elems.increment] && \
-		(twode[elems.index][elems.increment] == ' ' || \
-		twode[elems.index][elems.increment] == '\t'))
-			elems.increment++ ;
-		function_fill_to_check(store, element,  &twode[elems.index][elems.increment], twode);
-		elems.increment = 0;
-		elems.index++ ;
-		if (elems.index == 6)
-			break;
-	}
-	elems.increment = 0;
-	while (twode[elems.index] && twode[elems.index][elems.increment] && \
-	(twode[elems.index][elems.increment] == ' ' || twode[elems.index][elems.increment] == '\t'))
-	 	elems.increment++ ;
-	while (twode[elems.index] && twode[elems.index][elems.increment])
-	{
-		if (twode[elems.index][elems.increment] != '1' && \
-		(twode[elems.index][elems.increment] != ' ' && twode[elems.index][elems.increment] != '\t'))
-			exit_message("Map Not Valid \n");
-		elems.increment++ ;
-	}
-	return (-1);
 }

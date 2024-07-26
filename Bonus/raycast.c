@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 16:06:13 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/22 21:54:33 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/26 08:27:36 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ double	ft_hdistance(t_data *data)
 	step.y = TSIZE * (2 * data->ray->down - 1);
 	step.x = fabs(TSIZE / tan(data->ray->angle)) * (2 * data->ray->right - 1);
 	while (!ft_wall(data->map, point.x, point.y - data->ray->up) \
-			&& !ft_door(data, point.x, point.y - data->ray->up))
+		&& !ft_door(data, point.x, point.y - data->ray->up))
 		(1) && (point.x += step.x) && (point.y += step.y);
 	data->ray->h_distance = point.x;
 	point.x -= data->player->pos_in_pixels.x;
@@ -93,6 +93,7 @@ void	ft_cast_rays(t_data *data)
 	data->ray->index = 0;
 	data->ray->start = data->player->angle - (fov / 2);
 	data->ray->angle = data->ray->start;
+	data->is_door = 0;
 	while (data->ray->angle < data->ray->start + fov)
 	{
 		data->map->v_door = 0;

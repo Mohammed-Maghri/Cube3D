@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wall_check.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaghri <mmaghri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mohammdmaghri <mohammdmaghri@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/24 18:08:43 by mmaghri           #+#    #+#             */
-/*   Updated: 2024/07/03 12:07:57 by mmaghri          ###   ########.fr       */
+/*   Created: 2024/07/23 12:10:31 by mmaghri           #+#    #+#             */
+/*   Updated: 2024/07/24 13:41:58 by mohammdmagh      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,19 @@ void	exit_message(char *string)
 {
 	putstring(string);
 	exit(1);
+}
+
+void	checkfortheinside(char **twode, int *index, int *incre)
+{
+	printf("opps here \n");
+	prin_map(twode);
+	if (twode[*index - 1][*incre] == '-' || \
+	twode[*index + 1][*incre] == '-')
+		exit_message("Ooops  Not a Valid Map ... ! \n");
+	if (twode[*index][*incre + 1] && \
+	(twode[*index][*incre + 1] == '-' \
+	|| twode[*index][*incre - 1] == '-'))
+		exit_message("Ooops  Not a Valid Map ... ! \n");
 }
 
 void	check_inside_map(char **twode)
@@ -33,13 +46,7 @@ void	check_inside_map(char **twode)
 			{
 				if (twode[le.index][le.incre] == '0')
 				{
-					if (twode[le.index - 1][le.incre] == '-' || \
-					twode[le.index + 1][le.incre] == '-')
-						exit_message("Ooops  Not a Valid Map ... ! \n");
-					if (twode[le.index][le.incre + 1] && \
-					(twode[le.index][le.incre + 1] == '-' \
-					|| twode[le.index][le.incre - 1] == '-'))
-						exit_message("Ooops  Not a Valid Map ... ! \n");
+					checkfortheinside(twode, &le.index, &le.incre);
 				}
 				le.incre++ ;
 			}
@@ -49,8 +56,7 @@ void	check_inside_map(char **twode)
 	}
 }
 
-
-int get_last_wall_position(char **twode)
+int	get_last_wall_position(char **twode)
 {
 	int	index;
 	int	incre;
@@ -71,57 +77,4 @@ int get_last_wall_position(char **twode)
 		index++ ;
 	}
 	return (-1);
-}
-
-void	check_side_walls(char **twode)
-{
-	t_pars	le;
-
-	le.index = 0;
-	le.incre = 0;
-	while (twode[le.index] && le.index < get_last_wall_position(twode))
-	{
-		while (twode[le.index][le.incre] == '-')
-			le.incre++ ;
-		if (twode[le.index][le.incre] != '1')
-			exit_message("Sides Not Closed  !!\n");
-		le.incre = 0;
-		le.index++ ;
-	}
-	le.index = 0;
-	le.incre = 0;
-	while (twode[le.index] && le.index < get_last_wall_position(twode))
-	{
-		le.incre = le_count(twode[le.index]);
-		le.incre--;
-		while (twode[le.index][le.incre] == '-')
-			le.incre--;
-		if (twode[le.index][le.incre] != '1')
-			exit_message("Sides Not Closed !\n");
-		le.index++ ;
-	}
-}
-void  bothwalls(char **twode)
-{
-	t_pars	ch;
-
-	ch.index = 0;
-	ch.incre = 0;
-	while (twode[0] && twode[0][ch.index])
-	{
-		if (twode[count_twode_arr(twode) - 1][ch.index] != '1' \
-		&& twode[count_twode_arr(twode) - 1][ch.index] != '-')
-			exit_message("Map Not closed ...!\n");
-		ch.index++ ;
-	}
-	if (count_twode_arr(twode) != 0)
-	{
-		while (twode[count_twode_arr(twode) - 1][ch.index])
-		{
-			if (twode[count_twode_arr(twode) - 1][ch.index] != '1' \
-			&& twode[count_twode_arr(twode) - 1][ch.index] != '-')
-				exit_message("Map Not closed ...!\n");
-			ch.index++ ;
-		}
-	}
 }

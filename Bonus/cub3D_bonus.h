@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 09:27:20 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/22 21:33:13 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/26 08:27:47 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # define ESC			256
 # define RIGHT			262
 # define LEFT			263
-# define PIXI			3
+# define PIXI			4
 # define PLAYER_SPEED	3
 # define MOUSE_SPEED	0.1
 # define ROTATION_SPEED	0.02
@@ -108,7 +108,9 @@ typedef struct s_data
 	int				win_width;
 	int				win_height;
 	int				mini_width;
+	int				shot;
 	int				mini_height;
+	int				is_door;
 	double			wall_height;
 	double			wall_distance;
 	double			scale;
@@ -118,10 +120,13 @@ typedef struct s_data
 	mlx_texture_t	*texture;
 	mlx_texture_t	*bonus;
 	mlx_texture_t	*reload[10];
+	mlx_texture_t	*shoot[10];
 }	t_data;
 
 typedef struct parsing
 {
+	int		row;
+	int		col;
 	int		index;
 	int		increment ;
 	char	*map;
@@ -158,11 +163,11 @@ typedef struct store_map_elem
 }	t_store;
 
 /*************** INIT *************/
-void	ft_init_map(t_data *data);
-void	ft_init_data(t_data *data, t_store *store);
-void	ft_allocate_data(t_data **data, t_store *store);
-void	ft_init_mlx(t_data *data);
-void	ft_init(t_data *data);
+// void	ft_init_map(t_data *data);
+// void	ft_init_data(t_data *data, t_store *store);
+// void	ft_allocate_data(t_data **data);
+// void	ft_init_mlx(t_data *data);
+// void	ft_init(t_data *data);
 void	ft_close(t_data *data);
 
 /*************** MOVE *************/
@@ -200,6 +205,35 @@ void	ft_background_sound(char *text);
 void	kill_sound(void);
 
 // -----------------
+void	ft_mouse_clic(mouse_key_t button, action_t action, \
+modifier_key_t mods, void *d);
+void	ft_check_reload(t_data *data);
+int		check_dor_position(t_pars *map);
+int		search_for_dor(char **array, t_pars *map);
+int		get_position(t_store *elemes, char *array);
+void	initializetwo(int *var, int *var2);
+int		turnfunction(char **array, int index, int incre);
+int		check_next(char *string);
+void	print_store(t_store *store);
+void	function_check_inside(char **twode);
+void	func_checks(char **twode);
+void	check_on_element(t_store *store);
+void	ini_tila(t_store *store, int flag);
+char	**for_main(t_pars *map);
+char	**heal_map(char **twode, char pass);
+void	check_weird_ithem(char *string);
+void	initial_this(char current, t_store *elemes);
+char	*caracter_turn(char *string, char copy);
+int		get_last_wall_position(char **twode);
+char	**initial_it(void);
+void	function_fill(char *string, int flag, t_store *store, char **twode);
+void	function_fill_to_check(t_store *store, char **elemet, \
+char *string, char **twode);
+void	keep_check(long number);
+int		check_nonumbers(char *string);
+int		check_numbers(char *string);
+void	initail_it(t_store *store, int number, int index, int ff);
+int		check_on_check(char string);
 void	merge_all_functions(t_pars *map, t_store	*store);
 void	create_window(char **twode, t_store *elemenets);
 void	count_players(char **twode);

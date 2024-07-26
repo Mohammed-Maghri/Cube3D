@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmaghri <mmaghri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 14:09:29 by mmaghri           #+#    #+#             */
-/*   Updated: 2024/07/21 15:48:45 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/23 15:03:31 by mmaghri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,74 +86,4 @@ void	putstring(char *string)
 		paste(string[index]);
 		index++ ;
 	}
-}
-
-int	copy(char check, char being_check)
-{
-	if (check == being_check)
-		return (-1);
-	return (0);
-}
-
-int	count_how_may(char *string, char srach_for)
-{
-	int	index;
-	int	flag;
-
-	flag = 0;
-	index = 0;
-	if (!string)
-		return (0);
-	while (string[index])
-	{
-		if (string[index] == srach_for)
-			flag++ ;
-		index++ ;
-	}
-	return (flag);
-}
-
-char	*copy_move(char *string)
-{
-	t_pars	elems;
-	char	*allocation;
-
-	elems.index = 0;
-	allocation = gb(sizeof(char) + (le_count(string) + 1), 2);
-	while (string[elems.index])
-	{
-		allocation[elems.index] = string[elems.index];
-		elems.index++ ;
-	}
-	allocation[elems.index] = '\0';
-	return (allocation);
-}
-
-char	**moveto_array(char *string)
-{
-	t_pars	elems;
-
-	elems.index = 0;
-	elems.increment = 0;
-	if (!string)
-		return (NULL);
-	elems.array = gb(sizeof(char *) * (count_how_may(string, '\n') + 2), 2);
-	while (string[elems.index])
-	{
-		elems.array[elems.increment] = " ";
-		while (copy(string[elems.index], '\n') != -1 && string[elems.index + 1])
-		{
-			elems.array[elems.increment] = \
-			caracter_turn(elems.array[elems.increment], string[elems.index]);
-			elems.index++ ;
-		}
-		if (string[elems.index] != '\n')
-			elems.array[elems.increment] = \
-				caracter_turn(elems.array[elems.increment], \
-				string[elems.index]);
-		elems.increment++ ;
-		elems.index++;
-	}
-	elems.array[elems.increment] = NULL;
-	return (elems.array);
 }

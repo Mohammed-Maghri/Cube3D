@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 15:58:12 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/22 21:54:11 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/26 08:19:29 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,17 @@ void	ft_key_move(mlx_key_data_t keydata, void *d)
 	if (key == ESC)
 		ft_close(data);
 	(action == 2) && (action = 1);
-	(key == 'R') && (data->check_reload = 1);
 	(key == 'W') && (data->player->up_down = action);
 	(key == 'S') && (data->player->up_down = -action);
 	(key == 'D') && (data->player->left_right = action);
 	(key == 'A') && (data->player->left_right = -action);
-	(key == LEFT) && (data->player->rotation = -action);
-	(key == RIGHT) && (data->player->rotation = action);
-	(key == 'N') && (data->hide_mouse = 1);
-	if (key == 'M')
+	if (key == LEFT)
+		data->player->rotation = -action;
+	else if (key == RIGHT)
+		data->player->rotation = action;
+	else if (key == 'N')
+		data->hide_mouse = 1;
+	else if (key == 'M')
 	{
 		data->hide_mouse = 0;
 		data->player->rotation = 0;
@@ -73,14 +75,14 @@ void	ft_check_reload(t_data *data)
 		data->var_check = 1;
 	}
 	if (data->check_reload == -1)
-		ft_draw_image(data, data->bonus, 500, 586);
+		ft_draw_image(data, data->bonus, 500, 580);
 	else
 	{
 		ft_draw_image(data, \
-			data->reload[data->check_reload / 5], 500, 585);
+			data->reload[data->check_reload / 5], 500, 580);
 		data->check_reload++;
 	}
-	if (data->check_reload == 50)
+	if (data->check_reload == 25)
 	{
 		data->var_check = 0;
 		data->check_reload = -1;
