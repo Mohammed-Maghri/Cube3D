@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 16:06:13 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/26 08:27:36 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/27 20:10:16 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ double	ft_hdistance(t_data *data)
 	while (!ft_wall(data->map, point.x, point.y - data->ray->up) \
 		&& !ft_door(data, point.x, point.y - data->ray->up))
 		(1) && (point.x += step.x) && (point.y += step.y);
-	data->ray->h_distance = point.x;
+	data->ray->h_intersect.x = point.x;
+	data->ray->h_intersect.y = point.y;
 	point.x -= data->player->pos_in_pixels.x;
 	point.y -= data->player->pos_in_pixels.y;
 	return (hypot(point.x, point.y));
@@ -57,7 +58,8 @@ double	ft_vdistance(t_data *data)
 	while (!ft_wall(data->map, point.x - data->ray->left, point.y) \
 			&& !ft_door(data, point.x - data->ray->left, point.y))
 		(1) && (point.x += step.x) && (point.y += step.y);
-	data->ray->v_distance = point.y;
+	data->ray->v_intersect.x = point.x;
+	data->ray->v_intersect.y = point.y;
 	point.x -= data->player->pos_in_pixels.x;
 	point.y -= data->player->pos_in_pixels.y;
 	return (hypot(point.x, point.y));
@@ -69,18 +71,26 @@ void	ft_min_distance(t_data *data, double distance)
 	{
 		data->ray->view = 'v';
 		data->texture = data->mlx->ea_wall;
-		data->map->door = data->map->v_door;
 		if (data->ray->left)
 			data->texture = data->mlx->we_wall;
+		if (data->map->v_door)
+		{
+			data->texture = data->mlx->door;
+			data->map->h_door = 0;
+		}
 	}
 	if (distance < data->ray->distance)
 	{
 		data->ray->view = 'h';
 		data->ray->distance = distance;
-		data->map->door = data->map->h_door;
 		data->texture = data->mlx->so_wall;
 		if (data->ray->up)
 			data->texture = data->mlx->no_wall;
+		if (data->map->h_door)
+		{
+			data->texture = data->mlx->door;
+			data->map->v_door = 0;
+		}
 	}
 }
 
@@ -93,7 +103,6 @@ void	ft_cast_rays(t_data *data)
 	data->ray->index = 0;
 	data->ray->start = data->player->angle - (fov / 2);
 	data->ray->angle = data->ray->start;
-	data->is_door = 0;
 	while (data->ray->angle < data->ray->start + fov)
 	{
 		data->map->v_door = 0;

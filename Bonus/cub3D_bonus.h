@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 09:27:20 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/26 08:27:47 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/27 20:12:45 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,18 +60,18 @@ typedef struct s_player
 
 typedef struct s_ray
 {
-	int		index;
-	int		color;
-	int		down;
-	int		up;
-	int		left;
-	int		right;
-	char	view;
-	double	angle;
-	double	start;
-	double	h_distance;
-	double	v_distance;
-	double	distance;
+	int				index;
+	int				color;
+	int				down;
+	int				up;
+	int				left;
+	int				right;
+	char			view;
+	double			angle;
+	double			start;
+	double			distance;
+	t_coordinate	h_intersect;
+	t_coordinate	v_intersect;
 }	t_ray;
 
 typedef struct s_map
@@ -81,7 +81,7 @@ typedef struct s_map
 	int		map_height;
 	int		h_door;
 	int		v_door;
-	int		door;
+	// int		door;
 }	t_map;
 
 typedef struct s_mlx
@@ -108,9 +108,8 @@ typedef struct s_data
 	int				win_width;
 	int				win_height;
 	int				mini_width;
-	int				shot;
 	int				mini_height;
-	int				is_door;
+	int				shot;
 	double			wall_height;
 	double			wall_distance;
 	double			scale;

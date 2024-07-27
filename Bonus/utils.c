@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 20:38:22 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/26 08:32:00 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/27 20:10:36 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,16 +69,13 @@ int	ft_door(t_data *data, double a, double b)
 		return (0);
 	if (data->map->map[y][x] == 'D')
 	{
-		if (data->map->map[y + data->ray->up - data->ray->down][x + \
-			data->ray->left - data->ray->right] == 'D')
-			return (0);
 		if (hypot(a - data->player->pos_in_pixels.x, b - \
 		data->player->pos_in_pixels.y) > 1.5 * TSIZE)
 		{
-			data->map->h_door = 1;
-			data->map->v_door = 0;
+			if (data->ray->view == 'h')
+				data->map->h_door = 1;
 			if (data->ray->view == 'v')
-				(data->map->v_door = 1) && (data->map->h_door = 0);
+				data->map->v_door = 1;
 			return (1);
 		}
 	}

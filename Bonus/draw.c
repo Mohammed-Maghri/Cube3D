@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 17:56:44 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/25 15:20:44 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/27 20:07:34 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,12 @@ int	ft_wall_data(t_data *data, int *top, int *bot)
 	*top = (data->win_height / 2) - (data->wall_height / 2);
 	*bot = (data->win_height / 2) + (data->wall_height / 2);
 	(*bot > data->win_height) && (*bot = data->win_height);
-	if (data->map->door == 1)
-		data->texture = data->mlx->door;
 	data->color = (uint32_t *)data->texture->pixels;
 	if (data->ray->view == 'v')
-		data->wall_start = (int)(data->ray->v_distance * \
+		data->wall_start = (int)(data->ray->v_intersect.y * \
 			data->texture->height / TSIZE) % data->texture->height;
 	else
-		data->wall_start = (int)(data->ray->h_distance * \
+		data->wall_start = (int)(data->ray->h_intersect.x * \
 			data->texture->width / TSIZE) % data->texture->width;
 	return (0);
 }
@@ -82,5 +80,4 @@ void	ft_draw_all(t_data *data)
 					step + data->wall_start]));
 		pixel++;
 	}
-	data->map->door = 0;
 }
