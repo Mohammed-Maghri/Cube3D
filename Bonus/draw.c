@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaghri <mmaghri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mohammdmaghri <mohammdmaghri@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 17:56:44 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/28 13:06:52 by mmaghri          ###   ########.fr       */
+/*   Updated: 2024/07/28 17:23:31 by mohammdmagh      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	ft_draw_all(t_data *data)
 	while (pixel < bot)
 	{
 		step = (pixel - top) * \
-				((double)data->texture->height / data->wall_height);
+				((double)data->texture->height / data->wall_height); 
 		if (data->ray->index >= data->mini_width || pixel >= data->mini_height)
 			ft_mlx_put_pixel(data, data->ray->index, pixel, \
 				ft_texture_color(data->color[data->texture->width * \
