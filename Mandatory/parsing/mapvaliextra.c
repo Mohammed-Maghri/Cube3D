@@ -6,7 +6,7 @@
 /*   By: mmaghri <mmaghri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 12:08:54 by mmaghri           #+#    #+#             */
-/*   Updated: 2024/07/23 15:07:38 by mmaghri          ###   ########.fr       */
+/*   Updated: 2024/07/28 15:20:58 by mmaghri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	check_rgbs(t_store *store, char *string, int flag)
 {
 	if (check_numbers(string) == -1)
 	{
-		putstring("invelid Element ... !\n");
+		putstring("invalid Element ... !\n");
 		exit(1);
 	}
 	table(string, store, flag);

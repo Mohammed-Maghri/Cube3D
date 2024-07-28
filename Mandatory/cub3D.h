@@ -6,7 +6,7 @@
 /*   By: mmaghri <mmaghri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 09:27:20 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/23 14:58:16 by mmaghri          ###   ########.fr       */
+/*   Updated: 2024/07/28 15:58:01 by mmaghri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ typedef struct parsing
 	int		incre;
 	int		pause;
 	char	**get_map;
+	char	*map_name;
 }			t_pars;
 
 typedef struct store_map_elem

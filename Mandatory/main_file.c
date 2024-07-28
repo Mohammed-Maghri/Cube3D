@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmaghri <mmaghri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 20:38:48 by mmaghri           #+#    #+#             */
-/*   Updated: 2024/07/26 07:53:34 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/28 15:58:21 by mmaghri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	**for_main(t_pars *map)
 {
 	map->map = NULL;
 	map->buf = NULL;
-	function_open_map("Mandatory/maps/map3.cub", map);
+	function_open_map(map->map_name, map);
 	map->get_map = moveto_array(map->map);
 	return (move_only_content(moveto_array(map->map)));
 }

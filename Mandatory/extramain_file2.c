@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extramain_file2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohammdmaghri <mohammdmaghri@student.42    +#+  +:+       +#+        */
+/*   By: mmaghri <mmaghri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 14:36:15 by mmaghri           #+#    #+#             */
-/*   Updated: 2024/07/24 11:16:19 by mohammdmagh      ###   ########.fr       */
+/*   Updated: 2024/07/28 16:28:03 by mmaghri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	funtion_for_main(t_pars *map, t_store *store)
 	check_inside_map(map->array);
 	function_check_inside(map->array);
 	free(map->array);
-	map->array = heal_map(other, '1');
+	map->array = heal_map(other, '-');
 	function_position_check(map->array, store, other);
 	if (store->player_position == -1)
 	{
@@ -100,6 +100,6 @@ void	merge_all_functions(t_pars *map, t_store	*store)
 	funtion_for_main(map, store);
 	bothwalls(map->array);
 	check_side_walls(map->array);
-	prin_map(map->array);
+	// prin_map(map->array);
 	gb(0, -1);
 }

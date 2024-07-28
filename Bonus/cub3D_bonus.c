@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmaghri <mmaghri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 12:31:20 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/26 08:16:01 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/28 15:13:42 by mmaghri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,19 +78,43 @@ void	ft_init_texture(t_data *data, t_store *store)
 		ft_close(data);
 }
 
-int	main(void)
+void functionpassarguments(int argc, char **argv, t_pars *map)
+{
+	if (argc != 2)
+	{
+		printf("Map Not Found !\n");
+		exit(1);
+	}
+	if (argv[1][le_count(argv[1]) - 1] != 'b' || \
+		argv[1][le_count(argv[1]) - 2] != 'u' || \
+		argv[1][le_count(argv[1]) - 3] != 'c' || \
+		argv[1][le_count(argv[1]) - 4] != '.')
+	{
+		printf("Error\n");
+		exit(1);
+	}
+	map->map_name =  argv[1];
+}
+
+void	ttt(void)
+{
+	system("leaks cub3D_bonus");
+}
+
+int	main(int argc, char **argv)
 {
 	t_data	*data;
 	t_store	*store ;
 	t_pars	*map ;
-
+	atexit(ttt);  
 	store = gb(sizeof(t_store), 1);
 	map = gb(sizeof(t_pars), 1);
+	functionpassarguments(argc, argv, map);
 	merge_all_functions(map, store);
 	ft_allocate_data(&data);
 	ft_init_data(data, store, map->array);
 	ft_init_texture(data, store);
-	prin_map(map->array);
+	// prin_map(map->array);
 	mlx_loop_hook(data->mlx->pointer, &ft_update_window, data);
 	mlx_key_hook(data->mlx->pointer, &ft_key_move, data);
 	mlx_mouse_hook(data->mlx->pointer, &ft_mouse_clic, data);

@@ -6,7 +6,7 @@
 /*   By: mmaghri <mmaghri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 20:38:48 by mmaghri           #+#    #+#             */
-/*   Updated: 2024/07/23 15:02:00 by mmaghri          ###   ########.fr       */
+/*   Updated: 2024/07/28 14:13:51 by mmaghri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	**for_main(t_pars *map)
 {
 	map->map = NULL;
 	map->buf = NULL;
-	function_open_map("Bonus/maps/map.cub", map);
+	function_open_map(map->map_name, map);
 	map->get_map = moveto_array(map->map);
 	return (move_only_content(moveto_array(map->map)));
 }
