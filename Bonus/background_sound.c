@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   background_sound.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mohammdmaghri <mohammdmaghri@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 12:34:15 by mmaghri           #+#    #+#             */
-/*   Updated: 2024/07/22 16:22:46 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/28 17:05:49 by mohammdmagh      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,14 @@ void	ft_background_sound(char *text)
 void	kill_sound(void)
 {
 	execve("/usr/bin/killall", (char *[]){"killall", "afplay", NULL}, NULL);
+}
+
+void	ft_close(t_data *data)
+{
+	mlx_delete_image(data->mlx->pointer, data->mlx->image);
+	mlx_close_window(data->mlx->pointer);
+	mlx_terminate(data->mlx->pointer);
+	write(1, "GAME OVER!\n", 12);
+	kill_sound();
+	exit(0);
 }

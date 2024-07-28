@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaghri <mmaghri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mohammdmaghri <mohammdmaghri@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 12:31:20 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/28 15:13:42 by mmaghri          ###   ########.fr       */
+/*   Updated: 2024/07/28 17:01:52 by mohammdmagh      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	ft_init_texture(t_data *data, t_store *store)
 		ft_close(data);
 }
 
-void functionpassarguments(int argc, char **argv, t_pars *map)
+void	functionpassarguments(int argc, char **argv, t_pars *map)
 {
 	if (argc != 2)
 	{
@@ -93,12 +93,7 @@ void functionpassarguments(int argc, char **argv, t_pars *map)
 		printf("Error\n");
 		exit(1);
 	}
-	map->map_name =  argv[1];
-}
-
-void	ttt(void)
-{
-	system("leaks cub3D_bonus");
+	map->map_name = argv[1];
 }
 
 int	main(int argc, char **argv)
@@ -106,7 +101,7 @@ int	main(int argc, char **argv)
 	t_data	*data;
 	t_store	*store ;
 	t_pars	*map ;
-	atexit(ttt);  
+
 	store = gb(sizeof(t_store), 1);
 	map = gb(sizeof(t_pars), 1);
 	functionpassarguments(argc, argv, map);
@@ -114,7 +109,6 @@ int	main(int argc, char **argv)
 	ft_allocate_data(&data);
 	ft_init_data(data, store, map->array);
 	ft_init_texture(data, store);
-	// prin_map(map->array);
 	mlx_loop_hook(data->mlx->pointer, &ft_update_window, data);
 	mlx_key_hook(data->mlx->pointer, &ft_key_move, data);
 	mlx_mouse_hook(data->mlx->pointer, &ft_mouse_clic, data);
@@ -122,14 +116,4 @@ int	main(int argc, char **argv)
 	mlx_cursor_hook(data->mlx->pointer, &ft_mouse_move, data);
 	mlx_loop(data->mlx->pointer);
 	return (0);
-}
-
-void	ft_close(t_data *data)
-{
-	mlx_delete_image(data->mlx->pointer, data->mlx->image);
-	mlx_close_window(data->mlx->pointer);
-	mlx_terminate(data->mlx->pointer);
-	write(1, "GAME OVER!\n", 12);
-	kill_sound();
-	exit(0);
 }

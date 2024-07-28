@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaghri <mmaghri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mohammdmaghri <mohammdmaghri@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 12:31:20 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/28 15:58:34 by mmaghri          ###   ########.fr       */
+/*   Updated: 2024/07/28 17:03:49 by mohammdmagh      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ void	ft_init_data(t_data *data, t_store *store)
 	data->floor_color = ft_color(store->f[0], store->f[1], store->f[2], 255);
 	data->ceiling_color = ft_color(store->c[0], store->c[1], store->c[2], 255);
 }
-void functionpassarguments(int argc, char **argv, t_pars *map)
+
+void	functionpassarguments(int argc, char **argv, t_pars *map)
 {
 	if (argc != 2)
 	{
@@ -71,7 +72,7 @@ void functionpassarguments(int argc, char **argv, t_pars *map)
 		printf("Error\n");
 		exit(1);
 	}
-	map->map_name =  argv[1];
+	map->map_name = argv[1];
 }
 
 int	main(int argc, char **argv)

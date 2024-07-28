@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wall_check.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaghri <mmaghri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mohammdmaghri <mohammdmaghri@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 12:10:31 by mmaghri           #+#    #+#             */
-/*   Updated: 2024/07/28 15:44:29 by mmaghri          ###   ########.fr       */
+/*   Updated: 2024/07/28 16:59:11 by mohammdmagh      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ void	exit_message(char *string)
 
 void	checkfortheinside(char **twode, int *index, int *incre)
 {
-	printf("opps here \n");
-	// prin_map(twode);
 	if (twode[*index - 1][*incre] == '-' || \
 	twode[*index + 1][*incre] == '-')
 		exit_message("Ooops  Not a Valid Map ... ! \n");

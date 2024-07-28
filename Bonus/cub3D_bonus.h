@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaghri <mmaghri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mohammdmaghri <mohammdmaghri@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 09:27:20 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/28 14:11:19 by mmaghri          ###   ########.fr       */
+/*   Updated: 2024/07/28 17:00:09 by mohammdmagh      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ typedef struct s_map
 	int		map_height;
 	int		h_door;
 	int		v_door;
-	// int		door;
 }	t_map;
 
 typedef struct s_mlx
@@ -162,28 +161,19 @@ typedef struct store_map_elem
 	int		endian ;
 }	t_store;
 
-/*************** INIT *************/
-// void	ft_init_map(t_data *data);
-// void	ft_init_data(t_data *data, t_store *store);
-// void	ft_allocate_data(t_data **data);
-// void	ft_init_mlx(t_data *data);
-// void	ft_init(t_data *data);
 void	ft_close(t_data *data);
 
-/*************** MOVE *************/
 void	ft_move_player(t_data *data);
 void	ft_update_window(void *d);
 void	ft_key_move(mlx_key_data_t keydata, void *d);
 void	ft_mouse_move(double xpos, double ypos, void *d);
 
-/*************** RAY_CAST *************/
 void	ft_cast_rays(t_data *data);
 void	ft_normalize(t_ray *ray);
 double	ft_hdistance(t_data *data);
 double	ft_vdistance(t_data *data);
 double	ft_distance(t_coordinate a, t_position b);
 
-/**************** DRAW ***************/
 void	ft_draw_ray(t_data *data);
 void	ft_draw_all(t_data *data);
 void	ft_draw_minimap(t_data *data);
@@ -196,7 +186,6 @@ int		ft_texture_color(unsigned int c);
 void	ft_draw_image(t_data *data, mlx_texture_t *bonus, int x, int y);
 void	ft_mlx_put_pixel(t_data *data, int x, int y, int color);
 
-/**************** PARSING ***************/
 int		count_lenght(void **array);
 void	optins(void **array);
 void	*gb(int size, int flag);
@@ -204,7 +193,6 @@ void	**garbege_array_fill(void **array, void *add);
 void	ft_background_sound(char *text);
 void	kill_sound(void);
 
-// -----------------
 void	ft_mouse_clic(mouse_key_t button, action_t action, \
 modifier_key_t mods, void *d);
 void	ft_check_reload(t_data *data);

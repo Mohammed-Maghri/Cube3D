@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extramain_file2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaghri <mmaghri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mohammdmaghri <mohammdmaghri@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 14:36:15 by mmaghri           #+#    #+#             */
-/*   Updated: 2024/07/28 15:44:13 by mmaghri          ###   ########.fr       */
+/*   Updated: 2024/07/28 17:00:35 by mohammdmagh      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,5 @@ void	merge_all_functions(t_pars *map, t_store	*store)
 	funtion_for_main(map, store);
 	bothwalls(map->array);
 	check_side_walls(map->array);
-	// prin_map(map->array);
 	gb(0, -1);
 }
