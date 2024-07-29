@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohammdmaghri <mohammdmaghri@student.42    +#+  +:+       +#+        */
+/*   By: mmaghri <mmaghri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 09:27:20 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/28 17:00:09 by mohammdmagh      ###   ########.fr       */
+/*   Updated: 2024/07/29 10:45:39 by mmaghri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define PIXI			4
 # define PLAYER_SPEED	3
 # define MOUSE_SPEED	0.1
-# define ROTATION_SPEED	0.02
+# define ROTATION_SPEED	0.04
 # define WINDOW_HEIGHT	30
 # define WINDOW_WIDTH	50
 # define MINI_COLOR		0xAAAAAAAA

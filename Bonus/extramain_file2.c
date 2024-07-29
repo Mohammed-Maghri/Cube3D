@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extramain_file2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohammdmaghri <mohammdmaghri@student.42    +#+  +:+       +#+        */
+/*   By: mmaghri <mmaghri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 14:36:15 by mmaghri           #+#    #+#             */
-/*   Updated: 2024/07/28 17:00:35 by mohammdmagh      ###   ########.fr       */
+/*   Updated: 2024/07/29 10:55:05 by mmaghri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

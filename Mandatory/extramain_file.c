@@ -6,7 +6,7 @@
 /*   By: mmaghri <mmaghri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 13:27:04 by mmaghri           #+#    #+#             */
-/*   Updated: 2024/07/23 15:05:56 by mmaghri          ###   ########.fr       */
+/*   Updated: 2024/07/29 10:56:18 by mmaghri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ int	turnfunction(char **array, int index, int incre)
 		return (-1);
 	if (array[index][incre - 1] == '-')
 		return (-1);
-	if (array[index][incre] == '-')
+	if (array[index - 1][incre] == '-')
 		return (-1);
-	if (array[index][incre + 1] == '-')
+	if (array[index + 1][incre] == '-')
 		return (-1);
 	return (0);
 }
