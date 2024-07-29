@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 12:31:20 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/29 08:43:47 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/29 14:26:33 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,11 @@ void	ft_allocate_data(t_data **data, t_store *store)
 	(*data)->map = (t_map *)gb(sizeof(t_map), 1);
 	(*data)->mlx = (t_mlx *)gb(sizeof(t_mlx), 1);
 	if (!(*data)->ray || !(*data)->player || !(*data)->map || !(*data)->mlx)
-		ft_close(*data);
+		exit(1);
 	(*data)->mlx->pointer = mlx_init(WINDOW_WIDTH * TSIZE, \
 								WINDOW_HEIGHT * TSIZE, "Cub3D", 0);
+	if (!(*data)->mlx->pointer)
+		exit(1);
 	(*data)->mlx->no_wall = mlx_load_png(store->no);
 	(*data)->mlx->so_wall = mlx_load_png(store->so);
 	(*data)->mlx->we_wall = mlx_load_png(store->we);
@@ -59,6 +61,11 @@ void	ft_init_data(t_data *data, t_store *store, char **map)
 
 void	functionpassarguments(int argc, char **argv, t_pars *map)
 {
+	if (TSIZE > 100)
+	{
+		printf("Check TSIZE!\n");
+		exit(1);
+	}
 	if (argc != 2)
 	{
 		printf("Map Not Found !\n");
@@ -75,17 +82,22 @@ void	functionpassarguments(int argc, char **argv, t_pars *map)
 	map->map_name = argv[1];
 }
 
+void leak(){system("leaks cub3D");}
+
 int	main(int argc, char **argv)
 {
+	atexit(leak);
 	t_data	*data;
 	t_store	*store ;
 	t_pars	*map ;
 
 	store = gb(sizeof(t_store), 1);
 	map = gb(sizeof(t_pars), 1);
+	data = (t_data *){0};
+	if (!store || !map)
+		exit(1);
 	functionpassarguments(argc, argv, map);
 	merge_all_functions(map, store);
-	data = (t_data *){0};
 	ft_allocate_data(&data, store);
 	ft_init_data(data, store, map->array);
 	mlx_loop_hook(data->mlx->pointer, &ft_update_window, data);
