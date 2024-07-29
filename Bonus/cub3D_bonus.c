@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohammdmaghri <mohammdmaghri@student.42    +#+  +:+       +#+        */
+/*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 12:31:20 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/28 17:01:52 by mohammdmagh      ###   ########.fr       */
+/*   Updated: 2024/07/29 08:50:25 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,12 @@ void	ft_init_data(t_data *data, t_store *store, char **map)
 	data->player->left_right = 0;
 	data->player->up_down = 0;
 	data->player->move.x = 0;
+	data->player->move.y = 0;
 	data->player->pos_in_map.x = store->x;
 	data->player->pos_in_map.y = store->y;
-	data->player->move.y = 0;
-	data->player->pos_in_pixels.x = data->player->pos_in_map.x * \
-									TSIZE + TSIZE / 2;
-	data->player->pos_in_pixels.y = data->player->pos_in_map.y * \
-									TSIZE + TSIZE / 2;
+	data->player->pos_in_pixels.x = store->x * TSIZE + TSIZE / 2;
+	data->player->pos_in_pixels.y = store->y * TSIZE + TSIZE / 2;
 	data->player->angle = store->player_position;
-	data->hide_mouse = 1;
 	data->scale = ((double)MSIZE / TSIZE);
 	data->win_width = WINDOW_WIDTH * TSIZE;
 	data->win_height = WINDOW_HEIGHT * TSIZE;
@@ -55,6 +52,7 @@ void	ft_init_data(t_data *data, t_store *store, char **map)
 	data->map->map_width = le_count(map[0]);
 	data->map->map = map;
 	data->check_reload = -1;
+	data->hide_mouse = 1;
 }
 
 void	ft_init_texture(t_data *data, t_store *store)
@@ -71,10 +69,11 @@ void	ft_init_texture(t_data *data, t_store *store)
 	data->reload[3] = mlx_load_png("textures/reload/5.png");
 	data->reload[4] = mlx_load_png("textures/reload/2.png");
 	if (!data->mlx->no_wall || !data->mlx->so_wall
-		|| !data->mlx->we_wall || !data->mlx->ea_wall
-		|| !data->mlx->door || !data->reload[0]
-		|| !data->reload[1] || !data->reload[2]
-		|| !data->reload[3] || !data->reload[4])
+		|| !data->mlx->ea_wall || !data->mlx->door
+		|| !data->mlx->we_wall || !data->bonus
+		|| !data->reload[0] || !data->reload[1]
+		|| !data->reload[2] || !data->reload[3]
+		||!data->reload[4])
 		ft_close(data);
 }
 

@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 15:58:12 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/26 08:19:29 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/29 09:00:54 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,13 @@ void	ft_check_reload(t_data *data)
 		data->var_check = 1;
 	}
 	if (data->check_reload == -1)
-		ft_draw_image(data, data->bonus, 500, 580);
+		ft_draw_image(data, data->bonus, (data->win_width - \
+			data->bonus->width) / 2, data->win_height - data->bonus->height);
 	else
 	{
 		ft_draw_image(data, \
-			data->reload[data->check_reload / 5], 500, 580);
+			data->reload[data->check_reload / 5], (data->win_width - \
+			data->bonus->width) / 2, data->win_height - data->bonus->height);
 		data->check_reload++;
 	}
 	if (data->check_reload == 25)

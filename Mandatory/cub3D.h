@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaghri <mmaghri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 09:27:20 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/28 15:58:01 by mmaghri          ###   ########.fr       */
+/*   Updated: 2024/07/29 08:46:02 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,10 @@ typedef struct s_player
 {
 	t_position		pos_in_map;
 	t_position		pos_in_pixels;
-	t_coordinate	move;
 	double			angle;
 	double			rotation;
-	int				left_right;
-	int				up_down;
+	double			left_right;
+	double			up_down;
 }	t_player;
 
 typedef struct s_ray
@@ -146,26 +145,17 @@ typedef struct store_map_elem
 	int		endian ;
 }	t_store;
 
-/*************** INIT *************/
-void	ft_init_map(t_data *data);
-void	ft_init_data(t_data *data, t_store *store);
-void	ft_allocate_data(t_data **data, t_store *store);
-void	ft_init_mlx(t_data *data);
-void	ft_init(t_data *data);
-void	ft_close(t_data *data);
-
-/*************** MOVE *************/
-
-void	ft_move_player(t_data *data);
-void	ft_key_move(mlx_key_data_t keydata, void *d);
-void	ft_update_window(void *d);
-
 /*************** RAY_CAST *************/
 void	ft_cast_rays(t_data *data);
 void	ft_normalize(t_ray *ray);
 double	ft_hdistance(t_data *data);
 double	ft_vdistance(t_data *data);
 double	ft_distance(t_coordinate a, t_position b);
+
+/*************** MOVE *************/
+void	ft_move_player(t_data *data);
+void	ft_key_move(mlx_key_data_t keydata, void *d);
+void	ft_update_window(void *d);
 
 /**************** DRAW ***************/
 void	ft_draw_ray(t_data *data);
@@ -177,6 +167,7 @@ int		ft_near_wall(t_map *map, double a, double b);
 int		ft_color(int r, int g, int b, int a);
 int		ft_texture_color(unsigned int c);
 void	ft_mlx_put_pixel(t_data *data, int x, int y, int color);
+void	ft_close(t_data *data);
 
 /**************** PARSING ***************/
 int		count_lenght(void **array);

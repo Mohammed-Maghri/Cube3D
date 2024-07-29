@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_file2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaghri <mmaghri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 13:48:49 by mmaghri           #+#    #+#             */
-/*   Updated: 2024/07/28 11:47:04 by mmaghri          ###   ########.fr       */
+/*   Updated: 2024/07/29 08:16:35 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,9 @@ void	prin_map(char **twode)
 int	check_ele(char string)
 {
 	if (string == '0' || string == '1' || \
-	string == 'W' || string == 'N' \
-	|| string == 'S' || string == 'E')
+		string == 'W' || string == 'N' || \
+		string == 'S' || string == 'E' || \
+		string == '-')// to _check!!!
 		return (-1);
 	return (0);
 }

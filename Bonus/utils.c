@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohammdmaghri <mohammdmaghri@student.42    +#+  +:+       +#+        */
+/*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 20:38:22 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/28 17:34:25 by mohammdmagh      ###   ########.fr       */
+/*   Updated: 2024/07/29 09:02:54 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ft_texture_color(unsigned int c)
 	int	g;
 	int	b;
 	int	a;
-	printf(" c = %d\n", c);
+
 	a = c % 256;
 	c /= 256;
 	b = c % 256;
@@ -31,8 +31,6 @@ int	ft_texture_color(unsigned int c)
 	g = c % 256;
 	c /= 256;
 	r = c;
-	printf("r = %d, g = %d, b = %d, a = %d\n", r, g, b, a);
-	exit(0);
 	return (ft_color(a, b, g, r));
 }
 

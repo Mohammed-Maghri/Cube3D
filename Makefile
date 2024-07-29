@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mmaghri <mmaghri@student.42.fr>            +#+  +:+       +#+         #
+#    By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/25 09:26:25 by cmasnaou          #+#    #+#              #
-#    Updated: 2024/07/28 15:28:36 by mmaghri          ###   ########.fr        #
+#    Updated: 2024/07/29 08:54:47 by cmasnaou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	cub3D
 BONUS	=	cub3D_bonus
-CC		=	cc# -g -fsanitize=address
+CC		=	cc -g -fsanitize=address
 RM		=	rm -rf
 FLAGS	=	-O3 -ffast-math -Wall -Wextra -Werror #-fsanitize=thread#-g ç -fsanitize=thread
 FLMLX	=	-framework Cocoa -framework OpenGL -framework IOKit

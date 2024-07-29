@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 10:11:23 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/22 21:59:14 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/29 08:40:40 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,23 +21,20 @@ void	ft_mlx_put_pixel(t_data *data, int x, int y, int color)
 void	ft_draw_ray(t_data *data)
 {
 	t_coordinate	start;
-	t_coordinate	step;
+	t_coordinate	pixel;
 	int				pixel_count;
 
 	start.x = data->player->pos_in_pixels.x * data->scale;
 	start.y = data->player->pos_in_pixels.y * data->scale;
 	start.x += data->mini_width / 2 - floor(start.x);
 	start.y += data->mini_height / 2 - floor(start.y);
-	step.x = cos(data->ray->angle);
-	step.y = sin(data->ray->angle);
 	pixel_count = data->ray->distance * data->scale + 1;
 	while (--pixel_count >= 0)
 	{
-		if (start.x + step.x * pixel_count < data->mini_width && \
-			start.y + step.y * pixel_count < data->mini_height)
-			ft_mlx_put_pixel(data, start.x + step.x * pixel_count, \
-									start.y + step.y * pixel_count, \
-									0xAAAAAAEE);
+		pixel.x = start.x + cos(data->ray->angle) * pixel_count;
+		pixel.y = start.y + sin(data->ray->angle) * pixel_count;
+		if (pixel.x < data->mini_width && pixel.y < data->mini_height)
+			ft_mlx_put_pixel(data, pixel.x, pixel.y, 0xAAAAAAEE);
 	}
 }
 
