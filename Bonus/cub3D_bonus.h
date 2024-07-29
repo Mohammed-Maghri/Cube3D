@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaghri <mmaghri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 09:27:20 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/29 10:45:39 by mmaghri          ###   ########.fr       */
+/*   Updated: 2024/07/29 18:30:28 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,18 +162,15 @@ typedef struct store_map_elem
 }	t_store;
 
 void	ft_close(t_data *data);
-
 void	ft_move_player(t_data *data);
 void	ft_update_window(void *d);
 void	ft_key_move(mlx_key_data_t keydata, void *d);
 void	ft_mouse_move(double xpos, double ypos, void *d);
-
 void	ft_cast_rays(t_data *data);
 void	ft_normalize(t_ray *ray);
 double	ft_hdistance(t_data *data);
 double	ft_vdistance(t_data *data);
 double	ft_distance(t_coordinate a, t_position b);
-
 void	ft_draw_ray(t_data *data);
 void	ft_draw_all(t_data *data);
 void	ft_draw_minimap(t_data *data);
@@ -185,16 +182,14 @@ int		ft_color(int r, int g, int b, int a);
 int		ft_texture_color(unsigned int c);
 void	ft_draw_image(t_data *data, mlx_texture_t *bonus, int x, int y);
 void	ft_mlx_put_pixel(t_data *data, int x, int y, int color);
-
 int		count_lenght(void **array);
 void	optins(void **array);
 void	*gb(int size, int flag);
 void	**garbege_array_fill(void **array, void *add);
 void	ft_background_sound(char *text);
 void	kill_sound(void);
-
 void	ft_mouse_clic(mouse_key_t button, action_t action, \
-modifier_key_t mods, void *d);
+		modifier_key_t mods, void *d);
 void	ft_check_reload(t_data *data);
 int		check_dor_position(t_pars *map);
 int		search_for_dor(char **array, t_pars *map);
@@ -216,7 +211,7 @@ int		get_last_wall_position(char **twode);
 char	**initial_it(void);
 void	function_fill(char *string, int flag, t_store *store, char **twode);
 void	function_fill_to_check(t_store *store, char **elemet, \
-char *string, char **twode);
+		char *string, char **twode);
 void	keep_check(long number);
 int		check_nonumbers(char *string);
 int		check_numbers(char *string);

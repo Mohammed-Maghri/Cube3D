@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 12:31:20 by cmasnaou          #+#    #+#             */
-/*   Updated: 2024/07/29 14:26:33 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/29 18:31:11 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,6 @@ void	ft_init_data(t_data *data, t_store *store, char **map)
 
 void	functionpassarguments(int argc, char **argv, t_pars *map)
 {
-	if (TSIZE > 100)
-	{
-		printf("Check TSIZE!\n");
-		exit(1);
-	}
 	if (argc != 2)
 	{
 		printf("Map Not Found !\n");
@@ -82,15 +77,14 @@ void	functionpassarguments(int argc, char **argv, t_pars *map)
 	map->map_name = argv[1];
 }
 
-void leak(){system("leaks cub3D");}
-
 int	main(int argc, char **argv)
 {
-	atexit(leak);
 	t_data	*data;
 	t_store	*store ;
 	t_pars	*map ;
 
+	if (TSIZE == 0)
+		exit(1);
 	store = gb(sizeof(t_store), 1);
 	map = gb(sizeof(t_pars), 1);
 	data = (t_data *){0};

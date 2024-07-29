@@ -6,7 +6,7 @@
 /*   By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 14:51:07 by mmaghri           #+#    #+#             */
-/*   Updated: 2024/07/29 14:20:38 by cmasnaou         ###   ########.fr       */
+/*   Updated: 2024/07/29 18:29:28 by cmasnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,15 @@ void	**garbege_array_fill(void **array, void *add)
 	index = 0;
 	twode = malloc(sizeof(void *) * (count_lenght(array)+ 2));
 	if (!twode)
-		return (NULL);
+		exit(1);
 	while (array && array[index])
 	{
 		twode[index] = array[index];
-		index++ ;
+		index++;
 	}
 	twode[index] = add;
-	index++ ;
-	twode[index] = NULL ;
+	index++;
+	twode[index] = NULL;
 	free(array);
 	return (twode);
 }
@@ -55,14 +55,14 @@ void	*gb(int size, int flag)
 	{
 		add = malloc(size);
 		if (!add)
-			return (NULL);
+			exit(1);
 		array = garbege_array_fill(array, add);
 	}
 	if (flag == 2)
 	{
 		add = malloc(size);
 		if (!add)
-			return (NULL);
+			exit(1);
 		free_to_use = garbege_array_fill(free_to_use, add);
 	}
 	return (add);

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mmaghri <mmaghri@student.42.fr>            +#+  +:+       +#+         #
+#    By: cmasnaou <cmasnaou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/25 09:26:25 by cmasnaou          #+#    #+#              #
-#    Updated: 2024/07/29 10:46:07 by mmaghri          ###   ########.fr        #
+#    Updated: 2024/07/29 18:26:13 by cmasnaou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,12 +14,8 @@ NAME	=	cub3D
 BONUS	=	cub3D_bonus
 CC		=	cc
 RM		=	rm -rf
-FLAGS	=	-O3 -ffast-math -Wall -Wextra -Werror #-fsanitize=thread#-g ç -fsanitize=thread
+FLAGS	=	-O3 -ffast-math -Wall -Wextra -Werror
 FLMLX	=	-framework Cocoa -framework OpenGL -framework IOKit
-# GLFW is a library that allows to create and manage windows, receiving input and events...
-# -lglfw is the flag to link GLFW during the linking stage.
-# use flags -framework Cocoa -framework OpenGL -framework in order to link the program with the correct frameworks.
-# -lglfw -L/Users/$(USER)/.brew/opt/glfw/lib/ are the compilation flags
 LFLAG	=	MLX42/libmlx42.a -lglfw -L/Users/$(USER)/.brew/opt/glfw/lib/
 HEADM	=	Mandatory/cub3D.h
 HEADB	=	Bonus/cub3D_bonus.h
