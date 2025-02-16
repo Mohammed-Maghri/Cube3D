@@ -4,6 +4,7 @@ Welcome to CuB3D! This project is a part of the 42 curriculum, designed to provi
 About CuB3D
 CuB3D is a minimalistic 3D engine that leverages raycasting techniques to create immersive 3D environments. By focusing on core concepts such as raycasting, texture mapping, and user input, CuB3D provides a solid foundation for understanding how 3D games and simulations work. This project is designed to be both a learning tool and a platform for experimentation, allowing students to dive into the complexities of 3D graphics in a manageable scope.
 
+
 Key Features
 Raycasting Engine: Utilize raycasting to render 3D scenes from 2D map data, mimicking the behavior of early 3D games.
 Simple Physics: Implement basic physics for player movement and collision detection.
